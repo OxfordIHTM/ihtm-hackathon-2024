@@ -28,7 +28,7 @@ R](https://oxford-ihtm.io/open-reproducible-science).
 
 ## Motivation
 
-**Hackathon 2024** caps the students’ introduction to [Open Science and Reproducible Research in R](https://oxford-ihtm.io/open-reproducible-science) through an actual global health project within which they are to serve as researchers/data scientists. This exercise aims to provide the students a platform from which to apply skills in working with data using R that they have been learning and practicing for about the past 6 weeks while at the same
+**Hackathon 2024** caps the students’ introduction to [Open Science and Reproducible Research in R](https://oxford-ihtm.io/open-reproducible-science) through an actual global health project within which they are to serve as researchers/data scientists. This exercise aims to provide the students a platform from which to apply skills in working with data using R that they have been learning and practising for about the past 6 weeks while at the same
 time exposing them to a collaborative team environment.
 
 ## Format
@@ -80,7 +80,7 @@ ihtm-hackathon-2024
     |-- sudan_health_nutrition.R
 ```
 
-- `data/` contains the datasets required for this project. These datasets may either be provided by the module leader and/or retrieved programmaticaly by the hackathon participants and saved into this directly;
+- `data/` contains the datasets required for this project. These datasets may either be provided by the module leader and/or retrieved grammatically by the hackathon participants and saved into this directly;
 
 - `docs/` contains compiled reports produced from Rmarkdown documents;
 
@@ -102,7 +102,7 @@ ihtm-hackathon-2024
     Currently, this directory contains the following files 
     
     * `case_study.Rmd` - Rmd file that produces the `case_study.html` file found in the `docs` folder
-    * `sudan_health_nutrition.Rmd` - Rmd file that produces the overall report
+    * `sudan_health_nutrition.Rmd` - Rmd file for producing the overall report
 
 - `sudan_health_nutrition_1.R` is the R workflow script for section 1 of the analysis;
 
@@ -140,7 +140,7 @@ To work on this project, please follow these steps:
     
     Please run this code direct to your R console rather than encoding in the R scripts in this project.
     
-    Please make sure to replace the placeholder text `name_of_project1`etc with the actual names of the packages listed
+    Please make sure to replace the placeholder text `name_of_project1` etc with the actual names of the packages listed
     in the `packages.R` file.
     
     This code will show which of the packages listed in `packages.R` are already installed in your computer. Packages
@@ -153,11 +153,13 @@ To work on this project, please follow these steps:
     install.packages(c("name_of_package1", "name_of_package2", "name_of_package3")
     ```
 
-Once all R package dependencies have been installed, you should be able
-to work on this hackathon project. Please ensure that before making any
-changes and contributions, create a new local branch from main
-(see [here](https://oxford-ihtm.io/ihtm-handbook/participate-projects.html#create-a-new-branch-from-the-main-branch)
-for instructions on how to create a new branch)
+    Please run this code direct to your R console rather than encoding in the R scripts in this project.
+    
+    Please make sure to replace the placeholder text `name_of_project1` etc with the actual names of the packages listed
+    in the `packages.R` file that are not yet installed in your computer.
+    
+Once all R package dependencies have been installed, you should now be able to work on this project on your own
+branch and make changes/contributions as directed by project lead.
 
 ## License
 
