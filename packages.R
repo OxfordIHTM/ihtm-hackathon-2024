@@ -7,6 +7,7 @@ library(tidyr)        ## Data wrangling and manipulation using tidy approach
 library(ggplot2)      ## Data visualisation using tidy approach
 library(rmarkdown)    ## Literate programming and report generation
 library(remotes)      ## For installing packages from GitHub
+library(here)         ## Utility package for working directory helper
 
 
 ## Load packages for mapping ----

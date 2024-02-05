@@ -25,7 +25,9 @@ jobs:
           
       - name: Install R packages
         run: |
-          install.packages(c("rmarkdown", "openxlsx", "stringr", "remotes"))
+          install.packages(
+          c("rmarkdown", "openxlsx", "stringr", "remotes", "here")
+        )
         shell: Rscript {0}
           
       - name: Check that R file runs without errors
