@@ -1,0 +1,90 @@
+---
+title: Sudan Maternal and Child Health and Nutrition Survey 2018
+date: "5 February 2024"
+output: html_document
+---
+
+## The case
+
+Sudan has the third highest prevalence of acute malnutrition in the world and the highest in the Middle East and North Africa (MENA) region at 16% global acute malnutrition amongst children under five years. The under-five mortality rate in the country was estimated at 68/1000 in 2014 compared with 108/1000 in 2000 for an annual rate of reduction of 2.2% since 1990. Access to primary health care (PHC) remains low despite the fact that the Integrated Management of Childhood Illnesses (IMCI) coverage at health facilities increased from 43 percent to 46.1 percent in 2013. Sudan’s low coverage
+of improved water and sanitation facilities continues to hamper overall child health and nutrition.
+
+In 2018, the Sudan Federal Ministry of Health with support from UNICEF, commissioned a national to assess progress (or the lack thereof) in terms of various maternal and child health and nutrition indicators. A spatially-representative sample survey was carried out in 2018 in order to obtain updated and comprehensive data for nutrition, health, water, sanitation, and hygiene indicators. The survey provided results at the national, state, and locality level for children and their mothers in Sudan. It identified the areas where the highest need are to allow evidence based programme planning and targeting for equity to enable a better and more effective use of scarce resources for humanitarian response and enhanced impact within Sudan.
+
+## The challenge
+
+The Director of the MSc in International Health and Tropical Medicine of the University of Oxford was requested by one of her alumni for support in re-analysing the data from the 2018 national survey. Specifically, support was requested in addressing the following questions:
+
+### Cross-cutting study objectives
+
+1. Determine the service delivery bottlenecks for specific maternal and child health services;
+
+2. Describe the spatial distribution of maternal and child undernutrition;
+
+3. Assess the responsiveness of the treatment programme in relation to the burden of acute child wasting at locality, state, and national levels; and,
+
+4. Describe the determinants of maternal and child undernutrition.
+
+## The response
+    
+In response, the MSc Director has assigned the challenge to the course's current crop of students to work through the dataset and address the various study objectives set.
+
+## The brief
+
+The students have been grouped into four (6) teams:
+
+**Team Name** | **Team Avatar** | **Team Members**
+:--- | :---: | :---
+Team Naruto | ![](https://avatars.githubusercontent.com/t/8710380?s=116&v=4) | Tess, Thokozani, Clifford, Anita A., Marietta
+Team Sasuke | ![](https://avatars.githubusercontent.com/t/8710418?s=116&v=4) | Moshood, Shylett, Eslam, Amina, Mercedes
+Team Sakura | ![](https://avatars.githubusercontent.com/t/8723207?s=116&v=4) | Anita M., Yih, Richmonda, Jillian
+Team Neji | ![](https://avatars.githubusercontent.com/t/8723210?s=116&v=4) | Prateek, Bok, Neira, Mariano, Josephine
+Team Hinata | ![](https://avatars.githubusercontent.com/t/8710419?s=116&v=4) | Kelechi, Mary, Naemi, Joseph, Rasika
+Team Rock Lee | ![](https://avatars.githubusercontent.com/t/8723204?s=116&v=4) | Philip, Claudia, Samvel, Kapil, Gloria
+
+### Initial hackathon day
+
+On the starting day of the hackathon (Session 8 - 5 February 2024), each team will be assigned a set of tasks that contribute to addressing the study objectives stated above. These will be provided to each team in the form of GitHub issues.
+
+The GitHub issue will set tasks that contribute to addressing the study objectives as described above. Once assigned, the expectation is that the team will work through the PBL process and identify what they already know and what they don't know towards addressing the various tasks related to the study objectives. In general, these topics will include domain-specific knowledge regarding the problem and R-specific knowledge/skills needed to perform operations/calculations/analysis to produce answers to the questions. Each team then has the opportunity to ask relevant questions (including those that are related to the topic they don't know) to the hackathon facilitator and/or to fellow team mates and/or other teams and their members. This session will be a classroom session and questions are raised and answers provided for the whole set of teams to hear and learn from. The teams then take on these new knowledge and learning (or references provided by the facilitator or co-learners) and discuss it within their teams to start building solution/s to the problem-at-hand.
+
+The expected output per team after the initial hackathon day is to at least have a list of steps/tasks that the team plan/aim to do in order to solve/address the question it has been assigned. This list can be outlined as a response/comment to the original issue assigned to the team via GitHub. The list should include further lines of enquiry/study that the team would like to go through in support of the steps/tasks it aims to complete.
+
+### Working as a team and contributing individually
+
+Once the teams start working on R code of the steps/tasks they aim to undertake to address the study objectives, the expectation is that each team member will be given the chance to be lead analyst and write code on behalf of their team on their own branches created from the main branch of this repository/project consistent with the steps/tasks that the team has outlined to do. At each step, each individual member will write and run their own R code locally to verify that their code is running without errors (correct syntax) and that the code is producing the expected and needed output for the next step/task. Each individual team member can also decide to commit and push their code solution for a step/task as a way to have the automated checks built-in to the system verify code syntax. Once one or more team members have come up with code that works and have consulted this with other team members, the team can decide whether the majority/all of the members agree with the solutions offered and will choose which solution/approach they prefer. If there is consensus that a solution to a step/task has been found, then the team needs to decide which of the individual team members with the agreed solution will be tasked to make a pull request (after making a commit and push) to the hackathon facilitator for their review and approval. The hackathon facilitator will then review (taking into account the automated checks) and provide feedback accordingly. Feedback can be:
+
+1. An outright and full approval of the pull request if all code syntax and output checks out;
+
+2. An approval with minor comments that the team needs to take into account moving forward into their next steps; and,
+
+3. A request for changes to address some issues detected in the code syntax and/or in the code outputs in relation to the task/step being performed.
+
+For feedback type 1 and 2, the team member who issued the pull request will have the privilege to merge their pull request to the main branch.
+
+Every time a pull request is merged to the main branch, all participants from all teams will be asked to make a **pull with rebase** to update their branches with the code that has been accepted and merged to main. This ensures that everyone's branches are in sync with changes to the main branch which in turn can help with the next steps/tasks they are working on. This process will be facilitated by the hackathon facilitator.
+
+For feedback type 3, the individual who made the pull request is expected to address the comments and re-work their code accordingly while the other members of the team continue to work on their own code to see if they can provide a more appropriate answer. The team then again reviews the solutions from team members and decides which code to now use to make either a new pull request (if another team member's solution has been chosen) or continue with existing pull request if original team member who made the initial pull request has been able to offer a corrected solution that works.
+
+### Seeking help from other teams and/or from hackathon facilitator
+
+If the team finds themselves in a position where none of the team members are able to provide a credible solution to a step/task that they are working on, they have the option to request for help/support from either another team or from the hackathon facilitator. They can make this request via the original GitHub issue thread by making a comment and then tagging the team and/or the hackathon facilitator.
+
+In this process, the requested team is expected to engage with the request as best they can. If the requesting team provides code that they have written that is not working, the requested team should comment directly on the code provided and offer corrections or solutions. If no code is provided and instead only a question is asked, then the requested team should respond to the question in such a way that will lead the requesting team to the appropriate solution rather than just providing code. It should always be the requesting team that writes the final code solution and make the pull request and not the requested team.
+
+### Subsequent in-person hackathon sessions
+
+After the initial hackathon day, two subsequent in-person hackathon sessions are on the schedule. These sessions will run similarly to the initial hackathon day with members of teams expected to interact with each other and go through the steps/tasks they have set for themselves to complete while at the same time having the hackathon facilitator available in person to address further queries that will help the teams move forward in addressing the problem they have been assigned.
+
+During these sessions, the hackathon facilitator may raise additional issues relevant to a team's problem-at-hand. These issues may either be an additional step/task that the team may have missed and/or additional outputs that will appropriately resolve the problem assigned to the team.
+
+### Continuing hackathon
+
+The teams and their members are allowed and to a great extent expected (whenever possible) to continue working on their tasks/steps even outside of the three in-person hackathon days allocated. The teams discuss and agree how they will continue and use as much of the available methods for collaboration such as scheduling team sessions independently and/or working asynchronously via GitHub issues and pull request communications. Hackathon facilitator will continue to monitor sessions done through GitHub and will be available to comment, respond, and review as needed on any day.
+
+### Completing the hackathon
+
+The teams have up to the close of business (5 pm UK time) of the last session of the [Open Science and Reproducible Research in R](https://oxford-ihtm.io/open-reproducible-science) lecture series to submit a final pull request on GitHub that contains all R code work that the team has written (both R script and R Markdown) for review.
+
+<br/>
+<br/>
