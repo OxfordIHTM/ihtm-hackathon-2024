@@ -12,12 +12,15 @@ child <- read.csv("data/child_health.csv")
 cmam <- read.csv("data/cmam_routine_data.csv")
 
 ### Retrieve and read Sudan map data ----
-
 sudan_map_spec <- download_sudan_maps(download_url = "https://data.humdata.org/dataset/a66a4b6c-92de-4507-9546-aa1900474180/resource/e5ef3cc7-f105-4565-8d73-e08bb756f1c1/download/sdn_adm_cbs_nic_ssa_20200831.gdb.zip")
 
 sudan0 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[1])
 sudan1 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[2])
 sudan2 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[4])
+
+### Create supporting data dictionaries for each data source ----
+
+
 
 
 ## Source the different data processing and analysis workflow steps ----
