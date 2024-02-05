@@ -52,7 +52,11 @@ IndicatorsLong <- pivot_longer(IndicatorsbyTime,
                                values_to = "Value")
 #Plotting
 ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
+<<<<<<< HEAD
   geom_line() +
+=======
+  geom_line() + 
+>>>>>>> fab45d0 (TotalCureRate)
   geom_point() + 
   theme_minimal() + 
   labs(title = "Rates for all States by Time",
@@ -62,6 +66,7 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
   scale_color_brewer(palette = "Set1")
 
 
+<<<<<<< HEAD
 #New Mariano Part
 
 States = unique(cmam$State)
@@ -128,6 +133,9 @@ p_interactive
 #Create the charts by year
 
 
+=======
+#Jojo Part
+>>>>>>> fab45d0 (TotalCureRate)
 print("hello i am jojo")
 
 
@@ -138,11 +146,14 @@ print("hello i am jojo")
 
 
 #Prateek Part
+<<<<<<< HEAD
 #better visualization of all the rates at same time
 #Make data frame and chart with rates related to cure rate
 # use log scale
 #or alternative
 
+=======
+>>>>>>> fab45d0 (TotalCureRate)
 print("I am Prateek")
 
 
@@ -175,6 +186,10 @@ total_cured_blue_nile <- sum(Blue_Nile$Cured)
 disc_blue_nile <- sum(Blue_Nile$Total.Discharge)
 death_blue_nile <- sum(Blue_Nile$Death)
 
+<<<<<<< HEAD
 cure_rate_blue_nile <- total_cured_blue_nile/disc_blue_nile
 
 #end of code
+=======
+cure_rate_blue_nile <- total_cured_blue_nile/disc_blue_nile
+>>>>>>> fab45d0 (TotalCureRate)
