@@ -35,5 +35,5 @@ exp(cbind(OR = coef(maternal_model1), confint(maternal_model1)))
 # | ----       | ----   |
 # | 1.044589.  | 1.040393,1.048821 |
 
-### model 
+### model for  proteinrich VS nutrition category (RICHMONDA)
 maternal_model2 
