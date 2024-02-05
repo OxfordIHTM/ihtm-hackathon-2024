@@ -52,7 +52,7 @@ IndicatorsLong <- pivot_longer(IndicatorsbyTime,
                                values_to = "Value")
 #Plotting
 ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
-  geom_line() +
+  geom_line() + 
   geom_point() + 
   theme_minimal() + 
   labs(title = "Rates for all States by Time",
