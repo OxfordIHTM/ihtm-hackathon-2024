@@ -1,0 +1,57 @@
+name: check overall workflow
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+    branches:
+      - '*'
+
+jobs:
+  check-overall-workflow:
+    runs-on: ubuntu-latest
+    container: rocker/geospatial:4.3.2
+    env:
+      GIT_CRYPT_KEY64: ${{ secrets.GIT_CRYPT_KEY64 }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install system dependencies
+        run: |
+          apt-get update && apt-get install -y --no-install-recommends \
+          git-crypt libxt6 libglpk-dev
+          
+      - name: Install R packages
+        run: |
+          install.packages(c("rmarkdown", "openxlsx", "stringr", "remotes"))
+        shell: Rscript {0}
+          
+      - name: Check that R file runs without errors
+        run: |
+          lapply(
+            X = list.files(pattern = "\\.R$|\\.r$"),
+            FUN = source
+          )
+        shell: Rscript {0}
+          
+      - name: Check that Rmd file runs without errors
+        run: |
+          rmds <- list.files(path = "reports", pattern = "\\.Rmd$") |>
+            (\(x) x[!stringr::str_detect(string = x, pattern = "case_study")])()
+          if (length(rmds) != 0) {
+            lapply(
+              X = rmds,
+              FUN = rmarkdown::render,
+              output_dir = "docs"
+            )
+          }
+        shell: Rscript {0}
+        
+      - name: Upload Rmarkdown reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: rmd-output
+          path: docs/*.html
+          
