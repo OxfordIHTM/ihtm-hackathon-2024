@@ -25,6 +25,8 @@ download_sudan_maps <- function(download_url) {
     (\(x) gsub(pattern = "/*|[^/]+$", replacement = "", x = x$Name))() |>
     unique() |>
     (\(x) file.path("data", x))()
+  
+  unzip(zipfile = path_to_zip, overwrite = TRUE, exdir = "data")
     
   layers <- sf::st_layers(dsn) |>
     (\(x) x$name)()
