@@ -94,7 +94,7 @@ This R project has the following structure:
 
 - `data/` contains the datasets required for this project. These
   datasets may either be provided by the module leader and/or retrieved
-  grammatically by the hackathon participants and saved into this
+  programmatically by the hackathon participants and saved into this
   directly;
 
 - `docs/` contains compiled reports produced from Rmarkdown documents;

@@ -80,7 +80,7 @@ ihtm-hackathon-2024
     |-- sudan_health_nutrition.R
 ```
 
-- `data/` contains the datasets required for this project. These datasets may either be provided by the module leader and/or retrieved grammatically by the hackathon participants and saved into this directly;
+- `data/` contains the datasets required for this project. These datasets may either be provided by the module leader and/or retrieved programmatically by the hackathon participants and saved into this directly;
 
 - `docs/` contains compiled reports produced from Rmarkdown documents;
 
