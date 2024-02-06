@@ -178,7 +178,7 @@ To work on this project, please follow these steps:
     Please run this code direct to your R console rather than encoding
     in the R scripts in this project.
 
-    Please make sure to replace the placeholder text `name_of_project1`
+    Please make sure to replace the placeholder text `name_of_package1`
     etc with the actual names of the packages listed in the `packages.R`
     file.
 
@@ -191,19 +191,111 @@ To work on this project, please follow these steps:
       following code:
 
     ``` r
-    install.packages(c("name_of_package1", "name_of_package2", "name_of_package3")
+    install.packages(c("name_of_package1", "name_of_package2", "name_of_package3"))
     ```
 
     Please run this code direct to your R console rather than encoding
     in the R scripts in this project.
 
-    Please make sure to replace the placeholder text `name_of_project1`
+    Please make sure to replace the placeholder text `name_of_package1`
     etc with the actual names of the packages listed in the `packages.R`
     file that are not yet installed in your computer.
 
 Once all R package dependencies have been installed, you should now be
 able to work on this project on your own branch and make
 changes/contributions as directed by project lead.
+
+## Running the workflow
+
+### Running the entire workflow
+
+To run the entire workflow, issue the following command onto R console:
+
+``` r
+source("sudan_health_nutrition.R")
+```
+
+### Running specific sections of the workflow
+
+The project workflow is currently divided into 6 discreate processes
+implemented in 6 different R scripts labelled:
+
+- `sudan_health_nutrition_1.R` is the R workflow script for performing
+  bottleneck analysis of antenatal care for pregnant women;
+
+- `sudan_health_nutrition_2.R` is the R workflow script for performing
+  bottleneck analysis of expanded programme on immunisation (EPI) or
+  children;
+
+- `sudan_health_nutrition_3.R` is the R workflow script for performing
+  barriers to education access analysis;
+
+- `sudan_health_nutrition_4.R` is the R workflow script for performing
+  spatial distribution analysis of child and maternal undernutrition;
+
+- `sudan_health_nutrition_5.R` is the R workflow script for performing
+  CMAM programme responsiveness analysis; and,
+
+- `sudan_health_nutrition_6.R` is the R workflow script for determinants
+  of child and maternal undernutrition analysis.
+
+To run any of these, issue the following commands in the R console:
+
+``` r
+# Setup the workflow environmen ----
+
+## Load packages in packages.R and project-specific functions in R folder ---- 
+suppressPackageStartupMessages(source("packages.R"))
+for (f in list.files(here::here("R"), full.names = TRUE)) source (f)
+
+
+## Read data ----
+maternal <- read.csv("data/maternal_health.csv")
+child <- read.csv("data/child_health.csv")
+cmam <- read.csv("data/cmam_routine_data.csv")
+
+### Retrieve and read Sudan map data ----
+sudan_map_spec <- download_sudan_maps(download_url = "https://data.humdata.org/dataset/a66a4b6c-92de-4507-9546-aa1900474180/resource/e5ef3cc7-f105-4565-8d73-e08bb756f1c1/download/sdn_adm_cbs_nic_ssa_20200831.gdb.zip")
+
+sudan0 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[1])
+sudan1 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[2])
+sudan2 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[4])
+
+## Run the specific workflow ---
+source("sudan_health_nutrition_1.R")
+```
+
+## Authors
+
+- Anita Amponsa
+- Shylett Anthony
+- Naemi Araya
+- Moshood Audu
+- Rasika Bombatkar
+- Neira Budiono
+- Phillip Chigiya
+- Prince Kelechi Chima
+- John Bok Chol
+- Clifford Cofie
+- Eslam Elbasheer
+- Prateek Garg
+- Mary Gouws
+- Samvel Grigoryan
+- Marietta Imadojiemu
+- Jillian Francise Lee
+- Anita Makori
+- Joseph Mwaka
+- Kapil Narain
+- Josephine Ndawula
+- Thokozani Nyasulu
+- Richmonda Pearce
+- Mariano Ratto
+- Gloria Rukomeza
+- Mercedes Rumi
+- Amina Suveha
+- Shih-Ting Tseng
+- Claudia Vidal Cuellar
+- Yih Seong Wong
 
 ## License
 
