@@ -219,7 +219,7 @@ source("sudan_health_nutrition.R")
 
 ### Running specific sections of the workflow
 
-he project workflow is currently divided into 6 discrete processes
+The project workflow is currently divided into 6 discrete processes
 implemented in 6 different R scripts labelled:
 
 - `sudan_health_nutrition_1.R` is the R workflow script for performing
