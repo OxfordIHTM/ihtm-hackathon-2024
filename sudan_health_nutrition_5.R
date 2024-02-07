@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 source("packages.R")
 #Load data
 cmam <- read.csv("data/cmam_routine_data.csv")
@@ -7,6 +8,12 @@ cmam <- read.csv("data/cmam_routine_data.csv")
 cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
 
 #Calculate Total Indicators in Data Frame
+=======
+cmam <- read.csv("data/cmam_routine_data.csv")
+
+cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
+
+>>>>>>> 2ac63f2 (Added Analysis of Indicators for all States together)
 IndicatorsTotal = data.frame(
   Names = c("Cure Rate", "Default Rate" , "Death Rate" , "Non Responder Rate", "Admitted Rate"),
   Values = c(sum(cmam$Cured)/sum(cmam$Total.Discharge),
@@ -16,12 +23,37 @@ IndicatorsTotal = data.frame(
              sum(cmam$New.Admissions)/sum(cmam$Screening,na.rm=TRUE)
   )
 )
+<<<<<<< HEAD
 #Show Global Indicators
 IndicatorsTotal
 
 #Create Empty Indicators by time Data Frame
 IndicatorsbyTime <- data.frame(
   time = integer(),
+=======
+IndicatorsTotal
+
+# Not working. Trying different thing
+
+# IndicatorsbyTime = data.frame(
+#   Names = c("Time", "Cure Rate", "Default Rate" , "Death Rate" , "Non Responder Rate", "Admitted Rate"),
+#   for (i in 1:max(cmam$time)){
+#     aux=filter(cmam, time ==i)
+#     Values = c(i, 
+#                sum(aux$Cured)/sum(aux$Total.Discharge),
+#                sum(aux$Default)/aux(aux$Total.Discharge),
+#                sum(aux$Death)/sum(aux$Total.Discharge),
+#                sum(aux$Non.Responder)/sum(aux$Total.Discharge),
+#                sum(aux$New.Admissions)/sum(aux$Screening,na.rm=TRUE))
+#   }
+#     
+#   
+# )
+
+
+IndicatorsbyTime <- data.frame(
+  Time = integer(),
+>>>>>>> 2ac63f2 (Added Analysis of Indicators for all States together)
   CureRate = numeric(),
   DefaultRate = numeric(),
   DeathRate = numeric(),
@@ -29,9 +61,14 @@ IndicatorsbyTime <- data.frame(
   AdmittedRate = numeric()
 )
 
+<<<<<<< HEAD
 #Filling the Data Frame
 for (i in 1:max(cmam$time)) {
   aux <- filter(cmam,time==i)
+=======
+for (i in 1:max(cmam$time)) {
+  aux <- filter(cmam, time == i)
+>>>>>>> 2ac63f2 (Added Analysis of Indicators for all States together)
   
   # Calculate each indicator
   cureRate = sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
@@ -45,16 +82,27 @@ for (i in 1:max(cmam$time)) {
   
   IndicatorsbyTime <- rbind(IndicatorsbyTime, c(i, cureRate, defaultRate, deathRate, nonResponderRate, admittedRate))
 }
+<<<<<<< HEAD
 #Changing the name of columns
 names(IndicatorsbyTime) <- c("Time", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate")
 
 
 #Changing from short to long for plotting
+=======
+names(IndicatorsbyTime) <- c("Time", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate")
+
+
+
+>>>>>>> 2ac63f2 (Added Analysis of Indicators for all States together)
 IndicatorsLong <- pivot_longer(IndicatorsbyTime, 
                                cols = -Time, 
                                names_to = "RateType", 
                                values_to = "Value")
+<<<<<<< HEAD
 #Plotting
+=======
+
+>>>>>>> 2ac63f2 (Added Analysis of Indicators for all States together)
 ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
   geom_line() + 
   geom_point() + 
@@ -64,6 +112,7 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
        y = "Rate Value",
        color = "Rate Type") + 
   scale_color_brewer(palette = "Set1")
+<<<<<<< HEAD
 
 
 #Jojo Part
@@ -71,6 +120,8 @@ print("hello i am jojo")
 
 
 #Nei Part
+=======
+>>>>>>> 2ac63f2 (Added Analysis of Indicators for all States together)
 
 
 
