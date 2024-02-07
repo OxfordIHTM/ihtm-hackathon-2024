@@ -1,106 +1,97 @@
-# CMAM programme responsiveness ------------------------------------------------
+#######classifying children and mothers nutrition status#######
 
-#Create Time Column
-cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
+#Adding a new underweight status column to the child data frame
+child$underweight_class <- classify_underweight_child(child$waz)
 
-#Calculate Total Indicators in Data Frame
-IndicatorsTotal = data.frame(
-  Names = c("Cure Rate", "Default Rate" , "Death Rate" , "Non Responder Rate", "Admitted Rate"),
-  Values = c(sum(cmam$Cured)/sum(cmam$Total.Discharge),
-             sum(cmam$Default)/sum(cmam$Total.Discharge),
-             sum(cmam$Death)/sum(cmam$Total.Discharge),
-             sum(cmam$Non.Responder)/sum(cmam$Total.Discharge),
-             sum(cmam$New.Admissions)/sum(cmam$Screening,na.rm=TRUE)
+#Adding a new stunting status column to the child data frame
+child$stunting_status <- classify_stunting_child(child$haz)
+
+#Adding a new stunting status column to the child data frame
+child$wasting <- classify_wasting_child(child$whz, child$muac, child$oedema)
+
+# Create a new variable to classify children based on wasting status
+child_wasting <- child %>%
+  mutate(wasting_status = ifelse(whz < -2, 1, 0))
+
+# Group children by state_name and calculate % wasted children per state
+state_summary <- child_wasting %>%
+  group_by(state_name) %>%
+  summarise(
+    total_child = n(),                                       # Count total children
+    wasted_child = sum(wasting_status == 1, na.rm = TRUE),   # Count wasted children
+    percentage_undernourished = ifelse(total_child == 0, 0, (wasted_child / total_child) * 100)
   )
-)
-#Show Global Indicators
-IndicatorsTotal
 
-#Create Empty Indicators by time Data Frame
-IndicatorsbyTime <- data.frame(
-  time = integer(),
-  CureRate = numeric(),
-  DefaultRate = numeric(),
-  DeathRate = numeric(),
-  NonResponderRate = numeric(),
-  AdmittedRate = numeric()
-)
+# Create a new variable to classify mother's nutrition status based on MUAC
+maternal$undernut <- classify_undernut_mother(maternal$muac)
 
-#Filling the Data Frame
-for (i in 1:max(cmam$time)) {
-  aux <- filter(cmam,time==i)
-  
-  # Calculate each indicator
-  cureRate = sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
-  defaultRate = sum(aux$Default, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
-  deathRate = sum(aux$Death, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
-  nonResponderRate = sum(aux$Non.Responder, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
-  if(sum(aux$Screening, na.rm = TRUE)!=0)
-    admittedRate = sum(aux$New.Admissions, na.rm = TRUE) / sum(aux$Screening, na.rm = TRUE)
-  else 
-    admittedRate = NA
-  
-  IndicatorsbyTime <- rbind(IndicatorsbyTime, c(i, cureRate, defaultRate, deathRate, nonResponderRate, admittedRate))
-}
-#Changing the name of columns
-names(IndicatorsbyTime) <- c("Time", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate")
+# Create a new variable to classify undernutrition based on MUAC
+maternal <- maternal %>%
+  mutate(nutrition_status = ifelse(muac < 220, 1, 0))
+
+# Group mothers by state_name
+state_summary <- maternal %>%
+  group_by(state_name) %>%
+  summarise(
+    total_mothers = n(),
+    undernourished_mothers = sum(nutrition_status == 1, na.rm = TRUE), # Count undernourished mothers
+    percentage_undernourished = ifelse(total_mothers == 0, 0, (undernourished_mothers / total_mothers) * 100)
+  )
 
 
-#Changing from short to long for plotting
-IndicatorsLong <- pivot_longer(IndicatorsbyTime, 
-                               cols = -Time, 
-                               names_to = "RateType", 
-                               values_to = "Value")
-#Plotting
-ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
-  geom_line() + 
-  geom_point() + 
-  theme_minimal() + 
-  labs(title = "Rates for all States by Time",
-       x = "Time in month since Jan 2016",
-       y = "Rate Value",
-       color = "Rate Type") + 
-  scale_color_brewer(palette = "Set1")
+#########calculating percentage malnourishment by state########
+
+##starting by counting the values of underweight by state
+
+child_map_underweight <- child %>% group_by(state_name,underweight_class,state_id) %>% count() %>% ungroup() 
+child_map_stunting <- child %>% group_by(state_name,stunting_status,state_id) %>% count() %>% ungroup() 
+child_map_wasting <- child %>% group_by(state_name,wasting,state_id) %>% count() %>% ungroup() 
+maternal_map_undernourished <- maternal %>% group_by(state_name, undernut, state_id) %>% count() %>% ungroup()
+
+child_map_underweight <- child_map_underweight %>% group_by(state_id) %>% mutate(undernut_percentages = (get_perc(n)))
+child_map_stunting <- child_map_stunting %>% group_by(state_id) %>% mutate(stunting_percentages = (get_perc(n)))
+child_map_wasting <- child_map_wasting %>% group_by(state_id) %>% mutate(wasting_percentages = (get_perc(n)))
+maternal_map_undernourished <- maternal_map_undernourished %>% group_by(state_id) %>% mutate(undernut_percentages = get_perc(n))
 
 
-#Jojo Part
-print("hello i am jojo")
+#######merging map data with the data frames###############
+
+merged_childmap_underweight <- merge.data.frame(sudan1, child_map_underweight, by.x = "stateID", by.y = "state_id", all.x = TRUE)
+merged_childmap_stunting <- merge.data.frame(sudan1, child_map_stunting, by.x = "stateID", by.y = "state_id", all.x = TRUE)
+merged_childmap_wasting <- merge.data.frame(sudan1, child_map_wasting, by.x = "stateID", by.y = "state_id", all.x = TRUE)
+merged_maternalmap_undernourished <- merge.data.frame(sudan1, maternal_map_undernourished, by.x = "stateID", by.y = "state_id", all.x = TRUE)
+
+########plotting map data################
+
+#underweight children
+ggplot() +
+  geom_sf(data = merged_childmap_underweight, aes(geometry = geom, fill = undernut_percentages))+
+  scale_fill_gradient(name = "Percentage of  Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
+  labs(title = "Percentage of underweight Children by States") +
+  theme_minimal()
 
 
-#Nei Part
+#stunted children
+ggplot() +
+  geom_sf(data = merged_childmap_stunting, aes(geometry = geom, fill = stunting_percentages))+
+  scale_fill_gradient(name = "Percentage of stunted Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
+  labs(title = "Percentage of stunted Children by States") +
+  theme_minimal()
+
+#wasted children
+ggplot() +
+  geom_sf(data = merged_childmap_wasting, aes(geometry = geom, fill = wasting_percentages))+
+  scale_fill_gradient(name = "Percentage of wasted Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
+  labs(title = "Percentage of wasted Children by States") +
+  theme_minimal()
+
+#undernourished mothers
+ggplot() +
+  geom_sf(data = merged_maternalmap_undernourished, aes(geometry = geom, fill = undernut_percentages))+
+  scale_fill_gradient(name = "Percentage of undernourished mothers", low = "lightgreen", high = "darkgreen", na.value = "gray50") +
+  labs(title = "Percentage of undernourished mothers by States") +
+  theme_minimal()
 
 
-
-
-
-#Prateek Part
-print("I am Prateek")
-
-
-#Bok Part
-print ("I am Bok Chol")
-
-##Calculation of cure rate per state ----
-#Gazera state-----
-
-gazera <- cmam %>% filter(State == 'Gazera')
-
-TotalNAd_Gazera <-sum(gazera$New.Admissions)
-totalcured_gazera <- sum(gazera$Cured)
-total_disch_gazera <- sum(gazera$Total.Discharge)
-death_gazera <- sum(gazera$Death)
-
-cureRate_Gazera <- totalcured_gazera/total_disch_gazera
-deathRate_gazera <- death_gazera/total_disch_gazera
-
-
-##Blue nile state-----
-Blue_Nile <- cmam_routine_data %>% filter(State=='Blue Nile',preserve=TRUE)
-
-totalNAd_Blue_Nile <- sum(Blue_Nile$New.Admissions)
-total_cured_blue_nile <- sum(Blue_Nile$Cured)
-disc_blue_nile <- sum(Blue_Nile$Total.Discharge)
-death_blue_nile <- sum(Blue_Nile$Death)
-
-cure_rate_blue_nile <- total_cured_blue_nile/disc_blue_nile
-
+#Trying the add state initials to the the states in the map
+## your_dataset$new_variable <- substr(your_dataset$existing_variable, 1, 2)
