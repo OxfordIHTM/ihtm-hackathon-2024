@@ -29,11 +29,6 @@ child_dictionary <- create_child_dictionary(child, keep = TRUE)
 maternal_dictionary <- create_maternal_dictionary(maternal, keep = TRUE)
 cmam_dictionary <- create_cmam_dictionary(cmam, keep = TRUE)
 
-### Create supporting data dictionaries for each data source ----
-child_dictionary <- create_child_dictionary(child, keep = TRUE)
-maternal_dictionary <- create_maternal_dictionary(maternal, keep = TRUE)
-cmam_dictionary <- create_cmam_dictionary(cmam, keep = TRUE)
-
 
 ## Source the different data processing and analysis workflow steps ----
 
