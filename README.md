@@ -9,6 +9,8 @@
 data](https://img.shields.io/badge/license%20(for%20data)-CC0-blue.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![License for
 code](https://img.shields.io/badge/license%20(for%20code)-GPL3.0-blue.svg)](https://opensource.org/licenses/gpl-3.0.html)
+[![check overall
+workflow](https://github.com/OxfordIHTM/ihtm-hackathon-2024/actions/workflows/check_overall_workflow.yaml/badge.svg)](https://github.com/OxfordIHTM/ihtm-hackathon-2024/actions/workflows/check_overall_workflow.yaml)
 <!-- badges: end -->
 
 This repository contains instructions, data and code for the [University
@@ -94,7 +96,7 @@ This R project has the following structure:
 
 - `data/` contains the datasets required for this project. These
   datasets may either be provided by the module leader and/or retrieved
-  grammatically by the hackathon participants and saved into this
+  programmatically by the hackathon participants and saved into this
   directly;
 
 - `docs/` contains compiled reports produced from Rmarkdown documents;
@@ -217,7 +219,7 @@ source("sudan_health_nutrition.R")
 
 ### Running specific sections of the workflow
 
-The project workflow is currently divided into 6 discreate processes
+The project workflow is currently divided into 6 discrete processes
 implemented in 6 different R scripts labelled:
 
 - `sudan_health_nutrition_1.R` is the R workflow script for performing
