@@ -24,11 +24,6 @@ child_dictionary <- create_child_dictionary(child, keep = TRUE)
 maternal_dictionary <- create_maternal_dictionary(maternal, keep = TRUE)
 cmam_dictionary <- create_cmam_dictionary(cmam, keep = TRUE)
 
-### Create supporting data dictionaries for each data source ----
-child_dictionary <- create_child_dictionary(child, keep = TRUE)
-maternal_dictionary <- create_maternal_dictionary(maternal, keep = TRUE)
-cmam_dictionary <- create_cmam_dictionary(cmam, keep = TRUE)
-
 
 ## Source the different data processing and analysis workflow steps ----
 
@@ -38,34 +33,3 @@ source("sudan_health_nutrition_3.R")
 source("sudan_health_nutrition_4.R")
 source("sudan_health_nutrition_5.R")
 source("sudan_health_nutrition_6.R")
-
-View(child)
-dim(child)
-
-
-#################Create a table of na values per vairable####################
-
-# create a loop to determine number of na values per variabel
-na_list<-c()
-for (i in 1:ncol(child)) {
-na_count<- sum(is.na(child[,i])) 
-print(na_count)
-na_list<-c(na_list,na_count)
-}
-
-colname_list<-colnames(child)
-
-##create a table of na values
-na_tbl <- data.frame(colname_list, na_list)
-
-##naming cols
-colnames(na_tbl) = c("variable", "values missing") 
-
-##calc percentage of na variables
-na_tbl[,3]<-round( na_tbl$`values missing`/nrow(child) *100,2)
-
-
-##naming cols
-colnames(na_tbl) = c("variable", "values missing","%")
-
-View(na_tbl)
