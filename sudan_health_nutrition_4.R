@@ -61,6 +61,8 @@ ggplot() +
   labs(title = "Percentage of Undernourished Children by States") +
   theme_minimal()
 
+?select
+
 ##This code below was me trying to work around the NA values, still working on it
 ##merged_childmap_data1 <- merged_childmap_data  merged_childmap_data[complete.cases(merged_childmap_data$underweight_class),]
 
@@ -68,11 +70,19 @@ ggplot() +
 #I don't think the map is quite right, below I'm trying to create a new data frame with just the necessary columns and a percentage
 #column with only the underweight value, still working on it
 
-#map_merged_childmap <- merged_childmap_data %>% select(admin1Name_en, Shape, underweight_class, n, percentages) %>% 
-#map_merged_childmap <- merged_childmap_data[merged_childmap_data$underweight_class == "underweight", ]
+map_merged_childmap <- subset(merged_childmap_data, underweight_class != "normal" | is.na(underweight_class))
+map_merged_childmap1 <- subset(merged_childmap_data, underweight_class != "normal")
+#map_merged_childmap <- merged_childmap_data[merged_childmap_data$underweight_class == "underweight"|"NA", ]
+-
+?subset
+ggplot() +
+ geom_sf(data = map_merged_childmap, aes(geometry = Shape, fill = percentages))+
+  scale_fill_gradient(name = "Percentage of Undernourished Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
+  labs(title = "Percentage of Undernourished Children by States") +
+  theme_minimal()
+?scale_fill_gradient
 
-#ggplot() +
- # geom_sf(data = map_merged_childmap, aes(geometry = Shape, fill = percentages))+
-  #scale_fill_gradient(name = "Percentage of Undernourished Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
-  #labs(title = "Percentage of Undernourished Children by States") +
-  #theme_minimal()
+sum(is.na(merged_childmap_data$underweight_class))
+
+## Create a new variable with the first two letters of the existing variable
+# your_dataset$new_variable <- substr(your_dataset$existing_variable, 1, 2)
