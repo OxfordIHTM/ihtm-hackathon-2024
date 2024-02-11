@@ -9,7 +9,7 @@ hist(maternal$visitsANC)
 
 ##mean attendance to ANC------------------------------------------
 median_attendance <- median(maternal$visitsANC, na.rm = T)
-##overall median number of ANC attendance of mothers is 3 
+##overall median ANC attendance of mothers is 3 
 
 ##number of mothers who attend ANC at least 4 times---------------
 anc4 <- sum(maternal$anc4== "1")
