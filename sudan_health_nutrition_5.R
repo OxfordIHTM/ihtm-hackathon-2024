@@ -87,7 +87,7 @@ gazera <- cmam %>% filter(State == 'Gazera')
 
 TotalNAd_Gazera <-sum(gazera$New.Admissions)
 totalcured_gazera <- sum(gazera$Cured)
-total_disch_gazera <- sum(gazera$Total.Discharge)
+total_disch_gazera <- sum(gazera$`Total Discharge`)
 death_gazera <- sum(gazera$Death)
 
 cureRate_Gazera <- totalcured_gazera/total_disch_gazera
