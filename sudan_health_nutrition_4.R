@@ -51,7 +51,6 @@ child_map_stunting <- child_map_stunting %>% group_by(state_id) %>% mutate(stunt
 child_map_wasting <- child_map_wasting %>% group_by(state_id) %>% mutate(wasting_percentages = (get_perc(n)))
 maternal_map_undernourished <- maternal_map_undernourished %>% group_by(state_id) %>% mutate(undernut_percentages = get_perc(n))
 
-
 #######merging map data with the data frames###############
 
 merged_childmap_underweight <- merge.data.frame(sudan1, child_map_underweight, by.x = "stateID", by.y = "state_id", all.x = TRUE)
@@ -67,6 +66,8 @@ ggplot() +
   labs(title = "Percentage of underweight Children by States") +
   theme_minimal()
 
+# Stunting is defined as the children with height-for-age Z-score (HAZ) < -2SD
+# and severe stunting is defined as the children with HAZ < -3SD
 
 #stunted children
 ggplot() +
@@ -107,58 +108,6 @@ child$severe_underweight <- ifelse(child$waz < -3, 1, 0)
 
 # Explore the new variables
 summary(child[c("stunting", "severe_stunting", "wasting", "severe_wasting", "underweight", "severe_underweight")])
-
-# Create a new column for undernutrition classification
-child$undernutrition_classification <- ifelse(
-  child$severe_stunting == 1 | child$severe_wasting == 1 | child$severe_underweight == 1,
-  "Severe Undernutrition",
-  ifelse(
-    child$stunting == 1 | child$wasting == 1 | child$underweight == 1,
-    "Undernutrition",
-    "No Undernutrition"
-  )
-)
-
-# Explore the new classification variable
-table(child$undernutrition_classification)
-
-# dataset for "maternal"
-
-# Create a new column for maternal underweight classification
-maternal$underweight_classification <- ifelse(maternal$muac < 22, "Underweight", "Not Underweight")
-
-# Explore the new classification variable
-table(maternal$underweight_classification)
-
-# If you want a separate column indicating individuals who are underweight
-maternal$underweight_indicator <- ifelse(maternal$muac < 22, 1, 0)
-
-# Explore the new indicator variable
-table(maternal$underweight_indicator)
-
-
-# Load world map data
-world <- ne_countries(scale = "medium", returnclass = "sf")
-
-# Filter Sudan from world map data
-sudan <- subset(world, admin == "Sudan")
-
-# Create counts for child and maternal data
-child_counts <- child %>% group_by(locality_name, undernutrition_classification) %>% summarize(count = n())
-maternal_counts <- maternal %>% group_by(locality_name, underweight_classification) %>% summarize(count = n())
-
-# Merge counts with Sudan map data
-child_map <- left_join(sudan, child_counts, by = c("admin" = "locality_name"))
-maternal_map <- left_join(sudan, maternal_counts, by = c("admin" = "locality_name"))
-
-# Plot the data
-ggplot() +
-  geom_sf(data = child_map, aes(fill = count), size = 0.5) +
-  labs(title = "Number of Children with Undernutrition in Sudan by Locality",
-       subtitle = "Fill legend: Count of Children with Undernutrition",
-       caption = "Source: Your Data Source") +
-  theme_minimal() +
-  scale_fill_gradient(low = "green", high = "red")
 
 # Repeat the same for maternal data
 ggplot() +
