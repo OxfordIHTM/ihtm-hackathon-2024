@@ -1,8 +1,5 @@
 #######classifying children and mothers nutrition status#######
 
-#Adding a new underweight status column to the child data frame
-child$underweight_class <- classify_underweight_child(child$waz)
-
 #Adding a new stunting status column to the child data frame
 child$stunting_status <- classify_stunting_child(child$haz)
 
@@ -95,4 +92,3 @@ ggplot() +
 
 #Trying the add state initials to the the states in the map
 ## your_dataset$new_variable <- substr(your_dataset$existing_variable, 1, 2)
-
