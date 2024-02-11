@@ -12,3 +12,6 @@ library(here)         ## Utility package for working directory helper
 
 ## Load packages for mapping ----
 library(sf)           ## Main package for mapping
+cmam_routine_data
+nrow(cmam_routine_data)
+ncol(cmam_routine_data)
