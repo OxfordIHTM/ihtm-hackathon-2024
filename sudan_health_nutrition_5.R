@@ -65,10 +65,6 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
        color = "Rate Type") + 
   scale_color_brewer(palette = "Set1")
 
-<<<<<<< HEAD
-=======
-
-
 
 #Jojo Part
 
