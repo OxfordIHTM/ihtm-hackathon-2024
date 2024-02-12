@@ -16,11 +16,15 @@ cmam <- read.csv("data/cmam_routine_data.csv")
 
 #adding a column to the dataframe for the calculation of each of these
 
-cmam$curerate <- c(cmam$Cured/cmam$Total.Discharge)
-cmam$defaultrate <- c(cmam$Default/cmam$Total.Discharge)
-cmam$deathrate <- c(cmam$Death/cmam$Total.Discharge)
-cmam$nonresponserate <-c(cmam$Non.Responder/cmam$Total.Discharge)
-cmam$admissionrate <-c(cmam$New.Admissions/cmam$Screening)
+cmam$cure_rate <- cmam$Cured/cmam$Total.Discharge
+cmam$default_rate <- cmam$Default/cmam$Total.Discharge
+cmam$death_rate <- cmam$Death/cmam$Total.Discharge
+cmam$nonresponse_rate <- cmam$Non.Responder/cmam$Total.Discharge
+cmam$admission_rate <- cmam$New.Admissions/cmam$Screening
+
+# to remove a duplicate column
+cmam$curerate <- NULL
+
 
 # Assuming 'cmam' is my dataframe and 'State' is the name of the column of interest, number of States is:
 num_classes <- length(unique(cmam$State))
