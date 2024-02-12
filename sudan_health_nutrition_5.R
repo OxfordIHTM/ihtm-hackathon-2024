@@ -61,6 +61,7 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
        color = "Rate Type") + 
   scale_color_brewer(palette = "Set1")
 
+<<<<<<< HEAD
 
 #New Mariano Part
 
@@ -129,6 +130,8 @@ print("hello i am jojo")
 
 #Nei Part
 
+=======
+>>>>>>> 7bfcc64 (removed random code)
 
 #Jojo Part
 
