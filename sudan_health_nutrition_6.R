@@ -36,4 +36,5 @@ exp(cbind(OR = coef(maternal_model1), confint(maternal_model1)))
 # | 1.044589.  | 1.040393,1.048821 |
 
 ### model for  proteinrich VS nutrition category (RICHMONDA)
-maternal_model2 
+maternal_model2 <- glm(muac_category1~proteinRich, family = binomial, data = maternal1)
+
