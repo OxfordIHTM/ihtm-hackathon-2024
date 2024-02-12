@@ -53,7 +53,6 @@ maternal_map_undernourished <- maternal_map_undernourished %>% group_by(state_id
 
 #######merging map data with the data frames###############
 
-<<<<<<< HEAD
 merged_childmap_underweight <- merge.data.frame(sudan1, child_map_underweight, by.x = "stateID", by.y = "state_id", all.x = TRUE)
 merged_childmap_stunting <- merge.data.frame(sudan1, child_map_stunting, by.x = "stateID", by.y = "state_id", all.x = TRUE)
 merged_childmap_wasting <- merge.data.frame(sudan1, child_map_wasting, by.x = "stateID", by.y = "state_id", all.x = TRUE)
