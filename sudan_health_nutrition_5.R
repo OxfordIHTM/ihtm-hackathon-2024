@@ -65,37 +65,12 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
        color = "Rate Type") + 
   scale_color_brewer(palette = "Set1")
 
-<<<<<<< HEAD
 
 #Jojo Part
 print("hello i am jojo")
 
 
 #Nei Part
-
-=======
->>>>>>> 7bfcc64 (removed random code)
-
-#Jojo Part
-print("hello i am jojo")
-
-
-#Nei Part
-
-
-
-
-
-#Prateek Part
-print("I am Prateek")
-
-
-#Bok Part
-print ("I am Bok Chol")
-
-
-
-
 
 
 
