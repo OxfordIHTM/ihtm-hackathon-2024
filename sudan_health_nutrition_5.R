@@ -144,7 +144,7 @@ print("hello i am jojo")
 
 
 #Prateek Part
-
+print("I am Prateek")
 
 
 #Bok Part
