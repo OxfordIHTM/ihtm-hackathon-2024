@@ -1,5 +1,3 @@
-#install.packages("ozmaps")
-
 #library(tidyverse)
 #library(dplyr)
 #library(ggthemes)
@@ -13,7 +11,7 @@
 #library(tidyr)     
 #library(rmarkdown)    
 
-#functions for classifying
+#functions for classifying underweight children
 #Underweight is defined as the children with weight-for-age Z-score (WAZ)
 #<−2SD and severe underweight is defined as the children with WAZ <−3SD
 
@@ -26,13 +24,16 @@ classify_underweight_child <- function(waz) {
   )
 }
 
-classify_underweight_child(child$waz)
+#Adding a new column to the child data frame
+
 child$underweight_class <- classify_underweight_child(child$waz)
 
-##grouping underweight classes by locality
+#grouping underweight classes by locality
+##starting by counting the values of underweight by state
 
 child_map <- child %>% group_by(state_name,underweight_class) %>% count() %>% ungroup() 
 
+##Getting a percentage from the previous count
 get_perc = function(x){
   percentage <- round(x/sum(x)*100,1)
   percentage
@@ -49,7 +50,7 @@ sudan0 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[1])
 sudan1 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[2])
 sudan2 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[4])
 
-##merging map data
+##merging map data with the child_map data frame
 
 ?merge.data.frame()
 merged_childmap_data <- merge.data.frame(sudan1, child_map, by.x = "admin1Name_en", by.y = "state_name", all.x = TRUE)
@@ -61,26 +62,25 @@ ggplot() +
   labs(title = "Percentage of Undernourished Children by States") +
   theme_minimal()
 
-?select
 
 ##This code below was me trying to work around the NA values, still working on it
 ##merged_childmap_data1 <- merged_childmap_data  merged_childmap_data[complete.cases(merged_childmap_data$underweight_class),]
 
 
-#I don't think the map is quite right, below I'm trying to create a new data frame with just the necessary columns and a percentage
-#column with only the underweight and NA value, still working on it
-
-map_merged_childmap <- subset(merged_childmap_data, underweight_class != "normal" | is.na(underweight_class))
+#I don't think the map is quite right, below I'm trying to create a new data frame with a percentage
+#column with only the underweight and NA value
 
 ?subset
+map_merged_childmap <- subset(merged_childmap_data, underweight_class != "normal" | is.na(underweight_class))
+
 ggplot() +
  geom_sf(data = map_merged_childmap, aes(geometry = Shape, fill = percentages))+
   scale_fill_gradient(name = "Percentage of Undernourished Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
   labs(title = "Percentage of Undernourished Children by States") +
   theme_minimal()
-?scale_fill_gradient
 
+#Starting to handle missing data
 sum(is.na(merged_childmap_data$underweight_class))
 
-## Create a new variable with the first two letters of the existing variable
-# your_dataset$new_variable <- substr(your_dataset$existing_variable, 1, 2)
+#Trying the add state initials to the the states in the map
+## your_dataset$new_variable <- substr(your_dataset$existing_variable, 1, 2)
