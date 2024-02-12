@@ -1,6 +1,6 @@
 maternal <- read.table("data/maternal_health.csv", header = T, sep = ",")
 
-## mean gestational age at first ANC visit
+## median gestational age at first ANC visit
 median_gest_age<- median(maternal$ancGestAge, na.rm = T)
 ##median gestational age at  attendance to ANC at last pregnancy is 3 months
 
@@ -9,7 +9,7 @@ hist(maternal$visitsANC)
 
 ##mean attendance to ANC------------------------------------------
 median_attendance <- median(maternal$visitsANC, na.rm = T)
-##overall median ANC attendance of mothers is 3 
+##overall median number of ANC attendance of mothers is 3 
 
 ##number of mothers who attend ANC at least 4 times---------------
 anc4 <- sum(maternal$anc4== "1")
