@@ -30,7 +30,6 @@ IndicatorsbyTime <- data.frame(
 #Filling the Data Frame
 for (i in 1:max(cmam$time)) {
   aux <- filter(cmam,time==i)
-
   # Calculate each indicator
   cureRate = sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
   defaultRate = sum(aux$Default, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
