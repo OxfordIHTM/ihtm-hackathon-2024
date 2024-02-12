@@ -128,8 +128,7 @@ p_interactive
 >>>>>>> 7bfcc64 (removed random code)
 
 #Jojo Part
-
-
+print("hello i am jojo")
 
 
 #Nei Part
