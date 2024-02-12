@@ -1,5 +1,6 @@
 # CMAM programme responsiveness ------------------------------------------------
 
+
 #Create Time Column
 cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
 
@@ -121,6 +122,28 @@ p_interactive <- ggplotly(p)
 
 # Open in Viewer Pane (in RStudio) or in the default web browser
 p_interactive
+
+
+#Jojo Part
+
+
+
+
+#Nei Part
+
+
+
+
+
+#Prateek Part
+
+
+
+#Bok Part
+
+
+
+
 
 
 
