@@ -53,6 +53,7 @@ maternal_map_undernourished <- maternal_map_undernourished %>% group_by(state_id
 
 #######merging map data with the data frames###############
 
+<<<<<<< HEAD
 merged_childmap_underweight <- merge.data.frame(sudan1, child_map_underweight, by.x = "stateID", by.y = "state_id", all.x = TRUE)
 merged_childmap_stunting <- merge.data.frame(sudan1, child_map_stunting, by.x = "stateID", by.y = "state_id", all.x = TRUE)
 merged_childmap_wasting <- merge.data.frame(sudan1, child_map_wasting, by.x = "stateID", by.y = "state_id", all.x = TRUE)
@@ -70,6 +71,7 @@ ggplot() +
 # and severe stunting is defined as the children with HAZ < -3SD
 
 #stunted children
+
 ggplot() +
   geom_sf(data = merged_childmap_stunting, aes(geometry = geom, fill = stunting_percentages))+
   scale_fill_gradient(name = "Percentage of stunted Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
