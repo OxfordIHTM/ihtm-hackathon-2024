@@ -10,7 +10,7 @@ BCG_positive <- sum(child$coverageBCG == 1, na.rm = TRUE)
 print(BCG_positive)
 
 # Total number of children eligible for BCG vaccine
-BCG_eligible <- nrow(child)
+BCG_eligible <- sum(child$coverageBCG %in% c(0, 1), na.rm = TRUE)
 print(BCG_eligible)
 
 # Calculate % BCG coverage in all children 
