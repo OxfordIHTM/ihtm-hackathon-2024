@@ -111,3 +111,23 @@ print(Measles2_eligible)
 
 Measles2_coverage <- (Measles2_positive / Measles2_eligible) * 100
 print(Measles2_coverage)
+
+# Calculate number of children eligible for BCG per state
+
+eligible_BCG_per_state <- child %>% filter(!is.na(coverageBCG)) %>% group_by(state_name) %>% summarise(Eligible = n())
+
+print(eligible_BCG_per_state)
+
+# Calculate number of children that received BCG per state
+BCG_positive_per_state <- child %>% filter(coverageBCG == 1) %>% group_by(state_name) %>% summarise(BCG_positive = n())
+
+print(BCG_positive_per_state)
+
+# Calculate percentage BCG coverage per state
+
+BCG_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
+    Eligible = sum(coverageBCG %in% c(0, 1), na.rm = TRUE),
+    BCG_positive = sum(coverageBCG == 1, na.rm = TRUE),
+    BCG_Coverage = (BCG_positive / Eligible) * 100)
+
+print(BCG_coverage_per_state)
