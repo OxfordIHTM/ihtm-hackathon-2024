@@ -2,10 +2,6 @@
 #########                   Team Sakura                     #########
 
 
-### load packages
-library(lme4) #for regression
-library(forcats)
-
 ############ Maternal Undernutrition
 ### categorizing the outcome variable
 
@@ -35,7 +31,7 @@ exp(cbind(OR = coef(maternal_model1), confint(maternal_model1)))
 # | ----       | ----   |
 # | 1.044589.  | 1.040393,1.048821 |
 
-### model for  proteinrich VS nutrition category (RICHMONDA)
+### model for  proteinRich VS nutrition category (RICHMONDA)
 maternal_model2 <- glm(muac_category1~proteinRich, family = binomial, data = maternal1)
 #### get model coefficients
 exp(cbind(OR = coef(maternal_model2), confint(maternal_model2)))
