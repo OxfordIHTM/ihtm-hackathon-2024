@@ -29,6 +29,7 @@ IndicatorsbyTime <- data.frame(
 #Filling the Data Frame
 for (i in 1:max(cmam$time)) {
   aux <- filter(cmam,time==i)
+  
   # Calculate each indicator
   cureRate = sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
   defaultRate = sum(aux$Default, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
@@ -51,7 +52,7 @@ IndicatorsLong <- pivot_longer(IndicatorsbyTime,
                                values_to = "Value")
 #Plotting
 ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
-  geom_line() + 
+  geom_line() +
   geom_point() + 
   theme_minimal() + 
   labs(title = "Rates for all States by Time",
@@ -122,7 +123,11 @@ p_interactive <- ggplotly(p)
 p_interactive
 
 
+
 #Jojo Part
+#Create the charts by year
+
+
 print("hello i am jojo")
 
 
@@ -133,17 +138,25 @@ print("hello i am jojo")
 
 
 #Prateek Part
+#better visualization of all the rates at same time
+#Make data frame and chart with rates related to cure rate
+# use log scale
+#or alternative
+
 print("I am Prateek")
 
 
 #Bok Part
 print ("I am Bok Chol")
 
+cmam_routine_data <- read.csv(file=
+                                "https://raw.githubusercontent.com/OxfordIHTM/ihtm-hackathon-2024/main/data/cmam_routine_data.csv",
+                              sep=",",header=TRUE)
 
 ##Calculation of cure rate per state ----
 #Gazera state-----
 
-gazera <- cmam %>% filter(State == 'Gazera')
+gazera <- cmam_routine_data %>% filter(State == 'Gazera')
 
 TotalNAd_Gazera <-sum(gazera$New.Admissions)
 totalcured_gazera <- sum(gazera$Cured)
@@ -164,5 +177,4 @@ death_blue_nile <- sum(Blue_Nile$Death)
 
 cure_rate_blue_nile <- total_cured_blue_nile/disc_blue_nile
 
-
-
+#end of code
