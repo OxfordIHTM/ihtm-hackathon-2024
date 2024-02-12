@@ -68,12 +68,10 @@ ggplot() +
 
 
 #I don't think the map is quite right, below I'm trying to create a new data frame with just the necessary columns and a percentage
-#column with only the underweight value, still working on it
+#column with only the underweight and NA value, still working on it
 
 map_merged_childmap <- subset(merged_childmap_data, underweight_class != "normal" | is.na(underweight_class))
-map_merged_childmap1 <- subset(merged_childmap_data, underweight_class != "normal")
-#map_merged_childmap <- merged_childmap_data[merged_childmap_data$underweight_class == "underweight"|"NA", ]
--
+
 ?subset
 ggplot() +
  geom_sf(data = map_merged_childmap, aes(geometry = Shape, fill = percentages))+
