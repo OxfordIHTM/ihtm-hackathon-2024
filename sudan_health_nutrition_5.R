@@ -2,6 +2,7 @@ source("packages.R")
 #Load data
 cmam <- read.csv("data/cmam_routine_data.csv")
 
+
 #Create Time Column
 cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
 
@@ -64,3 +65,32 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
        color = "Rate Type") + 
   scale_color_brewer(palette = "Set1")
 
+<<<<<<< HEAD
+=======
+
+
+
+#Jojo Part
+
+
+
+
+#Nei Part
+
+
+
+
+
+#Prateek Part
+
+
+
+#Bok Part
+
+
+
+
+
+
+
+>>>>>>> e457e082089d5f870eb94fa6717656b3921447ab
