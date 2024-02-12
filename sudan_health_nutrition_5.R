@@ -1,7 +1,10 @@
+#Load data
 cmam <- read.csv("data/cmam_routine_data.csv")
 
+#Create Time Column
 cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
 
+#Calculate Total Indicators in Data Frame
 IndicatorsTotal = data.frame(
   Names = c("Cure Rate", "Default Rate" , "Death Rate" , "Non Responder Rate", "Admitted Rate"),
   Values = c(sum(cmam$Cured)/sum(cmam$Total.Discharge),
@@ -11,26 +14,10 @@ IndicatorsTotal = data.frame(
              sum(cmam$New.Admissions)/sum(cmam$Screening,na.rm=TRUE)
   )
 )
+#Show Global Indicators
 IndicatorsTotal
 
-# Not working. Trying different thing
-
-# IndicatorsbyTime = data.frame(
-#   Names = c("Time", "Cure Rate", "Default Rate" , "Death Rate" , "Non Responder Rate", "Admitted Rate"),
-#   for (i in 1:max(cmam$time)){
-#     aux=filter(cmam, time ==i)
-#     Values = c(i, 
-#                sum(aux$Cured)/sum(aux$Total.Discharge),
-#                sum(aux$Default)/aux(aux$Total.Discharge),
-#                sum(aux$Death)/sum(aux$Total.Discharge),
-#                sum(aux$Non.Responder)/sum(aux$Total.Discharge),
-#                sum(aux$New.Admissions)/sum(aux$Screening,na.rm=TRUE))
-#   }
-#     
-#   
-# )
-
-
+#Create Empty Indicators by time Data Frame
 IndicatorsbyTime <- data.frame(
   Time = integer(),
   CureRate = numeric(),
@@ -40,6 +27,7 @@ IndicatorsbyTime <- data.frame(
   AdmittedRate = numeric()
 )
 
+#Filling the Data Frame
 for (i in 1:max(cmam$time)) {
   aux <- filter(cmam, time == i)
   
@@ -55,15 +43,16 @@ for (i in 1:max(cmam$time)) {
   
   IndicatorsbyTime <- rbind(IndicatorsbyTime, c(i, cureRate, defaultRate, deathRate, nonResponderRate, admittedRate))
 }
+#Changing the name of columns
 names(IndicatorsbyTime) <- c("Time", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate")
 
 
-
+#Changing from short to long for plotting
 IndicatorsLong <- pivot_longer(IndicatorsbyTime, 
                                cols = -Time, 
                                names_to = "RateType", 
                                values_to = "Value")
-
+#Plotting
 ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
   geom_line() + 
   geom_point() + 
