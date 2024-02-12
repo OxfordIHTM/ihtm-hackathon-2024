@@ -12,3 +12,7 @@ library(here)         ## Utility package for working directory helper
 
 ## Load packages for mapping ----
 library(sf)           ## Main package for mapping
+
+
+library(lme4) #for regression
+library(forcats)
