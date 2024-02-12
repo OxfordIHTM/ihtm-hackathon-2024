@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 #######classifying children and mothers nutrition status#######
+=======
+# Spatial representation Sudan project ----
+
+## Load general use packages ----
+## install.packages(c("openxlsx", "dplyr", "tidyr", "ggplot2", "rmarkdown", "remotes", "here", "sf"))
+>>>>>>> 8b6073f (Hinata: Updated  code for child spatial representation)
 
 #Adding a new underweight status column to the child data frame
 child$underweight_class <- classify_underweight_child(child$waz)
@@ -13,8 +20,47 @@ child$wasting <- classify_wasting_child(child$whz, child$muac, child$oedema)
 child_wasting <- child %>%
   mutate(wasting_status = ifelse(whz < -2, 1, 0))
 
+<<<<<<< HEAD
 # Group children by state_name and calculate % wasted children per state
 state_summary <- child_wasting %>%
+=======
+### Retrieve and read Sudan map data ----
+sudan_map_spec <- download_sudan_maps(download_url = "https://data.humdata.org/dataset/a66a4b6c-92de-4507-9546-aa1900474180/resource/e5ef3cc7-f105-4565-8d73-e08bb756f1c1/download/sdn_adm_cbs_nic_ssa_20200831.gdb.zip")
+
+sudan0 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[1])
+sudan1 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[2])
+sudan2 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[4])
+
+
+#### Source the different data processing and analysis workflow steps ----
+
+source("sudan_health_nutrition_1.R")
+source("sudan_health_nutrition_2.R")
+source("sudan_health_nutrition_3.R")
+source("sudan_health_nutrition_4.R")
+source("sudan_health_nutrition_5.R")
+source("sudan_health_nutrition_6.R")
+
+# Stunting is defined as the children with height-for-age Z-score (HAZ) < -2SD
+# and severe stunting is defined as the children with HAZ < -3SD
+
+##### Define the function ----
+classify_stunting <- function(haz) {
+  ifelse(
+    haz < -3, "severe stunting",
+    ifelse(
+      haz < -2, "stunting", "normal"
+    )
+  )
+}
+
+##### Apply the function using mutate ----
+child <- child %>%
+  mutate(stunting_status = classify_stunting(haz))
+
+##### Group children by state_name ----
+state_summary <- child %>%
+>>>>>>> 8b6073f (Hinata: Updated  code for child spatial representation)
   group_by(state_name) %>%
   summarise(
     total_child = n(),                                       # Count total children
@@ -22,6 +68,7 @@ state_summary <- child_wasting %>%
     percentage_undernourished = ifelse(total_child == 0, 0, (wasted_child / total_child) * 100)
   )
 
+<<<<<<< HEAD
 # Create a new variable to classify mother's nutrition status based on MUAC
 maternal$undernut <- classify_undernut_mother(maternal$muac)
 
@@ -64,6 +111,15 @@ merged_maternalmap_undernourished <- merge.data.frame(sudan1, maternal_map_under
 ########plotting map data################
 
 #underweight children
+=======
+##### grouping stunting classes by locality ----
+child_map <- child %>% 
+  group_by(state_name, stunting_status) %>% 
+  summarise(total_children = n()) %>% 
+  ungroup()
+
+###### Plotting map data ----
+>>>>>>> 8b6073f (Hinata: Updated  code for child spatial representation)
 ggplot() +
   geom_sf(data = merged_childmap_underweight, aes(geometry = geom, fill = undernut_percentages))+
   scale_fill_gradient(name = "Percentage of  Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
