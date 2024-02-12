@@ -38,7 +38,6 @@ state_summary <- maternal %>%
     percentage_undernourished = ifelse(total_mothers == 0, 0, (undernourished_mothers / total_mothers) * 100)
   )
 
-<<<<<<< HEAD
 
 #########calculating percentage malnourishment by state########
 
@@ -71,8 +70,6 @@ ggplot() +
   labs(title = "Percentage of underweight Children by States") +
   theme_minimal()
 
-=======
->>>>>>> 7bfcc64 (removed random code)
 
 #stunted children
 ggplot() +
