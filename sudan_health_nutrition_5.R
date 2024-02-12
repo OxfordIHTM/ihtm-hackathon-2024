@@ -67,8 +67,7 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
 
 
 #Jojo Part
-
-
+print("hello i am jojo")
 
 
 #Nei Part
@@ -82,6 +81,7 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
 
 
 #Bok Part
+print ("I am Bok Chol")
 
 
 
