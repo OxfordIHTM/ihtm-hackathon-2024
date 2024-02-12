@@ -1,5 +1,7 @@
-## Load general use packages
-install.packages(c("openxlsx", "dplyr", "tidyr", "ggplot2", "rmarkdown", "remotes", "here", "sf"))
+# Spatial representation Sudan project ----
+
+## Load general use packages ----
+## install.packages(c("openxlsx", "dplyr", "tidyr", "ggplot2", "rmarkdown", "remotes", "here", "sf"))
 
 library(openxlsx)     ## Read and write XLSX files
 library(dplyr)        ## Data wrangling and manipulation using tidy approach
@@ -25,7 +27,7 @@ sudan1 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[2])
 sudan2 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[4])
 
 
-## Source the different data processing and analysis workflow steps ----
+#### Source the different data processing and analysis workflow steps ----
 
 source("sudan_health_nutrition_1.R")
 source("sudan_health_nutrition_2.R")
@@ -37,7 +39,7 @@ source("sudan_health_nutrition_6.R")
 # Stunting is defined as the children with height-for-age Z-score (HAZ) < -2SD
 # and severe stunting is defined as the children with HAZ < -3SD
 
-# Define the function
+##### Define the function ----
 classify_stunting <- function(haz) {
   ifelse(
     haz < -3, "severe stunting",
@@ -47,11 +49,11 @@ classify_stunting <- function(haz) {
   )
 }
 
-# Apply the function using mutate
+##### Apply the function using mutate ----
 child <- child %>%
   mutate(stunting_status = classify_stunting(haz))
 
-# Group children by state_name
+##### Group children by state_name ----
 state_summary <- child %>%
   group_by(state_name) %>%
   summarise(
@@ -60,13 +62,13 @@ state_summary <- child %>%
     percentage_stunted = ifelse(total_children == 0, 0, (stunted_children / total_children) * 100)
   )
 
-##grouping stunting classes by locality
+##### grouping stunting classes by locality ----
 child_map <- child %>% 
   group_by(state_name, stunting_status) %>% 
   summarise(total_children = n()) %>% 
   ungroup()
 
-# Plotting map data
+###### Plotting map data ----
 ggplot() +
   geom_sf(data = merged_childmap_data, aes(geometry = Shape, fill = stunting_status)) +
   scale_fill_manual(name = "Percentage of Stunted Children",
