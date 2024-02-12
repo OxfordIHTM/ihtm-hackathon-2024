@@ -103,3 +103,4 @@ disc_blue_nile <- sum(Blue_Nile$Total.Discharge)
 death_blue_nile <- sum(Blue_Nile$Death)
 
 cure_rate_blue_nile <- total_cured_blue_nile/disc_blue_nile
+
