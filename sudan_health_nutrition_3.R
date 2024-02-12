@@ -24,8 +24,9 @@ colnames(na_tbl) = c("variable", "values missing")
 ##calc percentage of na variables
 na_tbl[,3]<-round( na_tbl$`values missing`/nrow(child) *100,2)
 
+na_tbl[,4]<-nrow(child)-na_tbl$`values missing`
 
 ##naming cols
-colnames(na_tbl) = c("variable", "values missing","%")
+colnames(na_tbl) = c("variable", "missing","missing %","present")
 
 View(na_tbl)
