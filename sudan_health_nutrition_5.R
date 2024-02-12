@@ -66,8 +66,6 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
   scale_color_brewer(palette = "Set1")
 
 
-
-
 #Jojo Part
 print("hello i am jojo")
 
@@ -79,11 +77,12 @@ print("hello i am jojo")
 
 
 #Prateek Part
-
+print("I am Prateek")
 
 
 #Bok Part
 print ("I am Bok Chol")
+
 
 
 
