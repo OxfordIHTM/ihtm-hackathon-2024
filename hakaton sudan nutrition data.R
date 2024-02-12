@@ -11,6 +11,7 @@ library(here)         ## Utility package for working directory helper
 
 ## Load packages for mapping ----
 library(sf)
+#install.packages("tmap")
 library(tmap)## Main package for mapping
 #work plan by the group
 #Classify mothers as undernutrition or normal
