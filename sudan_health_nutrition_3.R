@@ -3,9 +3,9 @@ View(child)
 dim(child)
 
 
-#################Create a table of na values per vairable####################
+#################Create a table of na values per variable####################
 
-# create a loop to determine number of na values per variabel
+# create a loop to determine number of na values per variable
 na_list<-c()
 for (i in 1:ncol(child)) {
   na_count<- sum(is.na(child[,i])) 
