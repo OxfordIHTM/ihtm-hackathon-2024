@@ -1,3 +1,4 @@
+source("packages.R")
 #Load data
 cmam <- read.csv("data/cmam_routine_data.csv")
 
@@ -19,7 +20,7 @@ IndicatorsTotal
 
 #Create Empty Indicators by time Data Frame
 IndicatorsbyTime <- data.frame(
-  Time = integer(),
+  time = integer(),
   CureRate = numeric(),
   DefaultRate = numeric(),
   DeathRate = numeric(),
@@ -29,7 +30,7 @@ IndicatorsbyTime <- data.frame(
 
 #Filling the Data Frame
 for (i in 1:max(cmam$time)) {
-  aux <- filter(cmam, time == i)
+  aux <- filter(cmam,time==i)
   
   # Calculate each indicator
   cureRate = sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
