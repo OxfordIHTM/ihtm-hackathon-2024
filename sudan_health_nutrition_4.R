@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #######classifying children and mothers nutrition status#######
 
 #Adding a new underweight status column to the child data frame
@@ -95,3 +96,5 @@ ggplot() +
 
 #Trying the add state initials to the the states in the map
 ## your_dataset$new_variable <- substr(your_dataset$existing_variable, 1, 2)
+=======
+>>>>>>> 75f4f59 (refresh team hinata R script)
