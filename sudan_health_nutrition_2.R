@@ -131,3 +131,17 @@ BCG_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
     BCG_Coverage = (BCG_positive / Eligible) * 100)
 
 print(BCG_coverage_per_state)
+
+# Calculate national penta droupout rate
+
+National_Penta_dropout <- (((Penta1_positive - Penta3_positive)/Penta1_positive)*100)
+print(National_Penta_dropout)
+
+# Calculate dropout rates between Penta1 and Penta3 for each state
+State_penta_dropout <- child %>% group_by(state_name) %>% summarise(
+    Penta1_positive = sum(coveragePenta1 == 1, na.rm = TRUE),
+    Penta3_positive = sum(coveragePenta3 == 1, na.rm = TRUE),
+    Dropout_Rate = ((Penta1_positive - Penta3_positive) / Penta1_positive) * 100
+  )
+
+print(State_penta_dropout)
