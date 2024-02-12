@@ -60,7 +60,6 @@ merged_maternalmap_undernourished <- merge.data.frame(sudan1, maternal_map_under
 
 ########plotting map data################
 
-#underweight children
 ggplot() +
   geom_sf(data = merged_childmap_underweight, aes(geometry = geom, fill = undernut_percentages))+
   scale_fill_gradient(name = "Percentage of  Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
