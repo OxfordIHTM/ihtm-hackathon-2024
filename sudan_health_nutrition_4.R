@@ -33,6 +33,12 @@ classify_underweight_child <- function(waz) {
   )
 }
 
+
+
+# Create a new variable to classify undernutrition based on MUAC
+maternal <- maternal %>%
+  mutate(nutrition_status = ifelse(muac < 220, 1, 0))
+
 #Adding a new column to the child data frame
 
 child$underweight_class <- classify_underweight_child(child$waz)
@@ -68,6 +74,20 @@ state_summary <- child_wasting %>%
 # Create a new variable to classify mother's nutrition status based on MUAC
 maternal$undernut <- classify_undernut_mother(maternal$muac)
 
+# Create a new variable to classify undernutrition based on MUAC
+maternal <- maternal %>%
+  mutate(nutrition_status = ifelse(muac < 220, 1, 0))
+
+# Group mothers by state_name
+state_summary <- maternal %>%
+  group_by(state_name) %>%
+  summarise(
+    total_mothers = n(),
+    undernourished_mothers = sum(nutrition_status == 1, na.rm = TRUE), # Count undernourished mothers
+    percentage_undernourished = ifelse(total_mothers == 0, 0, (undernourished_mothers / total_mothers) * 100)
+  )
+
+##Naemi data
 # Create a new variable to classify undernutrition based on MUAC
 maternal <- maternal %>%
   mutate(nutrition_status = ifelse(muac < 220, 1, 0))
