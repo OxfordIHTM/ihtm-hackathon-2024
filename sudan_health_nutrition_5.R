@@ -45,7 +45,6 @@ for (i in 1:max(cmam$time)) {
 #Changing the name of columns
 names(IndicatorsbyTime) <- c("Time", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate")
 
-
 #Changing from short to long for plotting
 IndicatorsLong <- pivot_longer(IndicatorsbyTime, 
                                cols = -Time, 
