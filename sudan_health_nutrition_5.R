@@ -1,6 +1,5 @@
 # CMAM programme responsiveness ------------------------------------------------
 
-
 #Create Time Column
 cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
 
@@ -62,7 +61,6 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
        color = "Rate Type") + 
   scale_color_brewer(palette = "Set1")
 
-<<<<<<< HEAD
 
 #New Mariano Part
 
@@ -123,30 +121,6 @@ p_interactive <- ggplotly(p)
 
 # Open in Viewer Pane (in RStudio) or in the default web browser
 p_interactive
-
-=======
->>>>>>> 7bfcc64 (removed random code)
-
-#Jojo Part
-print("hello i am jojo")
-
-
-#Nei Part
-
-
-
-
-
-#Prateek Part
-print("I am Prateek")
-
-
-#Bok Part
-print ("I am Bok Chol")
-
-
-
-
 
 
 
