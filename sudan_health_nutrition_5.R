@@ -1,7 +1,11 @@
 # CMAM programme responsiveness ------------------------------------------------
 
 #Create Time Column
+<<<<<<< HEAD
 cmam$time = match(cmam$Month,month.abb + (cmam$Year-2016)*12)
+=======
+cmam$time = as.numeric(match(cmam$Month,month.abb) + (cmam$Year-2016)*12)
+>>>>>>> 17cb7c0 (by State)
 
 #Calculate Total Indicators in Data Frame
 IndicatorsTotal = data.frame(
@@ -177,4 +181,7 @@ death_blue_nile <- sum(Blue_Nile$Death)
 
 cure_rate_blue_nile <- total_cured_blue_nile/disc_blue_nile
 
+<<<<<<< HEAD
 #end of code
+=======
+>>>>>>> 17cb7c0 (by State)
