@@ -183,13 +183,3 @@ cure_rate_blue_nile <- total_cured_blue_nile/disc_blue_nile
 
 #end of code
 
-
-
-
-
-
-
-
-
-
-
