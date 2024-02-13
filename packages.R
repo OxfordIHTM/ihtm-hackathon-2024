@@ -11,8 +11,9 @@ library(here)         ## Utility package for working directory helper
 library(plotly)
 
 
-## Load packages for mapping ----
+## Load packages for mapping ----  
 library(sf)           ## Main package for mapping
+
 
 ## Load packages for modelling ----
 library(lme4)         ## for regression
