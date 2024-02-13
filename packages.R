@@ -8,7 +8,7 @@ library(ggplot2)      ## Data visualisation using tidy approach
 library(rmarkdown)    ## Literate programming and report generation
 library(remotes)      ## For installing packages from GitHub
 library(here)         ## Utility package for working directory helper
-
+library(plotly)
 
 ## Load packages for mapping ----  
 library(sf)           ## Main package for mapping
