@@ -4,7 +4,7 @@ cmam <- read.csv("data/cmam_routine_data.csv")
 
 
 #Create Time Column
-cmam$time = as.numeric(match(cmam$Month,month.abb) + (cmam$Year-2016)*12)
+cmam$time = match(cmam$Month,month.abb + (cmam$Year-2016)*12)
 
 #Calculate Total Indicators in Data Frame
 IndicatorsTotal = data.frame(
