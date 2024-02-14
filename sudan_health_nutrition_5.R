@@ -69,7 +69,9 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
 
 
 #Jojo Part
-print("hello i am jojo")
+summary(cmam)
+mean(aux$Beginning.Of.Month)
+
 
 
 #Nei Part
