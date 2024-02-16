@@ -102,7 +102,7 @@ date_sequence <- seq.Date(from = start_date, by = "quarter", length.out = 16)
 # Display the first few dates to verify
 head(date_sequence)
 
-
+my_zoo_series$dates <- seq(start_date, by = "month", length.out = 48)
 
 # Starting date
 start_date <- as.Date("2016-01-01")
@@ -124,11 +124,13 @@ my_zoo_series$datesss <-date_sequence
 
 my_zoo_series <-IndicatorsbyTime
 
-plot(my_zoo_series$dates_sequence, my_zoo_series$Y,
+plot(my_zoo_series$dates, my_zoo_series$Y, type="l",
       bty="n", pch=19, col="black",
       xlim=c(0,20),ylim = c(0,1),
       xlab = "Time (datesss)", 
       ylab = "Cure_Rate" )   
+
+ggplot(my_zoo_series,aes(dates, Y))+geom_line()+ylim(0.5,1.0)
       
 summary(my_zoo_series)
 
