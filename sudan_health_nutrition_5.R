@@ -72,6 +72,66 @@ ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
 summary(cmam)
 mean(aux$Beginning.Of.Month)
 
+# aux is the auxilliary for cmam. coz we don't want to change the dataset assigned to the group
+# I want to do an interrupted time series analysis of the CMAM data
+#Creating a binary variable called "intervention" indication pre and post CMAM. The intervention begun in month 13
+
+intervention<-13
+set.seed(42)
+
+my_zoo_series$Y <- round(IndicatorsbyTime$CureRate,1)
+
+my_zoo_series$Y <- round(dataTS$Y,1)
+
+d.temp <- rbind( head(my_zoo_series), 
+                 my_zoo_series[ 13:24, ], 
+                  
+                 my_zoo_series[ 37:48, ],  
+                 
+                 tail(my_zoo_series) )
+
+row.names( d.temp ) <- NULL  
+pander( d.temp ) 
+
+# Define the start date
+start_date <- as.Date("2016-01-01")
+
+# Create a sequence of dates for 48 months
+date_sequence <- seq.Date(from = start_date, by = "quarter", length.out = 16)
+
+# Display the first few dates to verify
+head(date_sequence)
+
+
+
+# Starting date
+start_date <- as.Date("2016-01-01")
+
+# Create a sequence of monthly dates for 48 months
+dates <- seq(start_date, by = "month", length.out = 48)
+
+# Generate example data for these 48 months
+# Here, we're just creating a simple sequence as an example
+data <- 1:48
+
+# Create the zoo object
+my_zoo_series <- zoo(data, order.by = dates)
+
+# Display the first few entries of the zoo object
+head(my_zoo_series)
+
+my_zoo_series$datesss <-date_sequence
+
+my_zoo_series <-IndicatorsbyTime
+
+plot(my_zoo_series$dates_sequence, my_zoo_series$Y,
+      bty="n", pch=19, col="black",
+      xlim=c(0,20),ylim = c(0,1),
+      xlab = "Time (datesss)", 
+      ylab = "Cure_Rate" )   
+      
+summary(my_zoo_series)
+
 
 
 #Nei Part
