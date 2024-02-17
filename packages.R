@@ -12,3 +12,9 @@ library(here)         ## Utility package for working directory helper
 
 ## Load packages for mapping ----
 library(sf)           ## Main package for mapping
+
+library( "scales" )        # variable transforms, formatting tables
+library( "stargazer" )     # formatting regression output
+library( "dplyr" )         # data wrangling
+library( "pander" )        # nice tables
+library( "Wats" )          # time series plots

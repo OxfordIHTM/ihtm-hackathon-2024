@@ -108,7 +108,7 @@ my_zoo_series$dates <- seq(start_date, by = "month", length.out = 48)
 start_date <- as.Date("2016-01-01")
 
 # Create a sequence of monthly dates for 48 months
-dates <- seq(start_date, by = "month", length.out = 48)
+dates <- seq(start_date, by = "year", length.out = 48)
 
 # Generate example data for these 48 months
 # Here, we're just creating a simple sequence as an example
@@ -133,6 +133,35 @@ plot(my_zoo_series$dates, my_zoo_series$Y, type="l",
 ggplot(my_zoo_series,aes(dates, Y))+geom_line()+ylim(0.5,1.0)
       
 summary(my_zoo_series)
+
+
+
+#Load data
+cmam <- read.csv("data/cmam_routine_data.csv")
+my_zoo_series$Y <- round(my_zoo_series$Y,1)
+zooseries<- my_zoo_series
+
+
+V# Assuming the original format is "yyyy/dd/mm"
+zooseries$dates <- as.Date(zooseries$dates, format="%m/%d/%Y")
+
+# Convert the dates to ISO 8601 format
+zooseries$dates_iso <- format(zooseries$dates, "%Y-%m-%d")
+
+        
+
+d.temp <- rbind( head(zooseries), c("...","...","...","..."),
+                 zooseries [ 1:12, ], 
+                 c("**START**","**CMAM**","---","---"), 
+                 zooseries[ 13:24, ],  
+                 c("...","...","...","..."),
+                 tail(zooseries) )
+
+row.names( d.temp ) <- NULL  
+pander( d.temp )
+
+zooseries$Y <- NULL
+
 
 
 
