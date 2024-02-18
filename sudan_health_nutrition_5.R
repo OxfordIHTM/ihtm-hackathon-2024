@@ -79,9 +79,11 @@ mean(aux$Beginning.Of.Month)
 intervention<-13
 set.seed(42)
 
+
+
 my_zoo_series$Y <- round(IndicatorsbyTime$CureRate,1)
 
-my_zoo_series$Y <- round(dataTS$Y,1)
+# my_zoo_series$Y <- round(dataTS$Y,1)
 
 d.temp <- rbind( head(my_zoo_series), 
                  my_zoo_series[ 13:24, ], 
