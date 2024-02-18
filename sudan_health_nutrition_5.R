@@ -76,93 +76,71 @@ mean(aux$Beginning.Of.Month)
 # I want to do an interrupted time series analysis of the CMAM data
 #Creating a binary variable called "intervention" indication pre and post CMAM. The intervention begun in month 13
 
-intervention<-13
-set.seed(42)
-
-
-
-my_zoo_series$Y <- round(IndicatorsbyTime$CureRate,1)
-
-# my_zoo_series$Y <- round(dataTS$Y,1)
-
-d.temp <- rbind( head(my_zoo_series), 
-                 my_zoo_series[ 13:24, ], 
-                  
-                 my_zoo_series[ 37:48, ],  
-                 
-                 tail(my_zoo_series) )
-
-row.names( d.temp ) <- NULL  
-pander( d.temp ) 
-
-# Define the start date
-start_date <- as.Date("2016-01-01")
-
-# Create a sequence of dates for 48 months
-date_sequence <- seq.Date(from = start_date, by = "quarter", length.out = 16)
-
-# Display the first few dates to verify
-head(date_sequence)
-
-my_zoo_series$dates <- seq(start_date, by = "month", length.out = 48)
-
-# Starting date
-start_date <- as.Date("2016-01-01")
-
-# Create a sequence of monthly dates for 48 months
-dates <- seq(start_date, by = "year", length.out = 48)
-
-# Generate example data for these 48 months
-# Here, we're just creating a simple sequence as an example
-data <- 1:48
-
-# Create the zoo object
-my_zoo_series <- zoo(data, order.by = dates)
-
-# Display the first few entries of the zoo object
-head(my_zoo_series)
-
-my_zoo_series$datesss <-date_sequence
-
-my_zoo_series <-IndicatorsbyTime
-
-plot(my_zoo_series$dates, my_zoo_series$Y, type="l",
-      bty="n", pch=19, col="black",
-      xlim=c(0,20),ylim = c(0,1),
-      xlab = "Time (datesss)", 
-      ylab = "Cure_Rate" )   
-
-ggplot(my_zoo_series,aes(dates, Y))+geom_line()+ylim(0.5,1.0)
-      
-summary(my_zoo_series)
-
-
-
+# source("packages.R")
 #Load data
 cmam <- read.csv("data/cmam_routine_data.csv")
-my_zoo_series$Y <- round(my_zoo_series$Y,1)
-zooseries<- my_zoo_series
 
 
-V# Assuming the original format is "yyyy/dd/mm"
-zooseries$dates <- as.Date(zooseries$dates, format="%m/%d/%Y")
+#Create Time Column
+cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
 
-# Convert the dates to ISO 8601 format
-zooseries$dates_iso <- format(zooseries$dates, "%Y-%m-%d")
+#create column for quarters
+cmam <- cmam %>% mutate(Quarter = ceiling(as.numeric(cmam$time) / 3))
 
-        
 
-d.temp <- rbind( head(zooseries), c("...","...","...","..."),
-                 zooseries [ 1:12, ], 
-                 c("**START**","**CMAM**","---","---"), 
-                 zooseries[ 13:24, ],  
-                 c("...","...","...","..."),
-                 tail(zooseries) )
+#Calculate Cure rate total in Data Frame
+Cure_Rate_Total = data.frame(
+  Names = c("Cure Rate"),
+  Values = c(sum(cmam$Cured)/sum(cmam$Total.Discharge)
+  )
+)
 
-row.names( d.temp ) <- NULL  
-pander( d.temp )
+#Create Empty Indicators by a Data Frame using quarters
+Cure_Rate_by_Quarter <- data.frame(
+  Quarter = integer(),
+  Cure_Rate = numeric()
+)
 
-zooseries$Y <- NULL
+#Filling the Data Frame
+for (i in 1:max(cmam$Quarter)) {
+  aux <- filter(cmam,Quarter==i)
+  
+  # Calculate each indicator
+  Cure_Rate = sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
+  
+  Cure_Rate_by_Quarter <- rbind(Cure_Rate_by_Quarter, c(i, Cure_Rate))
+}
+#Changing the name of columns
+names(Cure_Rate_by_Quarter) <- c("Quarter", "Cure_Rate")
+
+#Changing from short to long for plotting
+IndicatorsLong <- pivot_longer(Cure_Rate_by_Quarter, 
+                               cols = -Quarter, 
+                               names_to = "RateType", 
+                               values_to = "Value")
+#Plotting
+ggplot(IndicatorsLong, aes(x = Quarter, y = Value, color = RateType)) +
+  geom_line() + 
+  geom_point() + 
+  theme_minimal() + 
+  labs(title = "Cure Rate as a proxy for responsiveness of CMAM",
+       # x = "Time in quarters since Jan 2016",
+       y = "Cure Rate",
+       color = "Rate Type") + 
+  scale_color_brewer(palette = "Set1") +
+  scale_x_continuous(breaks = c(4, 8, 12, 16), labels = c("Dec-16", "Dec-17", "Dec-18", "Dec-19" ))
+# scale_x_discrete(labels=c('Dec-16', 'Dec-17', 'Dec-18', 'Dec-19'))
+
+
+
+
+
+
+
+
+
+
+
 
 
 
