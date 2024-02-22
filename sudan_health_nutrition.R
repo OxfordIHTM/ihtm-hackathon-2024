@@ -5,11 +5,6 @@
 suppressPackageStartupMessages(source("packages.R"))
 for (f in list.files(here::here("R"), full.names = TRUE)) source (f)
 
-install.packages("sf")
-install.packages("here")
-
-library(sf)
-library(here)
 
 ## Read data ----
 maternal <- read.csv("data/maternal_health.csv")
