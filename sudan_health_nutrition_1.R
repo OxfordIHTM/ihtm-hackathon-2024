@@ -1,9 +1,6 @@
 # Bottl4necks to maternal health sercies ---------------------------------------
 
 ## median gestational age at first ANC visit
-maternal <- read.table("data/maternal_health.csv", header = T, sep = ",")
-
-## median gestational age at first ANC visit
 median_gest_age<- median(maternal$ancGestAge, na.rm = T)
 ##median gestational age at  attendance to ANC at last pregnancy is 3 months
 
