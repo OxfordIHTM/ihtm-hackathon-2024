@@ -1,4 +1,4 @@
-maternal <- read.table("data/maternal_health.csv", header = T, sep = ",")
+# Bottl4necks to maternal health sercies ---------------------------------------
 
 ## median gestational age at first ANC visit
 median_gest_age<- median(maternal$ancGestAge, na.rm = T)

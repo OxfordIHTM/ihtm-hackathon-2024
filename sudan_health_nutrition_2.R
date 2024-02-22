@@ -1,8 +1,4 @@
-install.packages("dplyr")
-library(dplyr)
-
-# source from main script
-source("sudan_health_nutrition.R")
+# Bottlenecks to expanded programme on immunisation access ---------------------
 
 # Total number of children that got BCG vaccine
 

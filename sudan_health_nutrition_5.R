@@ -1,7 +1,4 @@
-source("packages.R")
-#Load data
-cmam <- read.csv("data/cmam_routine_data.csv")
-
+# CMAM programme responsiveness ------------------------------------------------
 
 #Create Time Column
 cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
