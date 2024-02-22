@@ -10,7 +10,7 @@ library(remotes)      ## For installing packages from GitHub
 library(here)         ## Utility package for working directory helper
 
 
-## Load packages for mapping ----  
+## Load packages for mapping ----
 library(sf)           ## Main package for mapping
 
 
