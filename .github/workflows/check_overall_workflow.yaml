@@ -31,12 +31,9 @@ jobs:
           )
         shell: Rscript {0}
           
-      - name: Check that R file runs without errors
+      - name: Check that workflow runs without errors
         run: |
-          lapply(
-            X = list.files(pattern = "\\.R$|\\.r$"),
-            FUN = source
-          )
+          source("sudan_health_nutrition.R")
         shell: Rscript {0}
           
       - name: Check that Rmd file runs without errors
