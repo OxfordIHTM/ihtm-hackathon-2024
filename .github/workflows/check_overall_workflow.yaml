@@ -27,7 +27,7 @@ jobs:
         run: |
           install.packages(
             c("rmarkdown", "openxlsx", "stringr", "remotes", "here",
-              "lme4", "forcats", "plotly"
+              "lme4", "forcats", "plotly")
           )
         shell: Rscript {0}
           
