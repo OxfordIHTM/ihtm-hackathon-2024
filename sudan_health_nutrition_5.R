@@ -138,25 +138,16 @@ print("hello i am jojo")
 
 
 #Prateek Part
-#better visualization of all the rates at same time
-#Make data frame and chart with rates related to cure rate
-# use log scale
-#or alternative
-
 print("I am Prateek")
 
 
 #Bok Part
 print ("I am Bok Chol")
 
-cmam_routine_data <- read.csv(file=
-                                "https://raw.githubusercontent.com/OxfordIHTM/ihtm-hackathon-2024/main/data/cmam_routine_data.csv",
-                              sep=",",header=TRUE)
-
 ##Calculation of cure rate per state ----
 #Gazera state-----
 
-gazera <- cmam_routine_data %>% filter(State == 'Gazera')
+gazera <- cmam %>% filter(State == 'Gazera')
 
 TotalNAd_Gazera <-sum(gazera$New.Admissions)
 totalcured_gazera <- sum(gazera$Cured)
