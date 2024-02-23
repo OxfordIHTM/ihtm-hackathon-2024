@@ -1,7 +1,7 @@
 # CMAM programme responsiveness ------------------------------------------------
 
 #Create Time Column
-cmam$time = match(cmam$Month,month.abb + (cmam$Year-2016)*12)
+cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
 
 #Calculate Total Indicators in Data Frame
 IndicatorsTotal = data.frame(
