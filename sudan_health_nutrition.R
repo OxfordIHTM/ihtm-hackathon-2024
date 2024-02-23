@@ -18,14 +18,6 @@ sudan_map_url <- "https://github.com/spatialworks/sudan/raw/master/data-raw/maps
 sudan0 <- st_read(dsn = sudan_map_spec$dsn, layer = sudan_map_spec$layers[1])
 sudan1 <- st_read(dsn = sudan_map_url, layer = "state")
 sudan2 <- st_read(dsn = sudan_map_url, layer = "locality")
-<<<<<<< HEAD
-
-### Create supporting data dictionaries for each data source ----
-child_dictionary <- create_child_dictionary(child, keep = TRUE)
-maternal_dictionary <- create_maternal_dictionary(maternal, keep = TRUE)
-cmam_dictionary <- create_cmam_dictionary(cmam, keep = TRUE)
-=======
->>>>>>> c62e45c (update sudan maps)
 
 ### Create supporting data dictionaries for each data source ----
 child_dictionary <- create_child_dictionary(child, keep = TRUE)
