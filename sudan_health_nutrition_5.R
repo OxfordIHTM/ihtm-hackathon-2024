@@ -1,3 +1,4 @@
+
 source("packages.R")
 #Load data
 cmam <- read.csv("data/cmam_routine_data.csv")
@@ -182,4 +183,5 @@ death_blue_nile <- sum(Blue_Nile$Death)
 cure_rate_blue_nile <- total_cured_blue_nile/disc_blue_nile
 
 #end of code
+
 

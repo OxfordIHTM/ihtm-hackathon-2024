@@ -12,3 +12,6 @@ library(plotly)
 
 ## Load packages for mapping ----
 library(sf)           ## Main package for mapping
+
+
+
