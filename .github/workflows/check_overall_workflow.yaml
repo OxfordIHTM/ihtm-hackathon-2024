@@ -26,7 +26,8 @@ jobs:
       - name: Install R packages
         run: |
           install.packages(
-            c("rmarkdown", "openxlsx", "stringr", "remotes", "here")
+            c("rmarkdown", "openxlsx", "stringr", "remotes", "here",
+              "lme4", "forcats")
           )
         shell: Rscript {0}
           
