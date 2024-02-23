@@ -159,7 +159,7 @@ deathRate_gazera <- death_gazera/total_disch_gazera
 
 
 ##Blue nile state-----
-Blue_Nile <- cmam_routine_data %>% filter(State=='Blue Nile',preserve=TRUE)
+Blue_Nile <- cmam %>% filter(State=='Blue Nile',preserve=TRUE)
 
 totalNAd_Blue_Nile <- sum(Blue_Nile$New.Admissions)
 total_cured_blue_nile <- sum(Blue_Nile$Cured)

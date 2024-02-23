@@ -141,4 +141,3 @@ State_penta_dropout <- child %>% group_by(state_name) %>% summarise(
 )
 
 print(State_penta_dropout)
->>>>>>> 2e5aa6d (For team sasuke)
