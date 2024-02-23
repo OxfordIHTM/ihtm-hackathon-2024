@@ -1,5 +1,7 @@
-
 #######classifying children and mothers nutrition status#######
+
+#Adding a new underweight status column to the child data frame
+child$underweight_class <- classify_underweight_child(child$waz)
 
 #Adding a new stunting status column to the child data frame
 child$stunting_status <- classify_stunting_child(child$haz)
@@ -51,6 +53,7 @@ child_map_stunting <- child_map_stunting %>% group_by(state_id) %>% mutate(stunt
 child_map_wasting <- child_map_wasting %>% group_by(state_id) %>% mutate(wasting_percentages = (get_perc(n)))
 maternal_map_undernourished <- maternal_map_undernourished %>% group_by(state_id) %>% mutate(undernut_percentages = get_perc(n))
 
+
 #######merging map data with the data frames###############
 
 merged_childmap_underweight <- merge.data.frame(sudan1, child_map_underweight, by.x = "stateID", by.y = "state_id", all.x = TRUE)
@@ -60,17 +63,15 @@ merged_maternalmap_undernourished <- merge.data.frame(sudan1, maternal_map_under
 
 ########plotting map data################
 
+#underweight children
 ggplot() +
   geom_sf(data = merged_childmap_underweight, aes(geometry = geom, fill = undernut_percentages))+
   scale_fill_gradient(name = "Percentage of  Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
   labs(title = "Percentage of underweight Children by States") +
   theme_minimal()
 
-# Stunting is defined as the children with height-for-age Z-score (HAZ) < -2SD
-# and severe stunting is defined as the children with HAZ < -3SD
 
 #stunted children
-
 ggplot() +
   geom_sf(data = merged_childmap_stunting, aes(geometry = geom, fill = stunting_percentages))+
   scale_fill_gradient(name = "Percentage of stunted Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
@@ -94,27 +95,3 @@ ggplot() +
 
 #Trying the add state initials to the the states in the map
 ## your_dataset$new_variable <- substr(your_dataset$existing_variable, 1, 2)
-
-# Create binary variables for stunting, severe stunting, wasting, severe wasting, underweight, and severe underweight
-
-child$stunting <- ifelse(child$haz <- 2, 1, 0)
-
-child$severe_stunting <- ifelse(child$haz < -3, 1, 0)
-
-child$wasting <- ifelse(child$whz < -2 | child$muac < 125 | child$oedema == "Yes", 1, 0)
-child$severe_wasting <- ifelse(child$whz < -3 | child$muac < 115 | child$oedema == "Yes", 1, 0)
-
-child$underweight <- ifelse(child$waz < -2, 1, 0)
-child$severe_underweight <- ifelse(child$waz < -3, 1, 0)
-
-# Explore the new variables
-summary(child[c("stunting", "severe_stunting", "wasting", "severe_wasting", "underweight", "severe_underweight")])
-
-# Repeat the same for maternal data
-ggplot() +
-  geom_sf(data = maternal_map, aes(fill = count), size = 0.5) +
-  labs(title = "Number of Maternal Individuals with Underweight in Sudan by Locality",
-       subtitle = "Fill legend: Count of Maternal Individuals with Underweight",
-       caption = "Source: Your Data Source") +
-  theme_minimal() +
-  scale_fill_gradient(low = "green", high = "red")
