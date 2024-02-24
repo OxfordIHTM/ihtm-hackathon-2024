@@ -9,7 +9,7 @@ for (f in list.files(here::here("R"), full.names = TRUE)) source (f)
 ## Read data ----
 maternal <- read.csv("data/maternal_health.csv")
 child <- read.csv("data/child_health.csv")
-viewcmam <- read.csv("data/cmam_routine_data.csv")
+cmam <- read.csv("data/cmam_routine_data.csv")
 
 ### Retrieve and read Sudan map data ----
 sudan_map_spec <- download_sudan_maps(download_url = "https://data.humdata.org/dataset/a66a4b6c-92de-4507-9546-aa1900474180/resource/e5ef3cc7-f105-4565-8d73-e08bb756f1c1/download/sdn_adm_cbs_nic_ssa_20200831.gdb.zip")
