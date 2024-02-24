@@ -14,7 +14,7 @@ name: report
 jobs:
   report:
     runs-on: ubuntu-latest
-    # Only restrict concurrency for non-PR jobs
+    container: rocker/geospatial:4.3.2
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
