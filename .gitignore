@@ -3,5 +3,6 @@
 .RData
 .Ruserdata
 data/*.gdb
+docs
 sudan_health_nutrition.html
 sudan_health_nutrition.md
