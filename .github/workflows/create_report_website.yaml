@@ -35,8 +35,13 @@ jobs:
           )
         shell: Rscript {0}
 
-      - name: Build report
+      - name: Build reports
         run: |
+          rmarkdown::render(
+            "reports/case_study.Rmd",
+            output_dir = "docs",
+            knit_root_dir = here::here()
+          )
           rmarkdown::render(
             "reports/sudan_health_nutrition.Rmd", 
             output_file = "index.html", 
