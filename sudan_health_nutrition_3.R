@@ -1,7 +1,4 @@
-
-View(child)
-dim(child)
-
+# Barriers to basic pre-school education ---------------------------------------
 
 #################Create a table of na values per variable####################
 
