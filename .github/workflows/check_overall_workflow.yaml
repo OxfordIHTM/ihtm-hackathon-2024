@@ -44,7 +44,8 @@ jobs:
             lapply(
               X = rmds,
               FUN = rmarkdown::render,
-              output_dir = "docs"
+              output_dir = "docs",
+              knit_root_dir = here::here()
             )
           }
         shell: Rscript {0}
