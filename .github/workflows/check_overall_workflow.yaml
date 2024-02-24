@@ -19,7 +19,7 @@ jobs:
       - name: Install system dependencies
         run: |
           apt-get update && apt-get install -y --no-install-recommends \
-          git-crypt libxt6 libglpk-dev
+          libxt6 libglpk-dev
           
       - name: Install R packages
         run: |
