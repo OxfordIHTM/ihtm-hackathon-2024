@@ -1,0 +1,55 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+name: report
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    container: rocker/geospatial:4.3.2
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          apt-get update && apt-get install -y --no-install-recommends \
+          libxt6 libglpk-dev
+          
+      - name: Install R packages
+        run: |
+          install.packages(
+            c("rmarkdown", "openxlsx", "stringr", "remotes", "here",
+              "lme4", "forcats", "plotly")
+          )
+        shell: Rscript {0}
+
+      - name: Build report
+        run: |
+          rmarkdown::render(
+            "reports/sudan_health_nutrition.Rmd", 
+            output_file = "index.html", 
+            output_dir = "docs", 
+            knit_root_dir = here::here()
+          )
+        shell: Rscript {0}
+
+      - name: Deploy to GitHub pages 🚀
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        with:
+          clean: false
+          branch: gh-pages
+          folder: docs
+          

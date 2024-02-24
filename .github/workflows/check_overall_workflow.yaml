@@ -13,15 +13,13 @@ jobs:
   check-overall-workflow:
     runs-on: ubuntu-latest
     container: rocker/geospatial:4.3.2
-    env:
-      GIT_CRYPT_KEY64: ${{ secrets.GIT_CRYPT_KEY64 }}
     steps:
       - uses: actions/checkout@v4
       
       - name: Install system dependencies
         run: |
           apt-get update && apt-get install -y --no-install-recommends \
-          git-crypt libxt6 libglpk-dev
+          libxt6 libglpk-dev
           
       - name: Install R packages
         run: |
