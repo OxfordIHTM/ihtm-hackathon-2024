@@ -1,0 +1,189 @@
+---
+title: Sudan Maternal and Child Health and Nutrition Survey 2018
+author: Anita Amponsa, Shylett Anthony, Naemi Araya, Moshood Audu, Rasika Bombatkar, Neira Budiono, Phillip Chigiya, Prince Kelechi Chima, John Bok Chol, Clifford Cofie, Eslam Elbasheer, Prateek Garg, Mary Gouws, Samvel Grigoryan, Marietta Imadojiemu, Jillian Francise Lee, Anita Makori, Joseph Mwaka, Kapil Narain, Josephine Ndawula, Thokozani Nyasulu, Richmonda Pearce, Mariano Ratto, Gloria Rukomeza, Mercedes Rumi, Amina Suveha, Shih-Ting Tseng, Claudia Vidal Cuellar, Yih Seong Wong
+date: "2024-02-24"
+output: 
+  rmarkdown::html_document:
+    toc: true
+    keep_md: true
+---
+
+
+
+## Background 
+
+Sudan has the third highest prevalence of acute malnutrition in the world and the highest in the Middle East and North Africa region at 16% global acute malnutrition amongst children under five years. The under-five mortality rate in the country was estimated at 68/1000 in 2014 compared with 108/1000 in 2000 for an annual rate of reduction of 2.2% since 1990. Access to primary health care (PHC) remains low despite the fact that the Integrated Management of Childhood Illnesses (IMCI) coverage at health facilities increased from 43 percent to 46.1 percent in 2013. Sudan’s low coverage of improved water and sanitation facilities continues to hamper overall child health and nutrition. The Simple Spatial Survey Method (S3M) is a large-scale survey method originally developed from the centric systematic area sampling (CSAS) coverage survey method as a response to the widespread adoption of community management of acute malnutrition (CMAM) by ministries of health. From its initial application as a coverage survey method, S3M’s potential for use in national-scale multi-indicator surveys was considered and explored. Sudan supported the development of the method for this broader application through 2 state-level pilots in Gedaref and Sennar in 2012 which eventually led to the first national S3M survey in Sudan in 2013 to measure a range of indicators (health, WASH and nutrition) over small geographical areas, giving results at locality level and lower. It provided comprehensive information at state level and lower that was used to target and re-align interventions. The experience from the Sudan S3M I (2013) has shown that mapping variation and thus identifying areas of high need has allowed evidence-based targeting of interventions to most vulnerable populations, enabling improved cost-benefit in the current context of diminishing funding resources in Sudan. The S3M I contributed to planning of humanitarian and other responses to target the most vulnerable communities at locality level and below over the last 2-3 years in Sudan. For instance, the results were used for the mid-year revision of the 2014 Humanitarian Needs Overview (HNO) for all sectors enabling, for the first time, the use of locality level information for targeting responses, as well as acting as a catalyst for multi-sectoral programming. In addition, the S3M I survey results contributed to establishing the UNICEF programmatic shift to intervening in high-priority localities and it also helped the Government of Sudan to prioritize localities most in need.
+
+The S3M II has been carried out in 2018 in order to obtain updated and comprehensive data for nutrition, health, WASH and child protection indicators. It includes data for smaller geographical areas within localities as well as from the national, state, and locality level for children and their mothers in Sudan. It intends to identify the areas where the highest need are to allow evidence based program planning and targeting for equity to enable a better and more effective use of scarce resources
+for humanitarian response and enhanced impact within Sudan.
+
+### Objectives
+
+This report builds on the data from the S3M II and provides further analysis of the data that has not been done in the initial reporting of the findings. Specifically, this report aims to:
+
+1. Demonstrate the bottlenecks/barriers to service delivery of essential maternal care such as antenatal and postnatal care;
+
+2. Demonstrate the bottlenecks/barriers to service delivery of the expanded programem on immunisation (EPI);
+
+3. Demonstrate the bottlenecks/barriers to basic pre-school education;
+
+4. Map the spatial distribution of child and maternal undernutrition;
+
+5. Assess the responsiveness of the community-based management of acute malnutrition (CMAM) programme; and,
+
+6. Determine the predictors of child and maternal undernutrition.
+
+
+<!---- This is the start of the section for Team Naruto ---->
+## Bottlenecks to maternal care service delivery
+
+### Description of analytical approach
+
+
+
+
+### Results
+
+
+
+
+### Discussion
+
+
+
+
+### Recommendations
+
+
+
+
+<!---- This is the end of the section for Team Naruto ---->
+
+<!---- This is the start of the section for Team Sasuke ---->
+## Bottlenecks to EPI coverage
+
+### Description of analytical approach
+
+
+
+
+### Results
+
+
+
+
+### Discussion
+
+
+
+
+### Recommendations
+
+
+
+
+<!---- This is the end of the section for Team Sasuke ---->
+
+<!---- This is the start of the section for Team Rock Lee ---->
+## Barriers to basic pre-school education
+
+### Description of analytical approach
+
+
+
+
+### Results
+
+
+
+
+### Discussion
+
+
+
+
+### Recommendations
+
+
+
+
+<!---- This is the end of the section for Team Rock Lee ---->
+
+<!---- This is the start of the section for Team Hinata ---->
+
+## Spatial distribution of maternal and child undernutrition
+
+### Desription of analytical approach
+
+
+
+
+### Results
+
+
+
+
+### Discussion
+
+
+
+
+### Recommendations
+
+
+
+
+<!---- This is the end of the section for Team Hinata ---->
+
+<!---- This is the start of the section for Team Neji ---->
+
+## CMAM programme responsiveness
+
+### Description of analytical approach
+
+
+
+
+### Results
+
+
+
+
+### Discussion
+
+
+
+
+### Recommendations
+
+
+
+
+<!---- This is the end of the section for Team Neji ---->
+
+<!---- This is the start of the section for Team Sakura ---->
+
+## Determinants of maternal and child undernutrition
+
+### Description of analytical approach
+
+
+
+
+### Results
+
+
+
+
+### Discussion
+
+
+
+
+### Recommendations
+
+
+
+
+<!---- This is the end of the section for Team Sakura ---->
+
