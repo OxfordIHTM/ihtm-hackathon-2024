@@ -25,7 +25,7 @@ jobs:
       - name: Install system dependencies
         run: |
           apt-get update && apt-get install -y --no-install-recommends \
-          libxt6 libglpk-dev
+          libxt6 libglpk-dev rysnc
           
       - name: Install R packages
         run: |
