@@ -38,7 +38,7 @@ jobs:
           
       - name: Check that Rmd file runs without errors
         run: |
-          rmds <- list.files(path = "reports", pattern = "\\.Rmd$") |>
+          rmds <- list.files(path = "reports", pattern = "\\.Rmd$", full.names = TRUE) |>
             (\(x) x[!stringr::str_detect(string = x, pattern = "case_study")])()
           if (length(rmds) != 0) {
             lapply(
