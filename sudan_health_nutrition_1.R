@@ -1,4 +1,4 @@
-# Bottl4necks to maternal health sercies ---------------------------------------
+# Bottlenecks to maternal health sercies ---------------------------------------
 
 ## median gestational age at first ANC visit
 median_gest_age<- median(maternal$ancGestAge, na.rm = T)
