@@ -26,4 +26,3 @@ na_tbl[,4]<-nrow(child)-na_tbl$`values missing`
 ##naming cols
 colnames(na_tbl) = c("variable", "missing","missing %","present")
 
-View(na_tbl)
