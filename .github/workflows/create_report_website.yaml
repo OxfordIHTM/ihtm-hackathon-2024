@@ -32,13 +32,14 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
 
-      - name: Build site
-        run: rmarkdown::render(
-          "reports/sudan_health_nutrition.Rmd", 
-          output_file = "index.html", 
-          output_dir = "docs", 
-          knit_root_dir = here::here()
-        )
+      - name: Build report
+        run: |
+          rmarkdown::render(
+            "reports/sudan_health_nutrition.Rmd", 
+            output_file = "index.html", 
+            output_dir = "docs", 
+            knit_root_dir = here::here()
+          )
         shell: Rscript {0}
 
       - name: Deploy to GitHub pages 🚀
