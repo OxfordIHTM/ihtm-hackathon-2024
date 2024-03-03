@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 
 View(child)
 dim(child)
 
+=======
+# Barriers to basic pre-school education ---------------------------------------
+>>>>>>> d1bd00c9634567ae73695f71541e51d5af6d6fd7
 
 #################Create a table of na values per variable####################
 
@@ -29,4 +33,7 @@ na_tbl[,4]<-nrow(child)-na_tbl$`values missing`
 ##naming cols
 colnames(na_tbl) = c("variable", "missing","missing %","present")
 
+<<<<<<< HEAD
 View(na_tbl)
+=======
+>>>>>>> d1bd00c9634567ae73695f71541e51d5af6d6fd7

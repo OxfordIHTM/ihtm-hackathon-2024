@@ -3,3 +3,7 @@
 .RData
 .Ruserdata
 data/*.gdb
+docs
+!docs/.gitkeep
+sudan_health_nutrition.html
+sudan_health_nutrition.md
