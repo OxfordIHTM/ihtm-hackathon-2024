@@ -1,40 +1,4 @@
-# Barriers - basic pre-school education ---------------------------------------
-View(child_health)
-dim(child_health)
-dim(child_health_clean)
-install.packages("ggplot2")
-library(ggplot2)
-install.packages("dplyr")
-library(dplyr)
 
-
-# create a loop for na values per variable
-na_list<-c()
-for (i in 1:ncol(child_health)) {
-  na_count<- sum(is.na(child_health[,i])) 
-  print(na_count)
-  na_list<-c(na_list,na_count)
-}
-
-colname_list<-colnames(child_health)
-
-##create a table of na values
-na_tbl <- data.frame(colname_list, na_list)
-
-##naming cols
-colnames(na_tbl) = c("variable", "values missing") 
-
-##calc percentage of na variables
-na_tbl[,3]<-round( na_tbl$`values missing`/nrow(child_health) *100,2)
-
-na_tbl[,4]<-nrow(child_health)-na_tbl$`values missing`
-
-##naming cols
-colnames(na_tbl) = c("variable", "missing","missing %","present")
-
-View(na_tbl)
-  
-  
 # Load the dataset
 # instal packages
 library (dplyr)
@@ -87,9 +51,6 @@ chisq.test(table(child_health$earlyMarriage, child_health$accessBasicEducation, 
 
 # 2x2 table for displacement and access to basic education
 table(child_health$displacement, child_health$accessBasicEducation, useNA = "ifany")
-# Chi-square test for association
-chisq.test(table(child_health$displacement, child_health$accessBasicEducation, useNA = "no"))
-
 
 # CONDUCTING MULTIPLE LOGISTIC REGRESSION
 
@@ -135,15 +96,9 @@ xtabs(~ sex + ari, data = child_health)
 # Age distribution
 ggplot(child_health, aes(x = age)) + geom_histogram(binwidth = 1, fill = "blue", color = "black") + labs(title = "Age Distribution", x = "Age", y = "Count")
 
-child_health_clean <- child_health %>%
-  filter(!is.na(age) & age != Inf & age != -Inf) # Removes NA, Inf, -Inf
-ggplot(child_health_clean, aes(x = age)) +
-  geom_histogram()
-
 # Diarrhoea cases by sex
 ggplot(child_health, aes(x = sex, fill = factor(ari))) + geom_bar(position = "fill") + scale_fill_manual(values = c("0" = "grey", "1" = "red"), labels = c("no", "yes")) + labs(title = "Diarrhoe Cases by Sex", x = "Sex", y = "Proportion", fill = "Diarrhoea")
 
 # ARI cases by sex
 ggplot(child_health, aes(x = sex, fill = factor(ari))) + geom_bar(position = "fill") + scale_fill_manual(values = c("0" = "grey", "1" = "green"), labels = c("No", "Yes")) + labs(title = "ARI Cases by Sex", x = "Sex", y = "Proportion", fill = "ARI")
-
 
