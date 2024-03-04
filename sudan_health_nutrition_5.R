@@ -1,7 +1,15 @@
 # CMAM programme responsiveness ------------------------------------------------
+source("packages.R")
+#Load data
+cmam <- read.csv("data/cmam_routine_data.csv")
 
 #Create Time Column
+Sys.setlocale("LC_TIME", "C")
 cmam$time = match(cmam$Month,month.abb) + (cmam$Year-2016)*12
+cmam$Date <- as.Date(paste(cmam$Year, cmam$Month, "01", sep="-"), format="%Y-%b-%d")
+cmam
+
+
 
 #Calculate Total Indicators in Data Frame
 IndicatorsTotal = data.frame(
@@ -18,7 +26,7 @@ IndicatorsTotal
 
 #Create Empty Indicators by time Data Frame
 IndicatorsbyTime <- data.frame(
-  time = integer(),
+  Date = as.Date(character()),
   CureRate = numeric(),
   DefaultRate = numeric(),
   DeathRate = numeric(),
@@ -26,9 +34,10 @@ IndicatorsbyTime <- data.frame(
   AdmittedRate = numeric()
 )
 
+
 #Filling the Data Frame
-for (i in 1:max(cmam$time)) {
-  aux <- filter(cmam,time==i)
+for (date in unique(cmam$Date)) {
+  aux <- filter(cmam, Date == date)
   
   # Calculate each indicator
   cureRate = sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
@@ -40,33 +49,36 @@ for (i in 1:max(cmam$time)) {
   else 
     admittedRate = NA
   
-  IndicatorsbyTime <- rbind(IndicatorsbyTime, c(i, cureRate, defaultRate, deathRate, nonResponderRate, admittedRate))
+  
+  newRow <- data.frame(Date = as.Date(date), CureRate = cureRate, DefaultRate = defaultRate, DeathRate = deathRate, NonResponderRate = nonResponderRate, AdmittedRate = admittedRate)
+  IndicatorsbyTime <- rbind(IndicatorsbyTime, newRow)
 }
 #Changing the name of columns
-names(IndicatorsbyTime) <- c("Time", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate")
+names(IndicatorsbyTime) <- c("Date", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate")
 
 #Changing from short to long for plotting
 IndicatorsLong <- pivot_longer(IndicatorsbyTime, 
-                               cols = -Time, 
+                               cols = -Date, 
                                names_to = "RateType", 
                                values_to = "Value")
 #Plotting
-ggplot(IndicatorsLong, aes(x = Time, y = Value, color = RateType)) +
+ggplot(IndicatorsLong, aes(x = Date, y = Value, color = RateType)) +
   geom_line() +
   geom_point() + 
   theme_minimal() + 
-  labs(title = "Rates for all States by Time",
-       x = "Time in month since Jan 2016",
+  labs(title = "Rates for all States by Date",
+       x = "Date",
        y = "Rate Value",
        color = "Rate Type") + 
-  scale_color_brewer(palette = "Set1")
+  scale_color_brewer(palette = "Set1") +
+  scale_x_date(date_breaks = "2 month", date_labels = "%b %Y") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
-
-#New Mariano Part
+#New Mariano Part--------------
 
 States = unique(cmam$State)
 IndicatorsbyTimeAndState <- data.frame(
-  time = integer(),
+  Date = as.Date(character()),
   CureRate = numeric(),
   DefaultRate = numeric(),
   DeathRate = numeric(),
@@ -75,52 +87,127 @@ IndicatorsbyTimeAndState <- data.frame(
   State=character()
 )
 
-for (i in 1:max(cmam$time)) {
-  for(j in States){
-    aux <- filter(cmam,time==i & State==j)
+for (date in unique(cmam$Date)) {
+  for (state in States) {
+    aux <- filter(cmam, Date == date & State == state)
     
     
-    # Calculate each indicator
-    cureRate = sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
-    defaultRate = sum(aux$Default, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
-    deathRate = sum(aux$Death, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
-    nonResponderRate = sum(aux$Non.Responder, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE)
-    if(sum(aux$Screening, na.rm = TRUE)!=0)
-      admittedRate = sum(aux$New.Admissions, na.rm = TRUE) / sum(aux$Screening, na.rm = TRUE)
-    else 
-      admittedRate = NA
-    
-    IndicatorsbyTimeAndState <- rbind(IndicatorsbyTimeAndState, c(i, cureRate, defaultRate, deathRate, nonResponderRate, admittedRate,j))
-    
+    cureRate = ifelse(sum(aux$Total.Discharge, na.rm = TRUE) > 0, sum(aux$Cured, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE), NA)
+    defaultRate = ifelse(sum(aux$Total.Discharge, na.rm = TRUE) > 0, sum(aux$Default, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE), NA)
+    deathRate = ifelse(sum(aux$Total.Discharge, na.rm = TRUE) > 0, sum(aux$Death, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE), NA)
+    nonResponderRate = ifelse(sum(aux$Total.Discharge, na.rm = TRUE) > 0, sum(aux$Non.Responder, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE), NA)
+    admittedRate = ifelse(sum(aux$Screening, na.rm = TRUE) > 0, sum(aux$New.Admissions, na.rm = TRUE) / sum(aux$Screening, na.rm = TRUE), NA)
+    if(!is.na(cureRate) && cureRate > 1) {
+      print(paste("CureRate excede 1 en:", as.character(date), "-", state))
+      print(paste("Valores calculados: Cured =", cured, ", Total.Discharge =", totalDischarge, ", CureRate =", cureRate))
+    }
+    newRow <- data.frame(Date = as.Date(date), CureRate = cureRate, DefaultRate = defaultRate, DeathRate = deathRate, NonResponderRate = nonResponderRate, AdmittedRate = admittedRate, State = state)
+    IndicatorsbyTimeAndState <- rbind(IndicatorsbyTimeAndState, newRow)
   }
 }
-names(IndicatorsbyTimeAndState) <- c("Time", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate", "State")
+names(IndicatorsbyTimeAndState) <- c("Date", "CureRate", "DefaultRate", "DeathRate", "NonResponderRate", "AdmittedRate", "State")
 
 #Changing from short to long for plotting
 IndicatorsLong2 <- pivot_longer(IndicatorsbyTimeAndState, 
-                                cols = c(-Time, -State), 
+                                cols = c(-Date, -State), 
                                 names_to = "RateType", 
                                 values_to = "Value")
 
 
-p=IndicatorsLong2 %>%
+#plot
+IndicatorsLong2Filtered <- IndicatorsLong2 %>%
   filter(RateType == "CureRate") %>%
-  mutate(Time = as.numeric(as.character(Time)), Value = as.numeric(Value)) %>%
-  arrange(State, Time) %>%
-  ggplot(aes(x = Time, y = Value, group = State, color = State)) +  # Añadir 'group = State' aquí
+  arrange(State, as.Date(Date))
+
+
+p <- ggplot(IndicatorsLong2Filtered, aes(x = Date, y = Value, group = State, color = State)) +
   geom_line() +
   geom_point() +
   theme_minimal() +
-  labs(title = "Cure Rates by State",
-       x = "Time in month since Jan 2016",
+  labs(title = "Cure Rates by State Over Time",
+       x = "Date",
        y = "Cure Rate",
-       color = "State")
+       color = "State") +
+  scale_x_date(date_breaks = "2 month", date_labels = "%b %Y") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+#71, tabla includes indicators but state and date. I order as required
+IndicatorsbyTimeAndState <- IndicatorsbyTimeAndState %>%
+  select(State, Date, CureRate, DefaultRate, DeathRate, NonResponderRate, AdmittedRate)
+head(IndicatorsbyTimeAndState)
 
 # Convert ggplot object to a plotly object
 p_interactive <- ggplotly(p)
 
 # Open in Viewer Pane (in RStudio) or in the default web browser
 p_interactive
+
+
+## Indicator by year:
+
+
+IndicatorsByYear <- cmam %>%
+  group_by(Year) %>%
+  summarise(
+    admissions = sum(New.Admissions, na.rm = TRUE),
+    defaulters = sum(Default, na.rm = TRUE),
+    cured = sum(Cured, na.rm = TRUE),
+    death = sum(Death, na.rm = TRUE),
+    non_responder = sum(Non.Responder, na.rm = TRUE),
+    total_discharge = sum(Total.Discharge, na.rm = TRUE)
+  ) %>%
+  mutate(
+    CureRate = cured / total_discharge,
+    DeathRate = death / total_discharge,
+    DefaultRate = defaulters / total_discharge,
+    NonResponderRate = non_responder / total_discharge
+  ) %>%
+  select(Year, admissions, defaulters, CureRate, DeathRate, DefaultRate, NonResponderRate)
+
+# Rrsult
+print(IndicatorsByYear)
+
+
+IndicatorsLong3 <- pivot_longer(IndicatorsByYear, 
+                               cols = -Year, 
+                               names_to = "RateType", 
+                               values_to = "Value") %>%
+  filter(RateType != "admissions", RateType != "defaulters")
+
+ggplot(IndicatorsLong3, aes(x = as.factor(Year), y = Value, fill = RateType)) +
+  geom_bar(stat = "identity") +
+  labs(title = "National CMAM performance",
+       subtitle = "Sudan 2016-2019",
+       x = "Year",
+       y = "Percentage") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
+  scale_fill_manual(values = c("CureRate" = "green", "DefaultRate" = "red", 
+                    "DeathRate" = "black", "NonResponderRate" = "grey")) 
+
+
+
+#73
+ggplot(IndicatorsByYear, aes(x = Year, y = admissions)) +
+  geom_line(colour="blue") +
+  labs(title = "Admissions by Year",
+       x = "Year",
+       y = "Admissions") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+
+#74
+ggplot(IndicatorsByYear, aes(x = Year, y = defaulters)) +
+  geom_line(colour="red") +
+  labs(title = "Defaulters by Year",
+       x = "Year",
+       y = "Number of Defaulters") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
 
 
 
