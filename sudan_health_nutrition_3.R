@@ -1,4 +1,4 @@
-# Barriers to basic pre-school education ---------------------------------------
+# Barriers - basic pre-school education ---------------------------------------
 View(child_health)
 dim(child_health)
 dim(child_health_clean)
@@ -8,8 +8,7 @@ install.packages("dplyr")
 library(dplyr)
 
 
-# Create a table of na values per variable
-# create a loop to determine number of na values per variable
+# create a loop for na values per variable
 na_list<-c()
 for (i in 1:ncol(child_health)) {
   na_count<- sum(is.na(child_health[,i])) 
