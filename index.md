@@ -69,8 +69,7 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 ### Results
 
-
-
+#### Total Results
 
 ### Discussion
 
@@ -98,6 +97,7 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 
 ### Discussion
+
 
 
 
@@ -159,22 +159,69 @@ South Kourdofan should be an important state to consider initially given the dou
 ## CMAM programme responsiveness
 
 ### Description of analytical approach
+CMAM is a programme that was implemented in Sudan to address acute malnutrition among children in all states of Sudan.
 
+From the given dataset and background knowledge of the setting, we decided on four indicators to calculate and track over the 4-year period i.e cure rate, non-response rate, defaulter rate and death rate of children.
 
+Changes over time in these indicators were plotted to enable an inference concerning the responsiveness of the CMAM programme to the problem of malnutrition in Sudan.
 
 
 ### Results
 
+#### Total Results
 
+
+```
+##                Names      Values
+## 1          Cure Rate 0.889536309
+## 2       Default Rate 0.085071238
+## 3         Death Rate 0.009372633
+## 4 Non Responder Rate 0.016019821
+## 5      Admitted Rate 0.083101134
+```
+
+#### Total by Year
+
+
+```
+## # A tibble: 4 × 7
+##    Year admissions defaulters CureRate DeathRate DefaultRate NonResponderRate
+##   <int>      <int>      <int>    <dbl>     <dbl>       <dbl>            <dbl>
+## 1  2016     224632      23558    0.856   0.0120       0.116            0.0160
+## 2  2017     227419      20259    0.880   0.00940      0.0946           0.0165
+## 3  2018     244796      16159    0.904   0.00849      0.0718           0.0161
+## 4  2019     250568      14479    0.914   0.00793      0.0624           0.0155
+```
+
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
+#### Indicator by Year and State
+
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
+#### Admissions by Year
+
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
+#### Defaults by Year
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 
 ### Discussion
-
+- Cure rate for all states going up slightly, although we do not see a significant change in cure rate after the intervention. The increasing trend has been present even before the intervention and continues similarly after 
+- Default rate going down
+- Death and nonresponsive rate stagnant
+- A lot of gaps in the data for admitted rate. Available data showing admitted rate is going up
+- CMAM likely did not produce a substantial effect on the indicators analysed 💀
 
 
 
 ### Recommendations
 
+1. Government should reduce missing data during routine data collection.
+2. Community management of acute malnutrition should continue to be offered by the government.
+3. Cure rate seems to be going up, but some states still need assistance in bringing up the cure rate.
+4. Strengthen the community management of acute malnutrition in states with low cure rate and high defaulters.
 
 
 
