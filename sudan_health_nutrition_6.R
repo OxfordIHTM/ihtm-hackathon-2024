@@ -147,9 +147,16 @@ m9 <- exp(cbind(OR = coef(maternal_model9), confint(maternal_model9)))
 m9 <- as.data.frame(exp(cbind(OR = coef(maternal_model9), confint(maternal_model9)))) %>%
   cbind(Variable = "Vitamin A")
 
+## plot coefficients
+arm::coefplot(c(maternal_model1,maternal_model9), parm = -1)
+
 # tables for models
 
 model_outputs <- bind_rows(m1,m2,m4,m5,m6,m7,m8,m9)
+#tt2 <- gridExtra::ttheme_default(core=list(fg_params=list(hjust=1, x=0.9)),
+                      #rowhead=list(fg_params=list(hjust=1, x=0.95)))
+#gridExtra::grid.table(model_outputs, theme=tt2)
 
+gridExtra::grid.table(model_outputs)
 
 
