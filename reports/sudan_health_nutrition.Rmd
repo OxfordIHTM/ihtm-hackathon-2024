@@ -231,6 +231,10 @@ ggplot(IndicatorsByYear, aes(x = Year, y = defaulters)) +
 
 ### Recommendations
 
+1. Government should reduce missing data during routine data collection
+2. Community management of acute malnutrition should continue to be offered by the government
+3. Cure rate seems to be going up, but some states still need assistance in bringing up the cure rate.
+4.Strengthen the community management of acute malnutrition in states with low cure rate and high defaulters.
 
 
 
