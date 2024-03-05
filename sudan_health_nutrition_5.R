@@ -232,7 +232,17 @@ ggplot(IndicatorsLong3, aes(x = as.factor(Year), y = Value, fill = RateType)) +
 
 #Prateek Part
 print("I am Prateek")
-
+#My charts are with pastel colors <3
+ggplot(IndicatorsLong3, aes(x = as.factor(Year), y = Value, fill = RateType)) +
+  geom_bar(stat = "identity") +
+  labs(title = "National CMAM performance - Pastel colors by Prateek",
+       subtitle = "Sudan 2016-2019",
+       x = "Year",
+       y = "Percentage") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
+  scale_fill_manual(values = c("CureRate" = "#96ceb4", "DefaultRate" = "#d581a2", 
+                               "DeathRate" = "#485061", "NonResponderRate" = "#f4e7d0"))
 
 #Bok Part
 print ("I am Bok Chol")
