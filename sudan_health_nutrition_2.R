@@ -141,3 +141,11 @@ State_penta_dropout <- child %>% group_by(state_name) %>% summarise(
 )
 
 print(State_penta_dropout)
+
+#Plots showing bottlenecks for the EPI in Sudan
+library(ggplot2)
+
+ggplot(BCG_positive_per_state, aes(x = state_name, y = BCG_positive)) +
+  geom_bar(stat = "identity", fill = "skyblue", width = 0.7) +
+  labs(title = "BCG Positive Children per State", x = "State", y = "Number of Children")
+
