@@ -12,6 +12,15 @@ library(ggmosaic)
 library(rstatix)
 library(Publish)
 
+
+# GENERAL CHARACTERISTICS 
+library(gtsummary)
+tbl_summary(child_health)
+tbl_summary(child_health, include = c(accessEducation, accessBasicEducation, everAttendedSchool))
+
+# INDIVIDUAL FACTORS 
+tbl_summary(child_health, include = c(age, sex), by = accessEducation)
+
 #Health-related factors 
 
 child <- child %>%
@@ -24,8 +33,5 @@ child %>%
 
 child %>%
     cross_tbl(child, by = "everAtendedSchool")
-
-
-
 
 
