@@ -147,6 +147,9 @@ m9 <- exp(cbind(OR = coef(maternal_model9), confint(maternal_model9)))
 m9 <- as.data.frame(exp(cbind(OR = coef(maternal_model9), confint(maternal_model9)))) %>%
   cbind(Variable = "Vitamin A")
 
+## plot coefficients
+arm::coefplot(c(maternal_model1,maternal_model9), parm = -1)
+
 # tables for models
 
 model_outputs <- bind_rows(m1,m2,m4,m5,m6,m7,m8,m9)
