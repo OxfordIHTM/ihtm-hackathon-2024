@@ -97,10 +97,7 @@ for (date in unique(cmam$Date)) {
     deathRate = ifelse(sum(aux$Total.Discharge, na.rm = TRUE) > 0, sum(aux$Death, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE), NA)
     nonResponderRate = ifelse(sum(aux$Total.Discharge, na.rm = TRUE) > 0, sum(aux$Non.Responder, na.rm = TRUE) / sum(aux$Total.Discharge, na.rm = TRUE), NA)
     admittedRate = ifelse(sum(aux$Screening, na.rm = TRUE) > 0, sum(aux$New.Admissions, na.rm = TRUE) / sum(aux$Screening, na.rm = TRUE), NA)
-    if(!is.na(cureRate) && cureRate > 1) {
-      print(paste("CureRate excede 1 en:", as.character(date), "-", state))
-      print(paste("Valores calculados: Cured =", cured, ", Total.Discharge =", totalDischarge, ", CureRate =", cureRate))
-    }
+
     newRow <- data.frame(Date = as.Date(date), CureRate = cureRate, DefaultRate = defaultRate, DeathRate = deathRate, NonResponderRate = nonResponderRate, AdmittedRate = admittedRate, State = state)
     IndicatorsbyTimeAndState <- rbind(IndicatorsbyTimeAndState, newRow)
   }
