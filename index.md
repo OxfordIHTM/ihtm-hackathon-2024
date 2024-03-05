@@ -113,24 +113,43 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 ## Spatial distribution of maternal and child undernutrition
 
+Overall, there are higher rates of undernousrished mothers in the eastern states of Sudan as compared to the west.In the states of River Nile, North and South Kourdofan, Blue Nile, Kassala and Al-Gazeera, more than 75% of mothers are undernourished. In all other states, 25% or less of mothers are undernourished. 
+
+Similar to maternal nutrition, child wasting and underweight follows similar patterns. There are higher rates of child wasting and underweight (>50%) in eastern states of River Nile, North and South Kourdofan, Blue Nile, Kassala and Al-Gazeera. 
+
+The rates of stunting by state follow different patterns, however, compared to maternal undernutrition, child wasting and underweight. Child stunting is higher in the states of North, West and Central Dafur, Red Sea, Sinar and South Kourdofan (40% or higher).
+
+Interestingly, there is not much overlap of stunting with the other forms of undernutrition per state, except for one state: South Kourdofan: where there are high rates of maternal undernurition, child stunting, underweight and wasting. 
+
+
 ### Desription of analytical approach
-
-
-
+1. We first classified the nutrition status according to the WHO guidelines status by Z scores and for MUAC for mothers and Children under 5 respectively.
+2. We then calculated the sum in percentages for all the categories of the nutrition statuses.
+3. Merge the MAP Data and the shape file.
+4. Plotted the map individually.
+5. Used the patchwork to make the maps align to each other.
 
 ### Results
 
-
-
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
 
 ### Discussion
 
+The types of under nutrition present in the states may represent differing underlying mechanisms of under nutrition. Stunting represents chronic under nutrition over a long period of time - thus indicating that in the states of high rates stunting there may be long-standing food insecurity.
 
+In the states where there are higher rates of maternal under nutrition with child wasting and underweight without high rates of stunting, this may be more indicative of a more short-term under nutrition, such as a famine, with acute loss of weight.
 
+In the state of South Kourdofan, there is a possible combination of chronic under nutrition, reflected by high rates of child stunting, as well as more acute complications too - high rates of child wasting and underweight as well as maternal under nutrition. 
+
+All interpretations need to be correlated with more information about the current geography, climate, political situation and food security in the country to further understand the complexity of the state of under nutrition. 
 
 ### Recommendations
 
+Based on the above findings, it will be necessary to further investigate the reasons for undernutrition which is concentrated in certain states. 
 
+Based on this, policy and interventions can be targeted to address these underlying causes, with a focus on the states worst affected by undernutrition. 
+
+South Kourdofan should be an important state to consider initially given the double burden of chronic and super-imposed acute undernutrition. 
 
 
 <!---- This is the end of the section for Team Hinata ---->
