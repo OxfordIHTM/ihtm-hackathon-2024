@@ -1,3 +1,4 @@
+#sudan maternal health bottleneck
 library(ggplot2)
 library(RColorBrewer)
 library(dplyr)
@@ -26,6 +27,7 @@ percent_anc<-(anc4/93424)*100
 anyIFA<-sum(maternal_health$anyIFA=="1")
 percent_anyIFA<-(anyIFA/93424)*100
 
+
 unique(maternal_health$state_name)
 ##calculate these statistics for each state--------------
 calculate_statistic <-function(maternal_health){
@@ -49,11 +51,6 @@ select(state_name,locality_name)
 
 ##group by state
 
-
-
-View(starwars)
-pratice<-starwars %>% 
-  select(height,mass)
 mutate
 
 
