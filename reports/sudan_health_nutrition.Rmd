@@ -80,8 +80,7 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 ### Results
 
-
-
+#### Total Results
 
 ### Discussion
 
@@ -109,6 +108,7 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 
 ### Discussion
+
 
 
 
@@ -175,22 +175,92 @@ South Kourdofan should be an important state to consider initially given the dou
 ## CMAM programme responsiveness
 
 ### Description of analytical approach
+CMAM is a programme that was implemented in Sudan to address acute malnutrition among children in all states of Sudan.
 
+From the given dataset and background knowledge of the setting, we decided on four indicators to calculate and track over the 4-year period i.e cure rate, non-response rate, defaulter rate and death rate of children.
 
+Changes over time in these indicators were plotted to enable an inference concerning the responsiveness of the CMAM programme to the problem of malnutrition in Sudan.
 
 
 ### Results
 
+#### Total Results
 
+```{r}
+
+print(IndicatorsTotal)
+
+```
+
+#### Total by Year
+
+```{r}
+
+print(IndicatorsByYear)
+
+ggplot(IndicatorsLong3, aes(x = as.factor(Year), y = Value, fill = RateType)) +
+  geom_bar(stat = "identity") +
+  labs(title = "National CMAM performance",
+       subtitle = "Sudan 2016-2019",
+       x = "Year",
+       y = "Percentage") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
+  scale_fill_manual(values = c("CureRate" = "#40E0D0", "DefaultRate" = "#FF5733", 
+                               "DeathRate" = "black", "NonResponderRate" = "grey")) 
+
+```
+
+#### Indicator by Year and State
+
+```{r}
+
+p
+
+```
+
+#### Admissions by Year
+
+```{r}
+
+ggplot(IndicatorsByYear, aes(x = Year, y = admissions)) +
+  geom_line(colour="blue") +
+  labs(title = "Admissions by Year",
+       x = "Year",
+       y = "Admissions") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+
+#### Defaults by Year
+```{r}
+ggplot(IndicatorsByYear, aes(x = Year, y = defaulters)) +
+  geom_line(colour="red") +
+  labs(title = "Defaulters by Year",
+       x = "Year",
+       y = "Number of Defaulters") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
 
 
 ### Discussion
-
+- Cure rate for all states going up slightly, although we do not see a significant change in cure rate after the intervention. The increasing trend has been present even before the intervention and continues similarly after 
+- Default rate going down
+- Death and nonresponsive rate stagnant
+- A lot of gaps in the data for admitted rate. Available data showing admitted rate is going up
+- CMAM likely did not produce a substantial effect on the indicators analysed 💀
 
 
 
 ### Recommendations
 
+1. Government should reduce missing data during routine data collection.
+2. Community management of acute malnutrition should continue to be offered by the government.
+3. Cure rate seems to be going up, but some states still need assistance in bringing up the cure rate.
+4. Strengthen the community management of acute malnutrition in states with low cure rate and high defaulters.
 
 
 
