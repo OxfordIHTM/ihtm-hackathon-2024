@@ -30,3 +30,19 @@ na_tbl[,4]<-nrow(child)-na_tbl$`values missing`
 colnames(na_tbl) = c("variable", "missing","missing %","present")
 
 View(na_tbl)
+
+################################ Descriptive analysis ######################
+
+#Health-related factors 
+
+child <- child %>%
+  mutate(everAttendedSchool = factor(everAttendedSchool, labels = c("No", "Yes")), 
+         safe_water = factor(vaccineRecord, labels = c("No", "Yes")))
+
+child %>%
+  drop_na(everAttendedSchool, vaccineRecord) %>%
+  tabyl(everAttendedSchool, vaccineRecord) 
+
+child %>%
+  cross_tbl(child, by = "everAtendedSchool")
+
