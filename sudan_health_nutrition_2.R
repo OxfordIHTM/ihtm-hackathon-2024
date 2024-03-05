@@ -1,3 +1,23 @@
+## Source the different data processing and analysis workflow steps ----
+source("sudan_health_nutrition.R")
+
+library(dplyr)
+
+child <- read.csv("data/child_health.csv")
+
+# Counting the childen that had BCG + 
+BCG_positives <- sum(child$coverageBCG == 1, na.rm = TRUE)
+
+# Print the result of the childen that had BCG + 
+print(BCG_positives)
+
+# Total number of rows (total children)
+total_rows <- nrow(child)
+
+# Calculate the percentage coverage for BCG
+coverage_BCG <- (BCG_positives / total_rows) * 100
+print(coverage_BCG)
+
 # Bottlenecks to expanded programme on immunisation access ---------------------
 
 # Total number of children that got BCG vaccine
@@ -122,9 +142,9 @@ print(BCG_positive_per_state)
 # Calculate percentage BCG coverage per state
 
 BCG_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
-  Eligible = sum(coverageBCG %in% c(0, 1), na.rm = TRUE),
+  BCG_Eligible = sum(coverageBCG %in% c(0, 1), na.rm = TRUE),
   BCG_positive = sum(coverageBCG == 1, na.rm = TRUE),
-  BCG_Coverage = (BCG_positive / Eligible) * 100)
+  BCG_Coverage = (BCG_positive / BCG_Eligible) * 100)
 
 print(BCG_coverage_per_state)
 
@@ -141,3 +161,72 @@ State_penta_dropout <- child %>% group_by(state_name) %>% summarise(
 )
 
 print(State_penta_dropout)
+
+# Calculate coverage per state 
+
+# Calculate percentage Penta1 coverage per state
+
+Penta1_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
+  Penta1_Eligible = sum(coveragePenta1 %in% c(0, 1), na.rm = TRUE),
+  Penta1_positive = sum(coveragePenta1 == 1, na.rm = TRUE),
+  Penta1_Coverage = (Penta1_positive / Penta1_Eligible) * 100)
+
+print(Penta1_coverage_per_state)
+
+# Calculate percentage Penta3 coverage per state
+
+Penta3_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
+  Penta3_Eligible = sum(coveragePenta3 %in% c(0, 1), na.rm = TRUE),
+  Penta3_positive = sum(coveragePenta3 == 1, na.rm = TRUE),
+  Penta3_Coverage = (Penta3_positive / Penta3_Eligible) * 100)
+
+print(Penta3_coverage_per_state)
+
+# Calculate percentage OPV1 coverage per state
+
+OPV1_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
+  OPV1_Eligible = sum(coverageOPV1 %in% c(0, 1), na.rm = TRUE),
+  OPV1_positive = sum(coverageOPV1 == 1, na.rm = TRUE),
+  OPV1_Coverage = (OPV1_positive / OPV1_Eligible) * 100)
+
+print(OPV1_coverage_per_state)
+
+# Calculate percentage OPV3 coverage per state
+
+OPV3_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
+  OPV3_Eligible = sum(coverageOPV3 %in% c(0, 1), na.rm = TRUE),
+  OPV3_positive = sum(coverageOPV3 == 1, na.rm = TRUE),
+  OPV3_Coverage = (OPV3_positive / OPV3_Eligible) * 100)
+
+print(OPV3_coverage_per_state)
+
+# Calculate percentage Measles1 coverage per state
+
+Measles1_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
+  Measles1_Eligible = sum(coverageMeasles1 %in% c(0, 1), na.rm = TRUE),
+  Measles1_positive = sum(coverageMeasles1 == 1, na.rm = TRUE),
+  Measles1_Coverage = (Measles1_positive / Measles_Eligible) * 100)
+
+print(Measles1_coverage_per_state)
+
+# Calculate percentage Measles2 coverage per state
+
+Measles2_coverage_per_state <- child %>% group_by(state_name) %>% summarise(
+  Measles2_Eligible = sum(coverageMeasles2 %in% c(0, 1), na.rm = TRUE),
+  Measles2_positive = sum(coverageMeasles2 == 1, na.rm = TRUE),
+  Measles2_Coverage = (Measles2_positive / Measles2_Eligible) * 100)
+
+print(Measles2_coverage_per_state)
+
+# Merging all the coverages per state
+
+EPI_df <- left_join(Measles1_coverage_per_state, Measles2_coverage_per_state) %>%
+  left_join(BCG_coverage_per_state) %>%
+  left_join(OPV1_coverage_per_state) %>%
+  left_join(OPV3_coverage_per_state) %>%
+  left_join(Penta1_coverage_per_state) %>%
+  left_join(Penta3_coverage_per_state) %>%
+  select("state_name", "Measles1_Coverage", "Measles2_Coverage", "BCG_Coverage", "OPV1_Coverage", "OPV3_Coverage", "Penta1_Coverage", "Penta3_Coverage")
+
+print(EPI_df)
+
