@@ -9,6 +9,9 @@ tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
 # HEALTH-RELATED FACTORS 
 tbl_summary(child_health, include = c(vaccineRecord, diarrhoea), by = accessEducation)
 
+# STRUCTURAL FACTORS
+tbl_summary(child_health, include = c(healthInsurance, noWASH, schoolFar, displacement), by = accessEducation)
+
 # Barriers to basic pre-school education ---------------------------------------
 
 
