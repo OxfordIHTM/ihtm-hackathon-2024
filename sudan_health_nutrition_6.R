@@ -22,6 +22,9 @@ maternal1 <- maternal %>%
 #### set reference variable
 maternal1$muac_category1 <- as.factor(fct_relevel(maternal1$muac_category1,  "Underweight"))
 
+
+#MATERNAL FACTORS
+
 #### model for age at first parity VS Nutrition category
 maternal_model1 <- glm(muac_category1~ageFirstparity, family = binomial, data = maternal1)
 #### get model coefficients
@@ -31,30 +34,14 @@ exp(cbind(OR = coef(maternal_model1), confint(maternal_model1)))
 # | ----       | ----   |
 # | 1.044589.  | 1.040393,1.048821 |
 
-### model for  proteinRich VS nutrition category (RICHMONDA)
-maternal_model2 <- glm(muac_category1~proteinRich, family = binomial, data = maternal1)
+
+#GEOGRAPHY
+
+#model for state vs. nutrition
+maternal_model2 <- glm(muac_category1~state_name, family = binomial, data = maternal1)
 #### get model coefficients
 exp(cbind(OR = coef(maternal_model2), confint(maternal_model2)))
-# OR    2.5 %   97.5 %
-# (Intercept) 2.305487 2.232524 2.381162
-# proteinRich 1.278784 1.233113 1.326016
-
-### model for locality name vs nutrition category
-maternal_model3 <- glm(muac_category1~locality_name, family = binomial, data = maternal1)
-#### get model coefficients
-exp(cbind(OR = coef(maternal_model3), confint(maternal_model3)))
-
-maternal_model4 <- glm(muac_category1~visitsANC, family = binomial, data = maternal1)
-#### get model coefficients
-exp(cbind(OR = coef(maternal_model4), confint(maternal_model4)))
-# OR    2.5 %   97.5 %
-# (Intercept) 2.050422 2.001899 2.100220
-# visitsANC   1.102524 1.095795 1.109309
-
-maternal_model5 <- glm(muac_category1~state_name, family = binomial, data = maternal1)
-#### get model coefficients
-exp(cbind(OR = coef(maternal_model5), confint(maternal_model5)))
-#      OR     2.5 %    97.5 %
+#                               OR     2.5 %    97.5 %
 #(Intercept)               4.1253219 3.8711419 4.3998598
 #state_nameAl-Gazeera      1.0088971 0.9124778 1.1159480
 #state_nameBlue Nile       0.5085591 0.4622647 0.5594620
@@ -74,5 +61,44 @@ exp(cbind(OR = coef(maternal_model5), confint(maternal_model5)))
 #state_nameWest Kourdofan  0.4213609 0.3881469 0.4572257
 #state_nameWhite Nile      1.0601193 0.9625668 1.1678520
 
+### model for locality name vs nutrition category
+maternal_model3 <- glm(muac_category1~locality_name, family = binomial, data = maternal1)
+#### get model coefficients
+exp(cbind(OR = coef(maternal_model3), confint(maternal_model3)))
 
 
+#ANTENATAL AND POSTNATAL CARE
+
+#model for ANC visits vs. nutrition
+maternal_model4 <- glm(muac_category1~visitsANC, family = binomial, data = maternal1)
+#### get model coefficients
+exp(cbind(OR = coef(maternal_model4), confint(maternal_model4)))
+#                 OR      2.5 %   97.5 %
+# (Intercept) 2.050422 2.001899 2.100220
+# visitsANC   1.102524 1.095795 1.109309
+
+#model for postnatal visits vs. nutrition (Jillian)
+maternal_model5 <- glm(muac_category1~MDDW, family = binomial, data = maternal1)
+#### get model coefficients
+exp(cbind(OR = coef(maternal_model5), confint(maternal_model5)))
+#               OR      2.5 %   97.5 %
+#(Intercept) 2.711873 2.670837 2.753639
+#MDDW        1.739938 1.627560 1.861713
+
+#DIET
+
+### model for  proteinRich VS nutrition category (RICHMONDA)
+maternal_model6 <- glm(muac_category1~proteinRich, family = binomial, data = maternal1)
+#### get model coefficients
+exp(cbind(OR = coef(maternal_model6), confint(maternal_model6)))
+#                 OR    2.5 %   97.5 %
+# (Intercept) 2.305487 2.232524 2.381162
+# proteinRich 1.278784 1.233113 1.326016
+
+#model for MDDW vs. nutrition (Jillian)
+maternal_model7 <- glm(muac_category1~MDDW, family = binomial, data = maternal1)
+#### get model coefficients
+exp(cbind(OR = coef(maternal_model7), confint(maternal_model7)))
+#              OR      2.5 %     97.5 %
+#(Intercept) 2.711873 2.670837 2.753639
+#MDDW        1.739938 1.627560 1.861713
