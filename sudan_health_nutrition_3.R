@@ -1,3 +1,17 @@
+
+
+
+# GENERAL CHARACTERISTICS 
+tbl_summary(child_health, include = c(accessEducation, accessBasicEducation, everAttendedSchool))
+
+# INDIVIDUAL FACTORS 
+tbl_summary(child_health, include = c(age, sex), by = accessEducation)
+tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
+tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
+
+# HEALTH-RELATED FACTORS 
+tbl_summary(child_health, include = c(vaccineRecord, diarrhoea), by = accessEducation)
+
 # Barriers to basic pre-school education ---------------------------------------
 
 #################Create a table of na values per variable####################
