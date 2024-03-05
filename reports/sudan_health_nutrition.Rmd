@@ -177,8 +177,9 @@ This report builds on the data from the S3M II and provides further analysis of 
 ## Determinants of maternal and child undernutrition
 
 ### Description of analytical approach
+Maternal nutritional status based on maternal mid-upper arm circumference (MUAC) was identified as the outcome variable in our analysis of the determinants affecting maternal undernutrition. This was a categorical outcome variable (underweight/not underweight), in order to conduct a logistic regression analysis.
 
-
+The association between certain determinants (age at first parity, state, locality, antenatal and postnatal visits, protein-rich diet, MDDW, and iron, folic acid, and vitamin A supplementation) and maternal MUAC was assessed using a univariable logistic regression analysis.
 
 
 ### Results
