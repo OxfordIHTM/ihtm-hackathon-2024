@@ -41,8 +41,6 @@ calculate_statistics <- function(maternal_data){
 
 
 
-}
-
 stats_by_state <- calculate_statistics(maternal)
 
 # Define the data for each column as separate vectors
