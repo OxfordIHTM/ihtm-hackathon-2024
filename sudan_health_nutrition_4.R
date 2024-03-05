@@ -73,7 +73,7 @@ plot_underweight <- ggplot() +
 
 # Add labels using geom_sf_text()
 plot_underweight_with_labels <- plot_underweight +
-  geom_sf_text(data = merged_childmap_underweight, aes(geometry = geom, label = state_name), size = 1)
+  geom_sf_text(data = merged_childmap_underweight, aes(geometry = geom, label = state_name), size = 2)
 
 # Arrange the map using patchwork
 final_map <- plot_underweight_with_labels + plot_layout(ncol = 1)
@@ -91,7 +91,7 @@ plot_stunted <- ggplot() +
 
 # Add labels using geom_sf_text()
 plot_stunting_with_labels <- plot_stunted +
-  geom_sf_text(data = merged_childmap_stunting, aes(geometry = geom, label = state_name), size = 1)
+  geom_sf_text(data = merged_childmap_stunting, aes(geometry = geom, label = state_name), size = 2)
 
 # Arrange the map using patchwork
 final_map <- plot_stunting_with_labels + plot_layout(ncol = 1)
@@ -108,7 +108,7 @@ plot_wasting <- ggplot() +
 
 # Add labels using geom_sf_text()
 plot_wasting_with_labels <- plot_wasting +
-  geom_sf_text(data = merged_childmap_wasting, aes(geometry = geom, label = state_name), size = 1)
+  geom_sf_text(data = merged_childmap_wasting, aes(geometry = geom, label = state_name), size = 2)
 
 # Arrange the map using patchwork
 final_map <- plot_wasting_with_labels + plot_layout(ncol = 1)
@@ -119,13 +119,13 @@ final_map
 #Undernourished mothers
 plot_undernourishedmothers <- ggplot() +
   geom_sf(data = merged_maternalmap_undernourished, aes(geometry = geom, fill = undernut_percentages)) +
-  scale_fill_viridis_c(name = "Percentage of Children", option = "E", na.value = "gray50") +
-  labs(title = "Percentage of Stunted Children by States") +
+  scale_fill_viridis_c(name = "Percentage of Mothers", option = "E", na.value = "gray50") +
+  labs(title = "Percentage of undernourished Mothers by States") +
   theme_minimal()
 
 # Add labels using geom_sf_text()
 plot_undernourishedmothers_with_labels <- plot_undernourishedmothers +
-  geom_sf_text(data = merged_maternalmap_undernourished, aes(geometry = geom, label = state_name), size = 1)
+  geom_sf_text(data = merged_maternalmap_undernourished, aes(geometry = geom, label = state_name), size = 2)
 
 # Arrange the map using patchwork
 final_map <- plot_undernourishedmothers_with_labels + plot_layout(ncol = 1)
@@ -133,11 +133,5 @@ final_map <- plot_undernourishedmothers_with_labels + plot_layout(ncol = 1)
 # Display the final map
 final_map
 
-
-#### Plot faceted map for every classification ----
-ggplot(data = , aes(fill = Observation.Value))+
-  geom_sf()+
-  scale_fill_viridis_c()+
-  labs(title = "World Literacy Rates Over time") +
-  facet_wrap(.~Time.Period, ncol = 5)+
-  theme_minimal()
+# Arranging the plots
+plot_undernourishedmothers_with_labels + plot_wasting_with_labels + plot_stunting_with_labels + plot_underweight_with_labels
