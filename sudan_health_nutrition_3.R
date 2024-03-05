@@ -1,44 +1,10 @@
-<<<<<<< HEAD
 
-View(child)
-dim(child)
+# Load the dataset
+# instal packages
+library (dplyr)
+library (ggplot2)
 
-=======
-# Barriers to basic pre-school education ---------------------------------------
-
-#################Create a table of na values per variable####################
-
-# create a loop to determine number of na values per variable
-na_list<-c()
-for (i in 1:ncol(child)) {
-  na_count<- sum(is.na(child[,i])) 
-  print(na_count)
-  na_list<-c(na_list,na_count)
-}
-
-colname_list<-colnames(child)
-
-##create a table of na values
-na_tbl <- data.frame(colname_list, na_list)
-
-##naming cols
-colnames(na_tbl) = c("variable", "values missing") 
-
-##calc percentage of na variables
-na_tbl[,3]<-round( na_tbl$`values missing`/nrow(child) *100,2)
-
-na_tbl[,4]<-nrow(child)-na_tbl$`values missing`
-
-##naming cols
-colnames(na_tbl) = c("variable", "missing","missing %","present")
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-View(na_tbl)
-=======
-=======
-
-child_health <- child
+child_health <- read.csv("data/child_health.csv")
 
 # exclude rows where 'age' is NA
 child_health_clean <- child_health[!is.na(child_health$age),]
@@ -66,6 +32,8 @@ table(child_health$vaccineRecord, child_health$accessBasicEducation, useNA = "if
 # Chi-square test for association
 chisq.test(table(child_health$vaccineRecord, child_health$accessBasicEducation, useNA = "no"))
 
+
+
 # 2x2 table for Diarrhoea and Access to Basic Education
 table(child_health$diarrhoea, child_health$accessBasicEducation, useNA = "ifany")
 # Chi-square test for association
@@ -85,9 +53,6 @@ chisq.test(table(child_health$earlyMarriage, child_health$accessBasicEducation, 
 
 # 2x2 table for displacement and access to basic education
 table(child_health$displacement, child_health$accessBasicEducation, useNA = "ifany")
-# Chi-square test for association
-chisq.test(table(child_health$displacement, child_health$accessBasicEducation, useNA = "no"))
-
 
 # CONDUCTING MULTIPLE LOGISTIC REGRESSION
 
