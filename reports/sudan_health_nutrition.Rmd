@@ -183,6 +183,28 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 ### Results
 
+```{r}
+muac_summary <- maternal1 %>%
+  group_by(muac_category) %>%
+  count() %>%
+  ungroup() %>%
+  filter(!muac_category%in%NA) %>%
+  mutate(muac_proportions = round(n/sum(n)*100))
+
+ggplot(muac_summary, aes(x=muac_category, y=muac_proportions)) +
+  geom_col() +
+  theme_bw() +
+  labs( y="Proportion (%)", title="Maternal Nutrition", x="Nutrition Category")
+```
+
+
+```{r}
+model_outputs <- bind_rows(m1,m2,m4,m5,m6,m7,m8,m9)
+
+kableExtra::kable(model_outputs)
+
+#broom::tidy(exp(cbind(OR = coef(maternal_model9), confint(maternal_model9))))
+```
 
 
 
