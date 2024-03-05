@@ -78,12 +78,13 @@ exp(cbind(OR = coef(maternal_model4), confint(maternal_model4)))
 # visitsANC   1.102524 1.095795 1.109309
 
 #model for postnatal visits vs. nutrition (Jillian)
-maternal_model5 <- glm(muac_category1~MDDW, family = binomial, data = maternal1)
+maternal_model5 <- glm(muac_category1~postNatal, family = binomial, data = maternal1)
 #### get model coefficients
 exp(cbind(OR = coef(maternal_model5), confint(maternal_model5)))
 #               OR      2.5 %   97.5 %
-#(Intercept) 2.711873 2.670837 2.753639
-#MDDW        1.739938 1.627560 1.861713
+#(Intercept) 2.646587 2.600468 2.693650
+#postNatal   1.214305 1.175154 1.254864
+
 
 #DIET
 
