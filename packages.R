@@ -12,6 +12,7 @@ library(plotly)       ## For interactive plots
 library(patchwork)    ## for composing plots into a single plot
 
 
+
 ## Load packages for mapping ----  
 library(sf)           ## Main package for mapping
 
