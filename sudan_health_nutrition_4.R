@@ -64,34 +64,80 @@ merged_maternalmap_undernourished <- merge.data.frame(sudan1, maternal_map_under
 ########plotting map data################
 
 #underweight children
-ggplot() +
-  geom_sf(data = merged_childmap_underweight, aes(geometry = geom, fill = undernut_percentages))+
-  scale_fill_gradient(name = "Percentage of  Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
-  labs(title = "Percentage of underweight Children by States") +
+
+plot_underweight <- ggplot() +
+  geom_sf(data = merged_childmap_underweight, aes(geometry = geom, fill = undernut_percentages)) +
+  scale_fill_viridis_c(name = "Percentage of Children", option = "E", na.value = "gray50") +
+  labs(title = "Percentage of Underweight Children by States") +
   theme_minimal()
+
+# Add labels using geom_sf_text()
+plot_underweight_with_labels <- plot_underweight +
+  geom_sf_text(data = merged_childmap_underweight, aes(geometry = geom, label = state_name), size = 1)
+
+# Arrange the map using patchwork
+final_map <- plot_underweight_with_labels + plot_layout(ncol = 1)
+
+# Display the final map
+final_map
 
 
 #stunted children
-ggplot() +
-  geom_sf(data = merged_childmap_stunting, aes(geometry = geom, fill = stunting_percentages))+
-  scale_fill_gradient(name = "Percentage of stunted Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
-  labs(title = "Percentage of stunted Children by States") +
+plot_stunted <- ggplot() +
+  geom_sf(data = merged_childmap_stunting, aes(geometry = geom, fill = stunting_percentages)) +
+  scale_fill_viridis_c(name = "Percentage of Children", option = "E", na.value = "gray50") +
+  labs(title = "Percentage of Stunted Children by States") +
   theme_minimal()
 
-#wasted children
-ggplot() +
-  geom_sf(data = merged_childmap_wasting, aes(geometry = geom, fill = wasting_percentages))+
-  scale_fill_gradient(name = "Percentage of wasted Children", low = "lightblue", high = "darkblue", na.value = "gray50") +
+# Add labels using geom_sf_text()
+plot_stunting_with_labels <- plot_stunted +
+  geom_sf_text(data = merged_childmap_stunting, aes(geometry = geom, label = state_name), size = 1)
+
+# Arrange the map using patchwork
+final_map <- plot_stunting_with_labels + plot_layout(ncol = 1)
+
+# Display the final map
+final_map
+
+#Wasting children
+plot_wasting <- ggplot() +
+  geom_sf(data = merged_childmap_wasting, aes(geometry = geom, fill = wasting_percentages)) +
+  scale_fill_viridis_c(name = "Percentage of Children", option = "E", na.value = "gray50") +
   labs(title = "Percentage of wasted Children by States") +
   theme_minimal()
 
-#undernourished mothers
-ggplot() +
-  geom_sf(data = merged_maternalmap_undernourished, aes(geometry = geom, fill = undernut_percentages))+
-  scale_fill_gradient(name = "Percentage of undernourished mothers", low = "lightgreen", high = "darkgreen", na.value = "gray50") +
-  labs(title = "Percentage of undernourished mothers by States") +
+# Add labels using geom_sf_text()
+plot_wasting_with_labels <- plot_wasting +
+  geom_sf_text(data = merged_childmap_wasting, aes(geometry = geom, label = state_name), size = 1)
+
+# Arrange the map using patchwork
+final_map <- plot_wasting_with_labels + plot_layout(ncol = 1)
+
+# Display the final map
+final_map
+
+#Undernourished mothers
+plot_undernourishedmothers <- ggplot() +
+  geom_sf(data = merged_maternalmap_undernourished, aes(geometry = geom, fill = undernut_percentages)) +
+  scale_fill_viridis_c(name = "Percentage of Children", option = "E", na.value = "gray50") +
+  labs(title = "Percentage of Stunted Children by States") +
   theme_minimal()
 
+# Add labels using geom_sf_text()
+plot_undernourishedmothers_with_labels <- plot_undernourishedmothers +
+  geom_sf_text(data = merged_maternalmap_undernourished, aes(geometry = geom, label = state_name), size = 1)
 
-#Trying the add state initials to the the states in the map
-## your_dataset$new_variable <- substr(your_dataset$existing_variable, 1, 2)
+# Arrange the map using patchwork
+final_map <- plot_undernourishedmothers_with_labels + plot_layout(ncol = 1)
+
+# Display the final map
+final_map
+
+
+#### Plot faceted map for every classification ----
+ggplot(data = , aes(fill = Observation.Value))+
+  geom_sf()+
+  scale_fill_viridis_c()+
+  labs(title = "World Literacy Rates Over time") +
+  facet_wrap(.~Time.Period, ncol = 5)+
+  theme_minimal()
