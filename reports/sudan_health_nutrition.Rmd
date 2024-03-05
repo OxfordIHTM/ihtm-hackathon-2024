@@ -138,15 +138,15 @@ Interestingly, there is not much overlap of stunting with the other forms of und
 2. We then calculated the sum in percentages for all the categories of the nutrition statuses.
 3. Merge the MAP Data and the shape file.
 4. Plotted the map individually.
-5. Used the patchwork to make the maps align to each other.
-
-
+5. Used the patchwork to make the maps align to each other.
 
 ### Results
 
 ```{r}
-plot_undernourishedmothers_with_labels + plot_wasting_with_labels + plot_stunting_with_labels + plot_underweight_with_labels
- 
+plot_undernourishedmothers_with_labels + 
+  plot_wasting_with_labels + 
+  plot_stunting_with_labels + 
+  plot_underweight_with_labels
 ```
 
 ### Discussion
@@ -160,13 +160,12 @@ In the state of South Kourdofan, there is a possible combination of chronic unde
 
 All interpretations need to be correlated with more information about the current geography, climate, political situation and food security in the country to further understand the complexity of the state of under nutrition. 
 
-
-
-
 ### Recommendations
 
 Based on the above findings, it will be necessary to further investigate the reasons for undernutrition which is concentrated in certain states. 
+
 Based on this, policy and interventions can be targeted to address these underlying causes, with a focus on the states worst affected by undernutrition. 
+
 South Kourdofan should be an important state to consider initially given the double burden of chronic and super-imposed acute undernutrition. 
 
 
