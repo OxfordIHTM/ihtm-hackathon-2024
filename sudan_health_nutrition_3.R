@@ -1,11 +1,15 @@
-<<<<<<< HEAD
+# GENERAL CHARACTERISTICS 
+tbl_summary(child_health, include = c(accessEducation, accessBasicEducation, everAttendedSchool))
 
-View(child)
-dim(child)
+# INDIVIDUAL FACTORS 
+tbl_summary(child_health, include = c(age, sex), by = accessEducation)
+tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
+tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
 
-=======
+# HEALTH-RELATED FACTORS 
+tbl_summary(child_health, include = c(vaccineRecord, diarrhoea), by = accessEducation)
+
 # Barriers to basic pre-school education ---------------------------------------
->>>>>>> 7259f04e04f700dc4cc85d6bd7423c94a6d76561
 
 
 #################Create a table of na values per variable####################
@@ -34,8 +38,6 @@ na_tbl[,4]<-nrow(child)-na_tbl$`values missing`
 ##naming cols
 colnames(na_tbl) = c("variable", "missing","missing %","present")
 
-<<<<<<< HEAD
-View(na_tbl)
 
 ################################ Descriptive analysis ######################
 
@@ -51,28 +53,14 @@ child %>%
 
 child %>%
   cross_tbl(child, by = "everAtendedSchool")
-=======
   ####################################### Descriptive 2 ######################
 
 child_health <- child
-
-library(dplyr)
-library(ggplot2)
-library(tidyverse)
-library(janitor)
-library(pubh)
-library(pracma)
-library(moments)
-library(skimr)
-library(doBy)
-library(sfsmisc)
-library(ggmosaic)
 
 # exclude rows where 'age' is NA
 child_health_clean <- child_health[!is.na(child_health$age),]
 
 # GENERAL CHARACTERISTICS 
-library(gtsummary)
 tbl_summary(child_health)
 tbl_summary(child_health, include = c(accessEducation, accessBasicEducation, everAttendedSchool))
 
@@ -172,8 +160,4 @@ ggplot(child_health, aes(x = sex, fill = factor(ari))) + geom_bar(position = "fi
 
 # ARI cases by sex
 ggplot(child_health, aes(x = sex, fill = factor(ari))) + geom_bar(position = "fill") + scale_fill_manual(values = c("0" = "grey", "1" = "green"), labels = c("No", "Yes")) + labs(title = "ARI Cases by Sex", x = "Sex", y = "Proportion", fill = "ARI")
->>>>>>> 7259f04e04f700dc4cc85d6bd7423c94a6d76561
-
-
-############################
 
