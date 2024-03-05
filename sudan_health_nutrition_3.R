@@ -1,8 +1,21 @@
 
 # Load the dataset
 # instal packages
+#install.packages ("tidyverse")
+#install.packages ("janitor")
+#install.packages ("pubh")
+#install.packages ("ggmosaic")
+#install.packages ("rstatix")
+#install.packages ("publish")
+
 library (dplyr)
 library (ggplot2)
+library(tidyverse)
+library (janitor)
+library (pubh)
+library (ggmosaic)
+library (rstatix)
+library (publish)
 
 child_health <- read.csv("data/child_health.csv")
 
