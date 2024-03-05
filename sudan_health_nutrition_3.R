@@ -159,7 +159,7 @@ xtabs(~ sex + ari, data = child_health)
 ggplot(child_health, aes(x = age)) + geom_histogram(binwidth = 1, fill = "blue", color = "black") + labs(title = "Age Distribution", x = "Age", y = "Count")
 
 # Diarrhoea cases by sex
-ggplot(child_health, aes(x = sex, fill = factor(ari))) + geom_bar(position = "fill") + scale_fill_manual(values = c("0" = "grey", "1" = "red"), labels = c("no", "yes")) + labs(title = "Diarrhoe Cases by Sex", x = "Sex", y = "Proportion", fill = "Diarrhoea")
+ggplot(child_health, aes(x = accessEducation, fill = factor(ari))) + geom_bar(position = "fill") + scale_fill_manual(values = c("0" = "grey", "1" = "red"), labels = c("no", "yes")) + labs(title = "Diarrhoe Cases by Access to Education", x = "Access to Education", y = "Proportion", fill = "Diarrhoea")
 
 # ARI cases by sex
 ggplot(child_health, aes(x = sex, fill = factor(ari))) + geom_bar(position = "fill") + scale_fill_manual(values = c("0" = "grey", "1" = "green"), labels = c("No", "Yes")) + labs(title = "ARI Cases by Sex", x = "Sex", y = "Proportion", fill = "ARI")

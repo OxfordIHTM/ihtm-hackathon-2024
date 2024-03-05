@@ -100,12 +100,47 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 ### Description of analytical approach
 
-
+We created 2x2 tables to compare the individual, health-related and structural factors among children who had and did not have access to education. We also created summary tables. A multivariate analysis was performed to assess for associations between these factors and access to education.
 
 
 ### Results
 
+Individual factors 
 
+```{r individual}
+tbl_summary(child_health, include = c(age, sex), by = accessEducation)
+```
+
+Health-related factors 
+```{r individual}
+child_health %>%
+  select(vaccineRecord, diarrhoea, accessEducation) %>%
+  mutate(
+    accessEducation = Factor(accessEducation,labels = c("No". "Yes")) %>%
+      fct_explicit_na(na_level = "Missing Response Status")
+  ) %>%
+  tbl_summary(
+    by = acccessEducation,
+    label = list(vaccineRecord ~ "Having Vaccine Record", diarrhoea ~ "History of Diarrhea")
+  )
+```
+
+
+Structural factors 
+
+```{r individual}
+
+child_health %>%
+  select(accessEducation, healthInsurance, displacement,schoolFar) %>%
+  mutate(
+    accessEducation = Factor(accessEducation,labels = c("No". "Yes")) %>%
+      fct_explicit_na(na_level = "Missing Response Status")
+  ) %>%
+  tbl_summary(
+    by = acccessEducation,
+    label = list(healthInsurance ~ "Health Insurance", displacement ~ "Displacement", schoolFar ~ "School Far")
+  )
+```
 
 
 ### Discussion
