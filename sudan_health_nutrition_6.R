@@ -103,3 +103,19 @@ exp(cbind(OR = coef(maternal_model7), confint(maternal_model7)))
 #              OR      2.5 %     97.5 %
 #(Intercept) 2.711873 2.670837 2.753639
 #MDDW        1.739938 1.627560 1.861713
+
+#model for iron v folic acid for 90 days
+maternal_model8 <- glm(muac_category1~ifa90, family = binomial, data = maternal1)
+#### get model coefficients
+exp(cbind(OR = coef(maternal_model8), confint(maternal_model8)))
+#                OR    2.5 %   97.5 %
+# (Intercept) 2.396972 2.353898 2.440945
+# ifa90       1.562997 1.514119 1.613572
+
+#model for vitA
+maternal_model9 <- glm(muac_category1~vitA, family = binomial, data = maternal1)
+#### get model coefficients
+exp(cbind(OR = coef(maternal_model9), confint(maternal_model9)))
+#                OR    2.5 %   97.5 %
+# (Intercept) 2.698061 2.654360 2.742593
+# vitA        1.235080 1.187802 1.284472
