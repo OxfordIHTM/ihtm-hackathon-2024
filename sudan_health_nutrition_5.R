@@ -217,8 +217,17 @@ print("hello i am jojo")
 
 #Nei Part
 
-
-
+#my charts are pritier
+ggplot(IndicatorsLong3, aes(x = as.factor(Year), y = Value, fill = RateType)) +
+  geom_bar(stat = "identity") +
+  labs(title = "National CMAM performance - Prettier by Nei",
+       subtitle = "Sudan 2016-2019",
+       x = "Year",
+       y = "Percentage") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
+  scale_fill_manual(values = c("CureRate" = "#40E0D0", "DefaultRate" = "#FF5733", 
+                               "DeathRate" = "black", "NonResponderRate" = "grey")) 
 
 
 #Prateek Part
