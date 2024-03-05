@@ -3,13 +3,37 @@ tbl_summary(child_health, include = c(accessEducation, accessBasicEducation, eve
 
 # INDIVIDUAL FACTORS 
 tbl_summary(child_health, include = c(age, sex), by = accessEducation)
-tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
-tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
+
 
 # HEALTH-RELATED FACTORS 
 tbl_summary(child_health, include = c(vaccineRecord, diarrhoea), by = accessEducation)
 
-# Barriers to basic pre-school education ---------------------------------------
+child_health %>%
+  select(accessEducation, vaccineRecord, diarrhoea) %>%
+  mutate(
+    accessEducation = factor(accessEducation, labels = c("No", "Yes")) %>%
+      fct_explicit_na(na_level = "Missing Response Status")
+  ) %>%
+  tbl_summary(
+    by = accessEducation,
+    label = list(vaccineRecord ~ "Having Vaccine Record", diarrhoea ~ "History of diarrhoea")
+  )
+
+# STRUCTURAL FACTORS 
+
+child_health %>%
+  select(accessEducation, healthInsurance, displacement, schoolFar) %>%
+  mutate(
+    accessEducation = factor(accessEducation, labels = c("No", "Yes")) %>%
+      fct_explicit_na(na_level = "Missing Response Status")
+  ) %>%
+  tbl_summary(
+    by = accessEducation,
+    label = list(healthInsurance ~ "Health Insurance", displacement ~ "Displacement", schoolFar ~ "School Far" )
+  )
+
+# Barriers to basic pre-school education -----------------
+----------------------
 
 
 #################Create a table of na values per variable####################
