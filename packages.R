@@ -2,6 +2,7 @@
 
 ## Load general use packages ----
 library(openxlsx)     ## Read and write XLSX files
+
 library(dplyr)        ## Data wrangling and manipulation using tidy approach
 library(tidyr)        ## Data wrangling and manipulation using tidy approach
 library(ggplot2)      ## Data visualisation using tidy approach
