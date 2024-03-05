@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Load the dataset
 # instal packages
@@ -5,9 +6,77 @@ library (dplyr)
 library (ggplot2)
 
 child_health <- read.csv("data/child_health.csv")
+=======
+# GENERAL CHARACTERISTICS 
+tbl_summary(child_health, include = c(accessEducation, accessBasicEducation, everAttendedSchool))
+
+# INDIVIDUAL FACTORS 
+tbl_summary(child_health, include = c(age, sex), by = accessEducation)
+tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
+tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
+
+# HEALTH-RELATED FACTORS 
+tbl_summary(child_health, include = c(vaccineRecord, diarrhoea), by = accessEducation)
+
+# STRUCTURAL FACTORS
+tbl_summary(child_health, include = c(healthInsurance, noWASH, schoolFar, displacement), by = accessEducation)
+
+# Barriers to basic pre-school education ---------------------------------------
+
+
+#################Create a table of na values per variable####################
+
+# create a loop to determine number of na values per variable
+na_list<-c()
+for (i in 1:ncol(child)) {
+  na_count<- sum(is.na(child[,i])) 
+  print(na_count)
+  na_list<-c(na_list,na_count)
+}
+
+colname_list<-colnames(child)
+
+##create a table of na values
+na_tbl <- data.frame(colname_list, na_list)
+
+##naming cols
+colnames(na_tbl) = c("variable", "values missing") 
+
+##calc percentage of na variables
+na_tbl[,3]<-round( na_tbl$`values missing`/nrow(child) *100,2)
+
+na_tbl[,4]<-nrow(child)-na_tbl$`values missing`
+
+##naming cols
+colnames(na_tbl) = c("variable", "missing","missing %","present")
+
+
+################################ Descriptive analysis ######################
+
+#Health-related factors 
+
+child <- child %>%
+  mutate(everAttendedSchool = factor(everAttendedSchool, labels = c("No", "Yes")), 
+         safe_water = factor(vaccineRecord, labels = c("No", "Yes")))
+
+child %>%
+  drop_na(everAttendedSchool, vaccineRecord) %>%
+  tabyl(everAttendedSchool, vaccineRecord) 
+
+child %>%
+  cross_tbl(child, by = "everAtendedSchool")
+  ####################################### Descriptive 2 ######################
+
+child_health <- child
+>>>>>>> 2bbc76392755a62025f7cf1f8254074842b046b0
 
 # exclude rows where 'age' is NA
 child_health_clean <- child_health[!is.na(child_health$age),]
+
+# GENERAL CHARACTERISTICS 
+tbl_summary(child_health)
+tbl_summary(child_health, include = c(accessEducation, accessBasicEducation, everAttendedSchool))
+
 
 # INDIVIDUAL FACTORS
 # 2x2 Table for Sex and Access to Basic Education

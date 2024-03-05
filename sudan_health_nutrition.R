@@ -28,6 +28,10 @@ source("sudan_health_nutrition_3.R")
 source("sudan_health_nutrition_4.R")
 source("sudan_health_nutrition_5.R")
 source("sudan_health_nutrition_6.R")
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2bbc76392755a62025f7cf1f8254074842b046b0
 
 View(child)
 dim(child)
@@ -59,3 +63,8 @@ na_tbl[,3]<-round( na_tbl$`values missing`/nrow(child) *100,2)
 colnames(na_tbl) = c("variable", "values missing","%")
 
 View(na_tbl)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 7259f04e04f700dc4cc85d6bd7423c94a6d76561
+>>>>>>> 2bbc76392755a62025f7cf1f8254074842b046b0
