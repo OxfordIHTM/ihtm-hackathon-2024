@@ -33,6 +33,7 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 6. Determine the predictors of child and maternal undernutrition.
 
+<br>
 
 <!---- This is the start of the section for Team Naruto ---->
 ## Bottlenecks to maternal care service delivery
@@ -59,17 +60,18 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 <!---- This is the end of the section for Team Naruto ---->
 
+<br>
+
 <!---- This is the start of the section for Team Sasuke ---->
 ## Bottlenecks to EPI coverage
 
 ### Description of analytical approach
 
-
-
-
 ### Results
 
-#### Total Results
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/bcg-plot-1.png)<!-- -->
+
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/penta-plot-1.png)<!-- -->
 
 ### Discussion
 
@@ -82,6 +84,8 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 
 <!---- This is the end of the section for Team Sasuke ---->
+
+<br>
 
 <!---- This is the start of the section for Team Rock Lee ---->
 ## Barriers to basic pre-school education
@@ -108,6 +112,8 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 
 <!---- This is the end of the section for Team Rock Lee ---->
+
+<br>
 
 <!---- This is the start of the section for Team Hinata ---->
 
@@ -154,6 +160,8 @@ South Kourdofan should be an important state to consider initially given the dou
 
 <!---- This is the end of the section for Team Hinata ---->
 
+<br>
+
 <!---- This is the start of the section for Team Neji ---->
 
 ## CMAM programme responsiveness
@@ -170,41 +178,103 @@ Changes over time in these indicators were plotted to enable an inference concer
 
 #### Total Results
 
-
-```
-##                Names      Values
-## 1          Cure Rate 0.889536309
-## 2       Default Rate 0.085071238
-## 3         Death Rate 0.009372633
-## 4 Non Responder Rate 0.016019821
-## 5      Admitted Rate 0.083101134
-```
+<table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Performance Indicators </th>
+   <th style="text-align:left;"> Values (%) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Cure Rate </td>
+   <td style="text-align:left;"> 89.0% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Default Rate </td>
+   <td style="text-align:left;"> 8.5% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Death Rate </td>
+   <td style="text-align:left;"> 0.9% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Non Responder Rate </td>
+   <td style="text-align:left;"> 1.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Admitted Rate </td>
+   <td style="text-align:left;"> 8.3% </td>
+  </tr>
+</tbody>
+</table>
 
 #### Total by Year
 
-
-```
-## # A tibble: 4 × 7
-##    Year admissions defaulters CureRate DeathRate DefaultRate NonResponderRate
-##   <int>      <int>      <int>    <dbl>     <dbl>       <dbl>            <dbl>
-## 1  2016     224632      23558    0.856   0.0120       0.116            0.0160
-## 2  2017     227419      20259    0.880   0.00940      0.0946           0.0165
-## 3  2018     244796      16159    0.904   0.00849      0.0718           0.0161
-## 4  2019     250568      14479    0.914   0.00793      0.0624           0.0155
-```
-
-![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
-
-#### Indicator by Year and State
+<table class=" lightable-paper" style='font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;'>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> Year </th>
+   <th style="text-align:right;"> No. of Admissions </th>
+   <th style="text-align:right;"> No. of Defaulters </th>
+   <th style="text-align:right;"> Cure Rate </th>
+   <th style="text-align:right;"> Death Rate </th>
+   <th style="text-align:right;"> Default Rate </th>
+   <th style="text-align:right;"> Non-response Rate </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 2016 </td>
+   <td style="text-align:right;"> 224632 </td>
+   <td style="text-align:right;"> 23558 </td>
+   <td style="text-align:right;"> 85.6% </td>
+   <td style="text-align:right;"> 1.2% </td>
+   <td style="text-align:right;"> 11.6% </td>
+   <td style="text-align:right;"> 1.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2017 </td>
+   <td style="text-align:right;"> 227419 </td>
+   <td style="text-align:right;"> 20259 </td>
+   <td style="text-align:right;"> 88.0% </td>
+   <td style="text-align:right;"> 0.9% </td>
+   <td style="text-align:right;"> 9.5% </td>
+   <td style="text-align:right;"> 1.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2018 </td>
+   <td style="text-align:right;"> 244796 </td>
+   <td style="text-align:right;"> 16159 </td>
+   <td style="text-align:right;"> 90.4% </td>
+   <td style="text-align:right;"> 0.8% </td>
+   <td style="text-align:right;"> 7.2% </td>
+   <td style="text-align:right;"> 1.6% </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 2019 </td>
+   <td style="text-align:right;"> 250568 </td>
+   <td style="text-align:right;"> 14479 </td>
+   <td style="text-align:right;"> 91.4% </td>
+   <td style="text-align:right;"> 0.8% </td>
+   <td style="text-align:right;"> 6.2% </td>
+   <td style="text-align:right;"> 1.6% </td>
+  </tr>
+</tbody>
+</table>
 
 ![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
-#### Admissions by Year
+#### Indicator by Year and State
 
 ![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
-#### Defaults by Year
+#### Admissions by Year
+
 ![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+
+#### Defaults by Year
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 
 ### Discussion
@@ -226,6 +296,8 @@ Changes over time in these indicators were plotted to enable an inference concer
 
 
 <!---- This is the end of the section for Team Neji ---->
+
+<br>
 
 <!---- This is the start of the section for Team Sakura ---->
 
