@@ -44,6 +44,7 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 6. Determine the predictors of child and maternal undernutrition.
 
+<br>
 
 <!---- This is the start of the section for Team Naruto ---->
 ## Bottlenecks to maternal care service delivery
@@ -70,17 +71,56 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 <!---- This is the end of the section for Team Naruto ---->
 
+<br>
+
 <!---- This is the start of the section for Team Sasuke ---->
 ## Bottlenecks to EPI coverage
 
 ### Description of analytical approach
 
-
-
-
 ### Results
 
-#### Total Results
+```{r bcg-plot}
+ggplot(EPI_df, aes(x = state_name, y = BCG_Coverage)) +
+  geom_col(fill = "skyblue") +
+  labs(
+    title = "Proportion of children who have received BCG", 
+    subtitle = "State-level results",
+    x = NULL, y = "%"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x.bottom = element_text(angle = 90, hjust = 1, vjust = 0.5))
+```
+
+```{r penta-plot}
+EPI_df %>%
+  pivot_longer(
+    cols = Measles1_Coverage:Penta3_Coverage,
+    names_to = "indicator", values_to = "value"
+  ) %>%
+  filter(indicator %in% c("Penta1_Coverage", "Penta3_Coverage")) %>%
+  mutate(
+    indicator = factor(
+      indicator, 
+      levels = c("Penta1_Coverage", "Penta3_Coverage"), 
+      labels = c("First Dose", "Second Dose")
+    )
+  ) %>%
+  ggplot(aes(x = state_name, y = value, fill = indicator)) +
+  geom_bar(alpha = 0.5, stat = "identity", position = "identity") +
+  geom_bar(alpha = 0.5, stat = "identity", position = "identity") +
+  scale_fill_manual(name = NULL, values = c("blue", "green")) +
+  labs(
+    title = "Proportion of children who have received pentavalent vaccination",
+    subtitle = "State-level results",
+    x = NULL, y = "%"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    axis.text.x.bottom = element_text(angle = 90, hjust = 1, vjust = 0.5)
+  )
+```
 
 ### Discussion
 
@@ -93,6 +133,8 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 
 <!---- This is the end of the section for Team Sasuke ---->
+
+<br>
 
 <!---- This is the start of the section for Team Rock Lee ---->
 ## Barriers to basic pre-school education
@@ -119,6 +161,8 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 
 <!---- This is the end of the section for Team Rock Lee ---->
+
+<br>
 
 <!---- This is the start of the section for Team Hinata ---->
 
@@ -170,6 +214,8 @@ South Kourdofan should be an important state to consider initially given the dou
 
 <!---- This is the end of the section for Team Hinata ---->
 
+<br>
+
 <!---- This is the start of the section for Team Neji ---->
 
 ## CMAM programme responsiveness
@@ -187,17 +233,33 @@ Changes over time in these indicators were plotted to enable an inference concer
 #### Total Results
 
 ```{r}
-
-print(IndicatorsTotal)
-
+IndicatorsTotal %>%
+  mutate(Values = scales::label_percent(accuracy = 0.1)(Values)) %>%
+  kable(col.names = c("Performance Indicators", "Values (%)")) %>%
+  kableExtra::kable_paper(position = "center", full_width = FALSE)
 ```
 
 #### Total by Year
 
 ```{r}
+IndicatorsByYear %>%
+  mutate(
+    CureRate = scales::label_percent(accuracy = 0.1)(CureRate),
+    DeathRate = scales::label_percent(accuracy = 0.1)(DeathRate),
+    DefaultRate = scales::label_percent(accuracy = 0.1)(DefaultRate),
+    NonResponderRate = scales::label_percent(accuracy = 0.1)(NonResponderRate)
+  ) %>%
+  kable(
+    col.names = c(
+      "Year", "No. of Admissions", "No. of Defaulters", "Cure Rate", 
+      "Death Rate", "Default Rate", "Non-response Rate"
+    ),
+    align = "r"
+  ) %>%
+  kableExtra::kable_paper(position = "center", full_width = FALSE)
+```
 
-print(IndicatorsByYear)
-
+```{r}
 ggplot(IndicatorsLong3, aes(x = as.factor(Year), y = Value, fill = RateType)) +
   geom_bar(stat = "identity") +
   labs(title = "National CMAM performance",
@@ -208,7 +270,6 @@ ggplot(IndicatorsLong3, aes(x = as.factor(Year), y = Value, fill = RateType)) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
   scale_fill_manual(values = c("CureRate" = "#40E0D0", "DefaultRate" = "#FF5733", 
                                "DeathRate" = "black", "NonResponderRate" = "grey")) 
-
 ```
 
 #### Indicator by Year and State
@@ -265,6 +326,8 @@ ggplot(IndicatorsByYear, aes(x = Year, y = defaulters)) +
 
 
 <!---- This is the end of the section for Team Neji ---->
+
+<br>
 
 <!---- This is the start of the section for Team Sakura ---->
 

@@ -11,7 +11,8 @@ library(remotes)      ## For installing packages from GitHub
 library(here)         ## Utility package for working directory helper
 library(plotly)       ## For interactive plots
 library(patchwork)    ## for composing plots into a single plot
-
+library(knitr)        ## additional functions for rendering rmarkdown
+library(kableExtra)   ## creating nice output tables in rmarkdown 
 
 
 ## Load packages for mapping ----  
