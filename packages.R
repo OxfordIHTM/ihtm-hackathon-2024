@@ -14,7 +14,7 @@ library(patchwork)    ## for composing plots into a single plot
 
 ## Load packages for mapping ----  
 library(sf)           ## Main package for mapping
-library(patchwork)
+
 
 ## Load packages for modelling ----
 library(lme4)         ## for regression
