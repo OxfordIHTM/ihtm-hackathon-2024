@@ -151,9 +151,12 @@ This report builds on the data from the S3M II and provides further analysis of 
 ## CMAM programme responsiveness
 
 ### Description of analytical approach
+CMAM is a programme that was implemented in Sudan to address acute malnutrition among children in all states of Sudan.
 
- 
-fdthrhtey
+From the given dataset and background knowledge of the setting, we decided on four indicators to calculate and track over the 4-year period i.e cure rate, non-response rate, defaulter rate and death rate of children.
+
+Changes over time in these indicators were plotted to enable an inference concerning the responsiveness of the CMAM programme to the problem of malnutrition in Sudan.
+
 
 ### Results
 
