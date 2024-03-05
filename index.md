@@ -1,7 +1,7 @@
 ---
 title: Sudan Maternal and Child Health and Nutrition Survey 2018
 author: Anita Amponsa, Shylett Anthony, Naemi Araya, Moshood Audu, Rasika Bombatkar, Neira Budiono, Phillip Chigiya, Prince Kelechi Chima, John Bok Chol, Clifford Cofie, Eslam Elbasheer, Prateek Garg, Mary Gouws, Samvel Grigoryan, Marietta Imadojiemu, Jillian Francise Lee, Anita Makori, Joseph Mwaka, Kapil Narain, Josephine Ndawula, Thokozani Nyasulu, Richmonda Pearce, Mariano Ratto, Gloria Rukomeza, Mercedes Rumi, Amina Suveha, Shih-Ting Tseng, Claudia Vidal Cuellar, Yih Seong Wong
-date: "2024-02-24"
+date: "2024-03-05"
 output: 
   rmarkdown::html_document:
     toc: true
