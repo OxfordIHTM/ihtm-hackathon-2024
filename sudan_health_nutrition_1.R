@@ -40,9 +40,6 @@ calculate_statistics <- function(maternal_data){
 }
 
 
-
-}
-
 stats_by_state <- calculate_statistics(maternal)
 
 # Define the data for each column as separate vectors
@@ -72,11 +69,39 @@ state_data <- data.frame(
 state_data_long <- state_data %>%
   pivot_longer(cols = c(anc4, anyIFA, IFA90), names_to = "Variable", values_to = "Value")
 
-  
-  ggplot(state_data_long, aes(x = Variable, y = Value)) +
+ggplot(stats_by_state, aes(x = state_name, y = percent_anc4, fill = state_name))+
+  geom_col()+
+  coord_flip()+
+  theme(legend.position = "none")+
+  labs(title = "ANC ATTENDANCE BY STATE",
+       x= NULL,
+       y = "% ANC ATTENDANCE (4 visits minimum)")
+
+ggplot(stats_by_state, aes(x = state_name, y = percent_anyIFA))+
+  geom_col()+
+  coord_flip()+
+  theme(legend.position = "none")+
+  labs(title = "ANTENATAL SUPPLEMENTS PRESCRIBED BY STATE",
+       x= NULL,
+       y = "IFA (at least one dose)")
+
+
+ggplot(stats_by_state, aes(x = state_name, y = percent_IFA90))+
+  geom_col()+
+  coord_flip()+
+  theme(legend.position = "none")+
+  labs(title = "3 MONTH IFA SUPPLEMENTATION PRESCRIBED BY STATE",
+       x= NULL,
+       y = "IFA (3 months)")
+
+ggplot(state_data_long, aes(x = Variable, y = Value, fill = Variable)) +
     geom_bar(stat = "identity") +
     labs(title = paste("Bar Plot for", state_name), x = "Variable", y = "Value")+
-    facet_wrap()
+    facet_wrap(.~state, 6,3)+
+  theme(legend.position = "none")+
+  labs(x = NULL,
+       y = "PERCENTAGE",
+       title = "ANTENATAL SERVICE BOTTLENECKS BY STATE IN SUDAN")
 
 
 
