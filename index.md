@@ -277,13 +277,9 @@ Changes over time in these indicators were plotted to enable an inference concer
 
 ![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
-#### Admissions by Year
+#### Admissions and Defaulters by Year
 
-![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
-
-#### Defaults by Year
-![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
-
+<img src="/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-6-1.png" width="50%" /><img src="/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/unnamed-chunk-6-2.png" width="50%" />
 
 ### Discussion
 - Cure rate for all states going up slightly, although we do not see a significant change in cure rate after the intervention. The increasing trend has been present even before the intervention and continues similarly after 
