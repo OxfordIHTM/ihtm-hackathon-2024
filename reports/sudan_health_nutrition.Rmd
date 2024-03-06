@@ -56,28 +56,24 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 ``` {r anc-plot}
 ggplot(stats_by_state, aes(x = state_name, y = percent_anc4)) +
-  geom_col(fill = "skyblue") +
+  geom_col(fill = "skyblue", alpha = 0.7) +
   coord_flip() +
-  #theme(legend.position = "none")+
   labs(
     title = "Antenatal Care Attendance (4 visits minimum)",
-    subtitle = "State level results",
-    x= NULL,
-    y = "%"
+    subtitle = "State-level results",
+    x= NULL, y = "%"
   ) +
   theme_minimal()
 ```
 
 ```{r ifa-plot}
 ggplot(stats_by_state, aes(x = state_name, y = percent_anyIFA)) +
-  geom_col(fill = "skyblue") +
+  geom_col(fill = "skyblue", alpha = 0.7) +
   coord_flip() +
-  #theme(legend.position = "none")+
   labs(
     title = "Iron-folic acid supplementation (at least one dose)",
-    subtitle = "State level results",
-    x= NULL,
-    y = "%"
+    subtitle = "State-level results",
+    x= NULL, y = "%"
   ) +
   theme_minimal()
 ```
@@ -85,27 +81,24 @@ ggplot(stats_by_state, aes(x = state_name, y = percent_anyIFA)) +
 
 ```{r ifa90-plot}
 ggplot(stats_by_state, aes(x = state_name, y = percent_IFA90))+
-  geom_col(fill = "skyblue")+
+  geom_col(fill = "skyblue", alpha = 0.7)+
   coord_flip()+
-  #theme(legend.position = "none")+
   labs(
     title = "Iron-folic acid supplementation (at least 3 months)",
-    x= NULL,
-    y = "%"
+    subtitle = "State-level results",
+    x= NULL, y = "%"
   ) +
   theme_minimal()
 ```
 
 ```{r anc-bottleneck}
 ggplot(state_data_long, aes(x = Variable, y = Value)) +
-  geom_bar(stat = "identity", fill = "skyblue") +
-  #labs(title = paste("Bar Plot for", state_name), x = "Variable", y = "Value")+
+  geom_bar(stat = "identity", fill = "skyblue", alpha = 0.7) +
   facet_wrap(.~state, ncol = 6) +
-  #theme(legend.position = "none")+
   labs(x = NULL,
        y = "%",
        title = "Antenatal Care Bottlenecks",
-       subtitle = "State level results") +
+       subtitle = "State-level results") +
   theme_bw() +
   theme(axis.text.x.bottom = element_text(angle = 90, hjust = 1, vjust = 0.5))
 ```
@@ -137,7 +130,7 @@ ggplot(state_data_long, aes(x = Variable, y = Value)) +
 
 ```{r bcg-plot}
 ggplot(EPI_df, aes(x = state_name, y = BCG_Coverage)) +
-  geom_col(fill = "skyblue") +
+  geom_col(fill = "skyblue", alpha = 0.7) +
   labs(
     title = "Proportion of children who have received BCG", 
     subtitle = "State-level results",
@@ -315,52 +308,61 @@ IndicatorsByYear %>%
 ```
 
 ```{r}
-ggplot(IndicatorsLong3, aes(x = as.factor(Year), y = Value, fill = RateType)) +
-  geom_bar(stat = "identity") +
+IndicatorsLong3 %>%
+  mutate(
+    RateType = factor(
+      RateType, 
+      levels = c("CureRate", "DefaultRate", "DeathRate", "NonResponderRate"),
+      labels = c("Cure Rate", "Default Rate", "Death Rate", "Non-response Rate")
+    )
+  ) %>%
+  ggplot(aes(x = as.factor(Year), y = Value * 100, fill = RateType)) +
+  geom_bar(stat = "identity", alpha = 0.7) +
+  scale_fill_manual(
+    name = NULL,
+    values = c("#40E0D0", "#FF5733", "black", "grey")
+  ) +
   labs(title = "National CMAM performance",
        subtitle = "Sudan 2016-2019",
-       x = "Year",
-       y = "Percentage") +
+       x = NULL, y = "%") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))+
-  scale_fill_manual(values = c("CureRate" = "#40E0D0", "DefaultRate" = "#FF5733", 
-                               "DeathRate" = "black", "NonResponderRate" = "grey")) 
+  theme(
+    axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5),
+    legend.position = "top"
+  )
 ```
 
 #### Indicator by Year and State
 
 ```{r}
-
 p
-
 ```
 
-#### Admissions by Year
+#### Admissions and Defaulters by Year
 
-```{r}
-
+```{r, fig.show = "hold", out.width = "50%"}
 ggplot(IndicatorsByYear, aes(x = Year, y = admissions)) +
-  geom_line(colour="blue") +
+  geom_line(colour="blue", linewidth = 3) +
   labs(title = "Admissions by Year",
        x = "Year",
        y = "Admissions") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(
+    text = element_text(size = 18),
+    axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)
+  )
 
-```
-
-#### Defaults by Year
-```{r}
 ggplot(IndicatorsByYear, aes(x = Year, y = defaulters)) +
-  geom_line(colour="red") +
+  geom_line(colour="red", linewidth = 3) +
   labs(title = "Defaulters by Year",
        x = "Year",
-       y = "Number of Defaulters") +
+       y = "Defaulters") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
+  theme(
+    text = element_text(size = 18),
+    axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)
+  )
 ```
-
 
 ### Discussion
 - Cure rate for all states going up slightly, although we do not see a significant change in cure rate after the intervention. The increasing trend has been present even before the intervention and continues similarly after 
