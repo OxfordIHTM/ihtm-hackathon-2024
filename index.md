@@ -1,7 +1,7 @@
 ---
 title: Sudan Maternal and Child Health and Nutrition Survey 2018
 author: Anita Amponsa, Shylett Anthony, Naemi Araya, Moshood Audu, Rasika Bombatkar, Neira Budiono, Phillip Chigiya, Prince Kelechi Chima, John Bok Chol, Clifford Cofie, Eslam Elbasheer, Prateek Garg, Mary Gouws, Samvel Grigoryan, Marietta Imadojiemu, Jillian Francise Lee, Anita Makori, Joseph Mwaka, Kapil Narain, Josephine Ndawula, Thokozani Nyasulu, Richmonda Pearce, Mariano Ratto, Gloria Rukomeza, Mercedes Rumi, Amina Suveha, Shih-Ting Tseng, Claudia Vidal Cuellar, Yih Seong Wong
-date: "2024-03-05"
+date: "2024-03-06"
 output: 
   rmarkdown::html_document:
     toc: true
@@ -23,7 +23,7 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 1. Demonstrate the bottlenecks/barriers to service delivery of essential maternal care such as antenatal and postnatal care;
 
-2. Demonstrate the bottlenecks/barriers to service delivery of the expanded programem on immunisation (EPI);
+2. Demonstrate the bottlenecks/barriers to service delivery of the expanded programme on immunisation (EPI);
 
 3. Demonstrate the bottlenecks/barriers to basic pre-school education;
 
@@ -119,13 +119,13 @@ This report builds on the data from the S3M II and provides further analysis of 
 
 ## Spatial distribution of maternal and child undernutrition
 
-Overall, there are higher rates of undernousrished mothers in the eastern states of Sudan as compared to the west.In the states of River Nile, North and South Kourdofan, Blue Nile, Kassala and Al-Gazeera, more than 75% of mothers are undernourished. In all other states, 25% or less of mothers are undernourished. 
+Overall, there are higher rates of undernourished mothers in the eastern states of Sudan as compared to the west.In the states of River Nile, North and South Kourdofan, Blue Nile, Kassala and Al-Gazeera, more than 75% of mothers are undernourished. In all other states, 25% or less of mothers are undernourished. 
 
 Similar to maternal nutrition, child wasting and underweight follows similar patterns. There are higher rates of child wasting and underweight (>50%) in eastern states of River Nile, North and South Kourdofan, Blue Nile, Kassala and Al-Gazeera. 
 
 The rates of stunting by state follow different patterns, however, compared to maternal undernutrition, child wasting and underweight. Child stunting is higher in the states of North, West and Central Dafur, Red Sea, Sinar and South Kourdofan (40% or higher).
 
-Interestingly, there is not much overlap of stunting with the other forms of undernutrition per state, except for one state: South Kourdofan: where there are high rates of maternal undernurition, child stunting, underweight and wasting. 
+Interestingly, there is not much overlap of stunting with the other forms of undernutrition per state, except for one state: South Kourdofan: where there are high rates of maternal undernutrition, child stunting, underweight and wasting. 
 
 
 ### Desription of analytical approach
