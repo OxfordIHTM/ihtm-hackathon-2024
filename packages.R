@@ -2,7 +2,6 @@
 
 ## Load general use packages ----
 library(openxlsx)     ## Read and write XLSX files
-
 library(dplyr)        ## Data wrangling and manipulation using tidy approach
 library(tidyr)        ## Data wrangling and manipulation using tidy approach
 library(ggplot2)      ## Data visualisation using tidy approach
@@ -13,6 +12,9 @@ library(plotly)       ## For interactive plots
 library(patchwork)    ## for composing plots into a single plot
 library(knitr)        ## additional functions for rendering rmarkdown
 library(kableExtra)   ## creating nice output tables in rmarkdown 
+library(gtsummary)    ## summary tables
+library(janitor)
+library(pubh)
 
 
 ## Load packages for mapping ----  

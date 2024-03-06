@@ -1,16 +1,16 @@
 # GENERAL CHARACTERISTICS 
-tbl_summary(child_health, include = c(accessEducation, accessBasicEducation, everAttendedSchool))
+tbl_summary(child, include = c(accessEducation, accessBasicEducation, everAttendedSchool))
 
 # INDIVIDUAL FACTORS 
-tbl_summary(child_health, include = c(age, sex), by = accessEducation)
-tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
-tbl_summary(child_health, include = c(age, sex), by = accessBasicEducation)
+tbl_summary(child, include = c(age, sex), by = accessEducation)
+tbl_summary(child, include = c(age, sex), by = accessBasicEducation)
+tbl_summary(child, include = c(age, sex), by = accessBasicEducation)
 
 # HEALTH-RELATED FACTORS 
-tbl_summary(child_health, include = c(vaccineRecord, diarrhoea), by = accessEducation)
+tbl_summary(child, include = c(vaccineRecord, diarrhoea), by = accessEducation)
 
 # STRUCTURAL FACTORS
-tbl_summary(child_health, include = c(healthInsurance, noWASH, schoolFar, displacement), by = accessEducation)
+tbl_summary(child, include = c(healthInsurance, noWASH, schoolFar, displacement), by = accessEducation)
 
 # Barriers to basic pre-school education ---------------------------------------
 
@@ -54,8 +54,8 @@ child %>%
   drop_na(everAttendedSchool, vaccineRecord) %>%
   tabyl(everAttendedSchool, vaccineRecord) 
 
-child %>%
-  cross_tbl(child, by = "everAtendedSchool")
+# child %>%
+#   cross_tbl(child, by = "everAtendedSchool")
   ####################################### Descriptive 2 ######################
 
 child_health <- child

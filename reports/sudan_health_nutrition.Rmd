@@ -191,7 +191,6 @@ EPI_df %>%
 
 We created 2x2 tables to compare the individual, health-related and structural factors among children who had and did not have access to education. We also created summary tables. A multivariate analysis was performed to assess for associations between these factors and access to education.
 
-
 ### Results
 
 Individual factors 
@@ -201,15 +200,15 @@ tbl_summary(child_health, include = c(age, sex), by = accessEducation)
 ```
 
 Health-related factors 
-```{r individual}
+```{r health}
 child_health %>%
   select(vaccineRecord, diarrhoea, accessEducation) %>%
   mutate(
-    accessEducation = Factor(accessEducation,labels = c("No". "Yes")) %>%
+    accessEducation = factor(accessEducation,labels = c("No", "Yes")) %>%
       fct_explicit_na(na_level = "Missing Response Status")
   ) %>%
   tbl_summary(
-    by = acccessEducation,
+    by = accessEducation,
     label = list(vaccineRecord ~ "Having Vaccine Record", diarrhoea ~ "History of Diarrhea")
   )
 ```
@@ -217,16 +216,16 @@ child_health %>%
 
 Structural factors 
 
-```{r individual}
+```{r structural}
 
 child_health %>%
   select(accessEducation, healthInsurance, displacement,schoolFar) %>%
   mutate(
-    accessEducation = Factor(accessEducation,labels = c("No". "Yes")) %>%
+    accessEducation = factor(accessEducation,labels = c("No", "Yes")) %>%
       fct_explicit_na(na_level = "Missing Response Status")
   ) %>%
   tbl_summary(
-    by = acccessEducation,
+    by = accessEducation,
     label = list(healthInsurance ~ "Health Insurance", displacement ~ "Displacement", schoolFar ~ "School Far")
   )
 ```
