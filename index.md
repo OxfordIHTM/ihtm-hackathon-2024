@@ -41,21 +41,29 @@ This report builds on the data from the S3M II and provides further analysis of 
 ### Description of analytical approach
 
 
-
-
 ### Results
 
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/anc-plot-1.png)<!-- -->
+
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/ifa-plot-1.png)<!-- -->
 
 
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/ifa90-plot-1.png)<!-- -->
 
-### Discussion
+![](/__w/ihtm-hackathon-2024/ihtm-hackathon-2024/docs/index_files/figure-html/anc-bottleneck-1.png)<!-- -->
+
+## Discussion
+- Sudan's capital, Khartoum had the highest (78%) ANC attendance of at least 4 visits as recommended by the WHO while Central Darfur, a conflict area had the lowest.
+
+- There are notable discrepancies between the number of women who received at least one dose of iron/folic acid supplements and those who received prescriptions each month up to 90 days. This demonstrates that a significant proportion of women successfully enrolled into antenatal care are lost to follow-up often within the first 3 months.
+
+- Antenatal bottlenecks are observed across all states in Sudan. The most affected regions are East Darfur and West Kourdofan states where about 46% of all women enrolled in antenatal care are lost to follow up. The least affected region is Khartoum with only about 12% of all women enrolled in the state.
 
 
+## Recommendations
+- Further research is needed to explore barriers and facilitators to successful completion of antenatal care to inform health system interventions in Sudan. 
 
-
-### Recommendations
-
-
+- Areas most affected by bottlenecks such as central Dafur, East Dafur and West Kourdofan should be prioritised for these interventions.
 
 
 <!---- This is the end of the section for Team Naruto ---->
@@ -314,7 +322,6 @@ Changes over time in these indicators were plotted to enable an inference concer
 
 
 ### Discussion
-
 
 
 
