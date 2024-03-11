@@ -216,7 +216,6 @@ gridExtra::grid.table(model_outputs, theme=theme)
 
 
 
-
 ### Recommendations
 
 
