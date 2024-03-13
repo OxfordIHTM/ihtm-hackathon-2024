@@ -21,8 +21,7 @@ knitr::opts_chunk$set(
 
 This repository contains instructions, data and code for the [University
 of Oxford MSc in International Health and Tropical
-Medicine](https://www.ox.ac.uk/admissions/graduate/courses/msc-international-health-and-tropical-medicine)
-inaugural **Hackathon 2024**. The **Hackathon 2024** event is part of
+Medicine](https://www.ox.ac.uk/admissions/graduate/courses/msc-international-health-and-tropical-medicine) **Hackathon 2024**. The **Hackathon 2024** event is part of
 the [MSc course](https://www.ox.ac.uk/admissions/graduate/courses/msc-international-health-and-tropical-medicine)’s
 [lecture series on Open Science and Reproducible Research in
 R](https://oxford-ihtm.io/open-reproducible-science).
@@ -214,6 +213,20 @@ sudan2 <- st_read(dsn = sudan_map_url, layer = "locality")
 ## Run the specific workflow ---
 source("sudan_health_nutrition_1.R")
 ```
+
+### Reproducing the final report for this project
+
+To reproduce the HTML final report for this project, run the following command on the R console:
+
+```R
+rmarkdown::render(
+  "reports/sudan_health_nutrition.Rmd", 
+  output_dir = "docs", 
+  knit_root_dir = here::here()
+)
+```
+
+This will render the Rmarkdown found in the `reports` directory and produce an HTML report called "sudan_health_nutrition.html" in the `docs` directory.
 
 ## Authors
 
