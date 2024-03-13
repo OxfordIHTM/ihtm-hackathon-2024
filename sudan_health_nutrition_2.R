@@ -219,7 +219,7 @@ EPI_df <- left_join(Measles1_coverage_per_state, Measles2_coverage_per_state) %>
   left_join(OPV3_coverage_per_state) %>%
   left_join(Penta1_coverage_per_state) %>%
   left_join(Penta3_coverage_per_state) %>%
-  select("state_name", "Measles1_Coverage", "Measles2_Coverage", "BCG_Coverage", "OPV1_Coverage", "OPV3_Coverage", "Penta1_Coverage", "Penta3_Coverage")
+  dplyr::select("state_name", "Measles1_Coverage", "Measles2_Coverage", "BCG_Coverage", "OPV1_Coverage", "OPV3_Coverage", "Penta1_Coverage", "Penta3_Coverage")
 
 print(EPI_df)
 

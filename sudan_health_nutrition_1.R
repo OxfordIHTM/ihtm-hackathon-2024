@@ -55,7 +55,7 @@ state_data <- stats_by_state %>%
     anyIFA = percent_anyIFA,
     IFA90 = percent_IFA90
   ) %>%
-  select(state, anc4, anyIFA, IFA90)
+  dplyr::select(state, anc4, anyIFA, IFA90)
 
 
 ##reshapetable

@@ -425,12 +425,38 @@ ggplot(IndicatorsByYear, aes(x = Year, y = defaulters)) +
 ## Determinants of maternal and child undernutrition
 
 ### Description of analytical approach
+Maternal nutritional status based on maternal mid-upper arm circumference (MUAC) was identified as the outcome variable in our analysis of the determinants affecting maternal undernutrition. This was a categorical outcome variable (underweight/not underweight), in order to conduct a logistic regression analysis.
 
-
+The association between certain determinants (age at first parity, state, locality, antenatal and postnatal visits, protein-rich diet, MDDW, and iron, folic acid, and vitamin A supplementation) and maternal MUAC was assessed using a univariable logistic regression analysis.
 
 
 ### Results
 
+```{r}
+muac_summary <- maternal1 %>%
+  group_by(muac_category) %>%
+  count() %>%
+  ungroup() %>%
+  filter(!muac_category%in%NA) %>%
+  mutate(muac_proportions = round(n/sum(n)*100))
+
+ggplot(muac_summary, aes(x=muac_category, y=muac_proportions)) +
+  geom_col() +
+  theme_bw() +
+  labs( y="Proportion (%)", title="Maternal Nutrition", x="Nutrition Category")
+```
+
+
+```{r}
+model_outputs <- bind_rows(m1,m2,m4,m5,m6,m7,m8,m9)
+
+#kableExtra::kable(model_outputs)
+
+#broom::tidy(exp(cbind(OR = coef(maternal_model9), confint(maternal_model9))))
+
+
+gridExtra::grid.table(model_outputs, theme=theme)
+```
 
 
 
