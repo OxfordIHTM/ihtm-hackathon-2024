@@ -131,7 +131,7 @@ p <- ggplot(IndicatorsLong2Filtered, aes(x = Date, y = Value, group = State, col
 
 #71, tabla includes indicators but state and date. I order as required
 IndicatorsbyTimeAndState <- IndicatorsbyTimeAndState %>%
-  select(State, Date, CureRate, DefaultRate, DeathRate, NonResponderRate, AdmittedRate)
+  dplyr::select(State, Date, CureRate, DefaultRate, DeathRate, NonResponderRate, AdmittedRate)
 head(IndicatorsbyTimeAndState)
 
 # Convert ggplot object to a plotly object
@@ -160,7 +160,7 @@ IndicatorsByYear <- cmam %>%
     DefaultRate = defaulters / total_discharge,
     NonResponderRate = non_responder / total_discharge
   ) %>%
-  select(Year, admissions, defaulters, CureRate, DeathRate, DefaultRate, NonResponderRate)
+  dplyr::select(Year, admissions, defaulters, CureRate, DeathRate, DefaultRate, NonResponderRate)
 
 # Rrsult
 print(IndicatorsByYear)
